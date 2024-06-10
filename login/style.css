@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Reddit+Mono:wght@200..900&display=swap');
+
+*{
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+}
+
+body{
+    background: linear-gradient(rgb(143, 133, 133), rgb(196, 24, 24));
+}
+section{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    /*background: url(img/fondo.jpg);*/
+    background-position: center;
+    background-size: cover;
+}
+
+.contenedor{
+    position: relative;
+    width: 400px;
+    background-color: rgb(178, 187, 180);
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+    height: 450px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* titulo (letras)
+.contenedor h2{
+    font-size: 2.5rem;
+    color: #aa7f7f;
+    text-align: center;
+}*/
+
+.input-contenedor{
+    position: relative;
+    margin: 30px 0;
+    width: 300px;
+    border-bottom: 2px solid #000000;
+}
+
+.input-contenedor label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    color: #000000;
+    font-size: 1.5rem;
+    pointer-events: none;
+    transition: 1s;
+    font-weight: bold;
+}
+
+input:focus ~ label,
+input:valid ~ label{
+    top: -5px;
+}
+
+.input-contenedor input{
+    width: 100%;
+    height: 50px;
+    background-color: transparent;
+    border: none;
+    outline: none;
+    font-size: 2rem;
+    padding: - 35px 0 5px;
+    color: #ee0808;
+}
+
+/* Iconos pequeños*/
+.input-contenedor i{
+    position: absolute;
+    color: #d81a1a;
+    font-size: 1.6rem;
+    top: 15px;
+    right: -25px;
+}
+
+/*.olvidar{
+    margin: -15px 0 15px;
+    font-size: 1rem;
+    color: #0c0c0c;
+    display: flex;
+    justify-content: center;
+}
+
+/*.olvidar label input{
+    margin: 3px;
+}
+
+.olvidar label a{
+    color: #fff;
+    text-decoration: none;
+    transition: none;
+    font-size: .9rem;
+}
+
+.olvidar label a:hover{
+    text-decoration: underline;
+}*/
+
+button{
+    width: 100%;
+    height: 45px;
+    border-radius: 40px;
+    /*background: #d81a1a;*/
+    background: linear-gradient(130deg, rgb(255, 0, 0), rgb(204, 93, 93));
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    font-size: 1.5rem;
+    transition: .4s;
+}
+
+button:hover{
+    opacity: .9;
+    background: linear-gradient(130deg, rgb(190, 67, 67), rgb(255, 0, 0));
+}
+
+/*.registrar{
+    font-size: .8rem;
+    color: #ffffff;
+    text-align: center;
+    margin: 20px 0 10px;
+}
+
+.registrar p a{
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.registrar p a:hover{
+    text-decoration: underline;
+
+}*/
+
+.contenedor .avatar{
+    /*width: 210px;*/
+    /*height: 85px;*/
+    border-radius: 20%;
+    position: absolute;
+    top: -5px;
+    left: calc(36% - 10px);
+    width: 150px;
+}
