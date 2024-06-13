@@ -1,0 +1,86 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #816f6f;
+  }
+  
+  .container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #8b8ba7;
+    border: 1px solid #e1fa00;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h3 {
+    margin-top: 0;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  .form-group span {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #666;
+  }
+  
+  .form-group input, .form-group select {
+    width: 100%;
+    height: 40px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .form-group input[type="number"] {
+    width: 50%;
+  }
+  
+  .form-group small {
+    color: #999;
+    font-size: 12px;
+  }
+  
+  .button {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .button input[type="submit"] {
+    background-color: #f70303;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .button input[type="submit"]:hover {
+    /*background-color: #3e8e41;*/
+    background: linear-gradient(130deg, rgb(223, 214, 214), rgb(238, 0, 0));
+  }
+  
+  /*======MARGEN AL NO INGRESAR CAMPOS======*/
+  .was-validate {
+    border: 1px solid #05f711;
+  }
+
+  div > form > a{
+    background-image: url(img/salir.png);
+    background-size: 50px;
+    background-repeat: no-repeat;
+    background-position: center center;
+    padding: 20px 40px;
+}
+
+div > form > a:hover{
+    background-image: url(img/salir.png);
+    background-size: 50px;
+    background-repeat: no-repeat;
+    background-position: center center;
+}

@@ -48,7 +48,6 @@ header{
 }
 
 /*================barra menu=============*/
-
 .container__menu{
     width: 100%;
     height: 70px;
@@ -79,16 +78,16 @@ nav ul li{
 }
 
 nav > ul > li:first-child > a{
-    background-image: url(img/salir1.png);
-    background-size: 50px;
+    background-image: url(img/salir2.png);
+    background-size: 60px;
     background-repeat: no-repeat;
     background-position: center center;
     padding: 20px 40px;
 }
 
 nav > ul > li:first-child:hover > a{
-    background-image: url(img/salir1.png);
-    background-size: 50px;
+    background-image: url(img/salir2.png);
+    background-size: 60px;
     background-repeat: no-repeat;
     background-position: center center;
 }

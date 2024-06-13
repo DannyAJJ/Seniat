@@ -12,6 +12,8 @@
 
         <form id="form-validation" novalidate>
 
+        <a href="../menu/index.html" style="width: 1000px;"> <img src="img/salir.png" alt="imagen clickeable" width="50" height="50"></a>
+
             <h3 style = "width: 1000px;" >FIRMA DEL NUEVO DIRECTOR</h3>
 
             <div class="form-group">
