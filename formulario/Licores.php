@@ -13,7 +13,9 @@
 
         <form id="form-validation" action="licoresinsertar.php"  novalidate>
 
-        <a href="../menu/index.html" style="width: 1000px;"> <img src="../menu/img/home.png" alt="imagen clickeable" width="50" height="50"></a>
+        <center><a href="../menu/index.html" ><div class="salida"></center>
+            
+        </div> </a>
 
             <h3 style="width: 1000px;">DATOS DEL SOLICITANTE</h3>
 
