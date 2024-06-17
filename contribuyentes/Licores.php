@@ -12,7 +12,7 @@
 <div class="container" id="container1">
 
         <form id="form-validation" action="licoresinsertar.php"  novalidate>
-        <a href="../menu/index.html"></a>
+        <a class="links" href="../menu/index.html"></a>
 
         <center><h2>PLANILLA LICORES</h2></center>
 

@@ -9,7 +9,7 @@
 <body>
     <div class="container" id="container1">
         <form id="form-validation" novalidate>
-        <a href="../menu/index.html"></a>
+        <a class="links" href="../menu/index.html"></a>
 
             <center><h2>PLANILLA TABACO</h2></center>
 
