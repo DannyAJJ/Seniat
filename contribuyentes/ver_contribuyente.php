@@ -43,7 +43,7 @@ function anadir() {
 
 var rif = $('#rif').val();
 $.ajax({
-url: 'buscarcontribullente.php',
+url: 'buscar_contribuyente.php',
 type: 'POST',
 data: {
     rif: rif,

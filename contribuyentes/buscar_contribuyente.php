@@ -18,10 +18,11 @@ if ($result->num_rows > 0) {
     echo "<tr>";
     echo "<td>" . $row["Numero_autorizacion"]. "</td><td>" .$row["Razon_social"]. "</td><td>" . $row["Unidad"] . "</td>";
 
-    echo "<td><a href=''>Liqidar Produccion  </a><a href=''>Liqidar P.V.P.  </a><a href=''>Renovar  </a><a href=''>Eliminar </a></td></tr>";
+    echo "<td><a class='enlace' href></a>VER<a class='enlace' href=''>LIQUIDAR PRODUCCIÓN</a><a class='enlace' href=''>LIQUIDAR P.V.P</a><a class='enlace' href=''>RENOVACIÓN</a><a class='enlace' href=''>ELIMINAR</a></td></tr>";
     }
     echo "</tbody></table>";
 } else {
-  echo "<p style='color: black; font-size: 20px; font-weight: bold;'>0 resultados</p>";
+  echo "<p>SIN RESULTADOS</p>";
 }
 ?>
+

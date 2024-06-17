@@ -22,7 +22,7 @@
             </div>
         
             <div class="button">
-                <input type="submit" value="Buscar">
+                <input type="submit" value="BUSCAR">
             </div>
         </form>
 </div>
