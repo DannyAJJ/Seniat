@@ -32,6 +32,7 @@ section{
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 2;
 }
 
 /* titulo (letras)
@@ -154,4 +155,26 @@ button:hover{
     top: -5px;
     left: calc(36% - 10px);
     width: 150px;
+}
+
+/*=============VIDEO==============*/
+
+video{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.capa{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #1c1c1d;
+    opacity: 0.5;
+    mix-blend-mode: overlay;
 }

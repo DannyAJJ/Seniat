@@ -2,25 +2,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="stilos.css">
+    <link rel="stylesheet" href="stilosss.css">
     <link rel="icon" href="img/icono.png">
     <title>formulario3</title>
 </head>
 <body>
-
-<div class="container" id="container1">
-
+    <div class="container" id="container1">
         <form id="form-validation" novalidate>
-        <a href="../menu/index.html" style="width: 1000px;"> <img src="../menu/img/home.png" alt="imagen clickeable" width="50" height="50"></a>
+        <a href="../menu/index.html"></a>
 
-            <h3 style="width: 1000px;">DATOS DEL SOLICITANTE</h3>
+            <center><h2>PLANILLA TABACO</h2></center>
 
-            <select style="-webkit-appearance: ini; appearance: initial; background-image: url('flecha.png'); background-size: 20px 20px; background-position: 95% 50%; background-repeat: no-repeat;">
-  <option value="">Seleccione una opción</option>
-  <option value="opcion1">Opción 1</option>
-  <option value="opcion2">Opción 2</option>
-            </select>
+            <div class="form-group">
+                <span>Sector/sector</span>
+                <select type="text" name="sector" id="sector" required>
+                    <option value="">Seleccione sector</option>
+                    <option value="Maracay">Maracay</option>
+                    <option value="Cojedes">Cojedes</option>
+                    <option value="Bejuma">Bajuma</option>
+                    <option value="La Victoria">La Victoria</option>
+                </select>
+                <small>Ingrese campos</small>
+            </div>
 
+            <h3>DATOS DEL SOLICITANTE</h3>
             <div class="form-group">
                 <span>Tipo de persona</span>
                 <select type="text" name="Tipo de persona" id="tipodepersona" required>
@@ -199,26 +204,12 @@
                 <input type="text" placeholder="Materia prima" id="materiaprima.producto" required>
                 <small>Ingrese campos</small>
             </div>
-            
-            <h3>------------------------------------------------------------------------</h3>
-            <div class="form-group">
-                <span>Sector/sector</span>
-                <select type="text" name="sector" id="sector" required>
-                    <option value="">Seleccione sector</option>
-                    <option value="Maracay">Maracay</option>
-                    <option value="Cojedes">Cojedes</option>
-                    <option value="Bejuma">Bajuma</option>
-                    <option value="La Victoria">La Victoria</option>
-                </select>
-                <small>Ingrese campos</small>
-            </div>
-
+        
             <div class="button">
-                <input type="submit" value="Registrarse">
+                <input type="submit" value="REGISTRAR">
             </div>
         </form>
 </div>
-<div class="container" style="width: 0px; padding: 0px;"></div>
 
 <script>
     const addForm = document.getElementById("form-validation");
@@ -236,6 +227,13 @@
         document.getElementById(b).value= final + "-"
     }
 </script>
+
+    <main>
+        <video muted autoplay loop>
+            <source src="./video/videof.mp4" type="video/mp4">
+        </video>
+        <div class="capa"></div>
+    </main>
 
 </body>
 </html>
