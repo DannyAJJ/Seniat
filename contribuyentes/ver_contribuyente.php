@@ -44,7 +44,7 @@
         
         var rif = $('#rif').val();
           $.ajax({
-            url: 'PostTabaco.php',
+            url: 'buscarcontribullente.php',
             type: 'POST',
             data: {
                 rif: rif,
