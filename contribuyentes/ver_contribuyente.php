@@ -10,19 +10,20 @@
 
 <div class="container">
 
-        <form id="form-validation" novalidate>
+        <form action="PostTabaco.php" method="POST">
         <a href="../menu/index.html"></a> 
 
             <center><h3>BUSCAR CONTRIBUYENTES</h3></center>
 
             <div class="form-group">
-                <span>Cedula</span>
-                <input type="number" placeholder="Ingrese su Cedula" id="cedula" required>
+                
+                <label for="rif">Ingrese el Rif del Contribullente</label>
+                <input type="text" placeholder="Rif" name="rif" required>
                 <small>Ingrese campos</small>
             </div>
         
             <div class="button">
-                <input type="submit" value="Buscar">
+                <button type="submit">BUSCAR</button>
             </div>
         </form>
 </div>
@@ -38,6 +39,13 @@
         }
     })
 </script>
+
+    <main>
+        <video muted autoplay loop>
+            <source src="./video/videof.mp4" type="video/mp4">
+        </video>
+        <div class="capa"></div>
+    </main>
 
 </body>
 </html>
