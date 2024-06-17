@@ -4,13 +4,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stilosss.css">
     <link rel="icon" href="img/icono.png">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>formulario3</title>
 </head>
 <body>
 
 <div class="container">
 
-        <form action="PostTabaco.php" method="POST">
         <a href="../menu/index.html"></a> 
 
             <center><h3>BUSCAR CONTRIBUYENTES</h3></center>
@@ -18,14 +18,15 @@
             <div class="form-group">
                 
                 <label for="rif">Ingrese el Rif del Contribullente</label>
-                <input type="text" placeholder="Rif" name="rif" required>
+                <input type="text" placeholder="Rif" name="rif" id="rif" required>
                 <small>Ingrese campos</small>
             </div>
         
             <div class="button">
-                <button type="submit">BUSCAR</button>
+                <button onclick="anadir()">BUSCAR</button>
             </div>
-        </form>
+        
+    <div id="Container"></div>
 </div>
 
 <script>
@@ -38,6 +39,25 @@
             return false
         }
     })
+    
+    function anadir() {
+        
+        var rif = $('#rif').val();
+          $.ajax({
+            url: 'PostTabaco.php',
+            type: 'POST',
+            data: {
+                rif: rif,
+            },
+            success: function(data) {
+              $('#Container').append(data);
+            },
+            error:
+     function() {
+              alert('Error al obtener los detalles completos');
+            }
+          });
+        }
 </script>
 
     <main>

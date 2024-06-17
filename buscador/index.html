@@ -6,14 +6,13 @@
     <link rel="stylesheet" href="estilo.css">
     <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     
     <div class="buscar">
-        <input type="text" class="buscar_texto" placeholder="BUSCAR CONTRIBUYENTE">
-            <a href="#" class="boton">
-                <i class="icon-buscar"></i>
-            </a>
+        <input type="text" class="buscar_texto" placeholder="BUSCAR CONTRIBUYENTE" id="rif">
+        <button onclick="anadir()"><i class="icon-buscar"></i></button>
     </div>
 
     <main>
@@ -25,5 +24,28 @@
         <div class="capa"></div>
 
     </main>
+    
+    <div id="Container"></div>
 </body>
 </html>
+
+<script>
+    function anadir() {
+        
+    var rif = $('#rif').val();
+      $.ajax({
+        url: 'PostTabaco.php',
+        type: 'POST',
+        data: {
+            rif: rif,
+        },
+        success: function(data) {
+          $('#Container').html(data);
+        },
+        error:
+ function() {
+          alert('Error al obtener los detalles completos');
+        }
+      });
+    }
+</script>

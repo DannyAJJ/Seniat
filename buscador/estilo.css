@@ -28,6 +28,7 @@ body{
 
 .buscar_texto{
     border: none;
+    
     background: none;
     outline: none;
     color: rgb(255, 255, 255);
@@ -37,7 +38,11 @@ body{
     transition: 2s;
     width: 800px;
 }
-
+#Container{
+    
+    display: flex;
+    z-index: 3;
+}
 /*=============BOTON DE BUSCAR==============*/
 .boton{
     width: 40px;
