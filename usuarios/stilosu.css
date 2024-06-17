@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #816f6f;
+    /*background-color: #9e0a0a;*/
   }
   
   .container {
@@ -8,8 +8,10 @@ body {
     margin: 40px auto;
     padding: 20px;
     background-color: #8b8ba7;
-    border: 1px solid #e1fa00;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid #11ad38ab;
+    box-shadow: 0 0 25px rgba(61, 253, 2, 0.1);
+    position: relative;
+    z-index: 2;
   }
   
   h3 {
@@ -42,8 +44,9 @@ body {
   }
   
   .form-group small {
-    color: #999;
+    color: #9706f8;
     font-size: 12px;
+    display: none;
   }
   
   .button {
@@ -67,7 +70,9 @@ body {
   
   /*======MARGEN AL NO INGRESAR CAMPOS======*/
   .was-validate {
-    border: 1px solid #05f711;
+    display: block;
+    color: #fff;
+    /*border: 1px solid #05f711;*/
   }
 
   div > form > a{
@@ -83,4 +88,25 @@ div > form > a:hover{
     background-size: 50px;
     background-repeat: no-repeat;
     background-position: center center;
+}
+
+/*=============VIDEO==============*/
+video{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.capa{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #1c1c1d;
+  opacity: 0.5;
+  mix-blend-mode: overlay;
 }
