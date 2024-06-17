@@ -11,8 +11,9 @@
 <div class="container">
 
         <form id="form-validation" novalidate>
+        <a href="../menu/index.html"></a> 
 
-            <h3>BUSCAR CONTRIBUYENTES</h3>
+            <center><h3>BUSCAR CONTRIBUYENTES</h3></center>
 
             <div class="form-group">
                 <span>Cedula</span>

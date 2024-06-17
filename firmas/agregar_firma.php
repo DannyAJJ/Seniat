@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="stilos.css">
+    <link rel="stylesheet" href="stilosf.css">
     <link rel="icon" href="img/icono.png">
     <title>formulario3</title>
 </head>
@@ -11,10 +11,9 @@
 <div class="container">
 
         <form id="form-validation" novalidate>
+        <a href="../menu/index.html"></a>
 
-        <a href="../menu/index.html" style="width: 1000px;"> <img src="img/salir.png" alt="imagen clickeable" width="50" height="50"></a>
-
-            <h3 style = "width: 1000px;" >FIRMA DEL NUEVO DIRECTOR</h3>
+            <center><h3>AGREGAR NUEVA FIRMA</h3></center>
 
             <div class="form-group">
                 <span>Nombre y apellidos</span>
@@ -41,7 +40,7 @@
             </div>
 
             <div class="button">
-                <input type="submit" value="Registrarse">
+                <input type="submit" value="AGREGAR">
             </div>
         </form>
 </div>

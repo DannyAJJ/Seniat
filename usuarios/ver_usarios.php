@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../formulario/stilos.css">
+    <link rel="stylesheet" href="stilosu.css">
     <link rel="icon" href="img/icono.png">
     <title>formulario3</title>
 </head>
@@ -11,8 +11,9 @@
 <div class="container">
 
         <form id="form-validation" novalidate>
+        <a href="../menu/index.html"></a> 
 
-            <h3 style = "width: 1000px;" >BUSCAR USUARIO</h3>
+            <center><h3>BUSCAR USUARIO</h3></center>
 
             <div class="form-group">
                 <span>Cedula</span>

@@ -208,11 +208,10 @@
             </div>
 
             <div class="button">
-                <input type="submit" value="Registrarse">
+                <input type="submit" value="REGISTRAR">
             </div>
         </form>
 </div>
-<div class="container" style="width: 0px; padding: 0px;"></div>
 
 <script>
     const addForm = document.getElementById("form-validation");
