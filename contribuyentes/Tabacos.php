@@ -205,8 +205,6 @@
                 <small>Ingrese campos</small>
             </div>
         
-
-
             <div class="button">
                 <input type="submit" value="REGISTRAR">
             </div>

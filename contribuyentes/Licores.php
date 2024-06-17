@@ -14,7 +14,21 @@
         <form id="form-validation" action="licoresinsertar.php"  novalidate>
         <a href="../menu/index.html"></a>
 
-                           <center><h3>DATOS DEL SOLICITANTE</h3></center>
+        <center><h2>PLANILLA LICORES</h2></center>
+
+        <div class="form-group">
+                <span>Sector/sector</span>
+                <select type="text" name="sector" name="sector" required>
+                    <option value="">Seleccione sector</option>
+                    <option value="Maracay">Maracay</option>
+                    <option value="Cojedes">Cojedes</option>
+                    <option value="Bejuma">Bajuma</option>
+                    <option value="La Victoria">La Victoria</option>
+                </select>
+                <small>Ingrese campos</small>
+            </div>
+
+                           <h3>DATOS DEL SOLICITANTE</h3>
             <div class="form-group">
                 <span>Tipo de persona</span>
                 <select type="text" name="Tipo de persona" name="tipodepersona" required>
@@ -194,18 +208,7 @@
                 <small>Ingrese campos</small>
             </div>
             
-            <h3>------------------------------------------------------------------------</h3>
-            <div class="form-group">
-                <span>Sector/sector</span>
-                <select type="text" name="sector" name="sector" required>
-                    <option value="">Seleccione sector</option>
-                    <option value="Maracay">Maracay</option>
-                    <option value="Cojedes">Cojedes</option>
-                    <option value="Bejuma">Bajuma</option>
-                    <option value="La Victoria">La Victoria</option>
-                </select>
-                <small>Ingrese campos</small>
-            </div>
+
 
             <div class="button">
                 <input type="submit" value="REGISTRAR">
@@ -229,6 +232,13 @@
         document.getElementsByName(b).value= final + "-"
     }
 </script>
+
+    <main>
+        <video muted autoplay loop>
+            <source src="./video/videof.mp4" type="video/mp4">
+        </video>
+        <div class="capa"></div>
+    </main>
 
 </body>
 </html>
