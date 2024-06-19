@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<div class="container">
+<div class="container2">
 
         <a class="links" href="../menu/index.html"></a> 
 
