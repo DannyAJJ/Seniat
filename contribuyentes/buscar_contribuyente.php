@@ -77,7 +77,7 @@ if ($result->num_rows > 0) {
     echo "<tr>";
     echo "<td>" . $row["Numero_autorizacion"]. "</td><td>" .$row["Razon_social"]. "</td><td>" . $row["Unidad"] . "</td>";
 
-    echo "<td><a class='enlace' href>VER</a><a class='enlace' href=''>LIQ. PROD.</a><a class='enlace' href=''>LIQ. P.V.P</a><a class='enlace' href=''>RENOVACIÓN</a><a class='enlace' href=''>ELIMINAR</a></td></tr>";
+    echo "<td><a class='enlace' href>VER</a></td><td><a class='enlace' href=''>LIQ. PROD.</a></td><td><a class='enlace' href=''>LIQ. P.V.P</a></td><td><a class='enlace' href=''>RENOVACIÓN</a></td><td><a class='enlace' href=''>ELIMINAR</a></td></tr>";
     }
     echo "</tbody></table>";
 } else {

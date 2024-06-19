@@ -15,7 +15,12 @@ $sql = "SELECT * FROM usuarios where Cedula_funcionario = '$Cedula' AND Contrase
 $result = $conn->query($sql);
 //echo '<span>nou</span>';
 if ($result->num_rows == 1) {
-  header("Location:../menu/index.html");
+  $usuario = $result->fetch_row();
+  session_start();
+  $_SESSION['iniciado']= true;
+  $_SESSION['unidad'] = $usuario['Unidad'];
+  $_SESSION['nivel'] = $usuario['Nivel_usuario'];
+  header("Location:../menu/index.php");
   exit();
 
 } else {

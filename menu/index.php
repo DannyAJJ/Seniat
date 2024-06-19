@@ -1,3 +1,8 @@
+<?php
+if ($_SESSION['nivel']>0) {
+    header('location: ../login/index.html');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
