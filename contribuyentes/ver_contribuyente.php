@@ -4,14 +4,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stilosss.css">
     <link rel="icon" href="img/icono.png">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../jquery-3.7.1.min.js"></script>
     <title>formulario3</title>
 </head>
 <body>
 
 <div class="container">
 
-        <a class="links" href="../menu/index.html"></a> 
+        <a class="links" href="../menu/index.php"></a> 
 
         <center><h3>BUSCAR CONTRIBUYENTES</h3></center>
 
