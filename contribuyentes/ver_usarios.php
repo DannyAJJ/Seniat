@@ -17,7 +17,7 @@ if (!isset($_SESSION['nivel'])) {
 <div class="container">
 
         <form id="form-validation" novalidate>
-        <a href="../menu/index.html"></a> 
+        <a href="../menu/index.php"></a> 
 
             <center><h3>BUSCAR USUARIO</h3></center>
 

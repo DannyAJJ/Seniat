@@ -15,7 +15,7 @@ if (!isset($_SESSION['nivel'])) {
 <body>
     <div class="container" id="container1">
         <form id="form-validation" novalidate>
-        <a class="links" href="../menu/index.html"></a>
+        <a class="links" href="../menu/index.php"></a>
 
             <center><h2>PLANILLA TABACO</h2></center>
 
