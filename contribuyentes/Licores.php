@@ -1,15 +1,10 @@
-<?php
-session_start();
-if (!isset($_SESSION['nivel'])) {
-    header('location: ../login/index.html');
-}
-?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stilosss.css">
     <link rel="icon" href="img/icono.png">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>formulario3</title>
 
 </head>
@@ -18,7 +13,7 @@ if (!isset($_SESSION['nivel'])) {
 <div class="container" id="container1">
 
         <form id="form-validation" action="licoresinsertar.php"  novalidate>
-        <a class="links" href="../menu/index.php"></a>
+        <a class="links" href="../menu/index.html"></a>
 
         <center><h2>PLANILLA LICORES</h2></center>
 
@@ -52,7 +47,7 @@ if (!isset($_SESSION['nivel'])) {
             </div>
             
             <div class="form-group">
-                <span>Cedula de identidad</span>
+                <span>Nacionalidad</span>
                 <select type="text"  name="cedulacombo" required>
                     <option value="">Seleccione</option>
                     <option value="V">V</option>
@@ -81,15 +76,24 @@ if (!isset($_SESSION['nivel'])) {
 
             <div class="form-group">
                 <span>Ciudad</span>
-                <input type="text" placeholder="Ciudad" name="ciudad" required>
+                <select type="text"  name="cedulacombo" required>
+                    <option value="">Seleccione</option>
+                    <option value="V">V</option>
+                    <option value="E">E</option>
+                </select>
                 <small>Ingrese campos</small>
             </div>
 
             <div class="form-group">
                 <span>Estado</span>
-                <input type="text" placeholder="Estado" name="estado" required>
+                <select type="text"  name="cedulacombo" required>
+                    <option value="">Seleccione</option>
+                    <option value="V">V</option>
+                    <option value="E">E</option>
+                </select>
                 <small>Ingrese campos</small>
             </div>
+
 
             <div class="form-group">
                 <span>Telefono</span>
@@ -97,11 +101,6 @@ if (!isset($_SESSION['nivel'])) {
                 <small>Ingrese campos</small>
             </div>
 
-            <div class="form-group">
-                <span>Correro Electronico</span>
-                <input type="Email" placeholder="Ingrese Correo Electronico" name="correoelectronico" required>
-                <small>Ingrese campos</small>
-            </div>
             <div class="form-group">
                 <span>N° Inscripción</span>
                 <input type="number" placeholder="N° Inscripción" name="inscripción" required>
@@ -135,6 +134,16 @@ if (!isset($_SESSION['nivel'])) {
             <div class="form-group">
                 <span>Apellidos</span>
                 <input type="text" placeholder="Apellidos" name="apellidos.empresa" required>
+                <small>Ingrese campos</small>
+            </div>
+
+            <div class="form-group">
+                <span>Nacionalidad</span>
+                <select type="text"  name="cedulacombo" required>
+                    <option value="">Seleccione</option>
+                    <option value="V">V</option>
+                    <option value="E">E</option>
+                </select>
                 <small>Ingrese campos</small>
             </div>
 
@@ -175,16 +184,24 @@ if (!isset($_SESSION['nivel'])) {
                 <input type="text" placeholder="Direccion" name="direccion.establecimiento" required>
                 <small>Ingrese campos</small>
             </div>
-
+            
             <div class="form-group">
                 <span>Ciudad</span>
-                <input type="text" placeholder="Ciudad" name="ciudad.establecimiento" required>
+                <select type="text"  name="cedulacombo" required>
+                    <option value="">Seleccione</option>
+                    <option value="V">V</option>
+                    <option value="E">E</option>
+                </select>
                 <small>Ingrese campos</small>
             </div>
 
             <div class="form-group">
                 <span>Estado</span>
-                <input type="text" placeholder="Estado" name="Estado.establecimiento" required>
+                <select type="text"  name="cedulacombo" required>
+                    <option value="">Seleccione</option>
+                    <option value="V">V</option>
+                    <option value="E">E</option>
+                </select>
                 <small>Ingrese campos</small>
             </div>
 
@@ -197,11 +214,17 @@ if (!isset($_SESSION['nivel'])) {
             <h3>BEBIDA ALCOHÓLICA</h3>
 
             <div class="form-group">
-                <span>Clase del producto</span>
-                <input type="text" placeholder="Clase del producto" name="clase.producto" required>
+                <span>Clase del producto 1</span>
+                <select type="text" name="Tipo de persona" name="tipodepersona" required>
+                    <option value="">Seleccione</option>
+                    <option value="Natural">Natural</option>
+                    <option value="Juridica">Juridica</option>
+                </select>
+                <div id="Container"></div>
+                <button type="button" onclick="a=a+1,anadir(a)">anadir</button>
                 <small>Ingrese campos</small>
             </div>
-
+            
             <div class="form-group">
                 <span>Fuerza real o Grado lcohólico G.L, °GL</span>
                 <input type="text" placeholder="Fuerza real o Grado lcohólico G.L, °GL" name="gradoalcoholico.producto" required>
@@ -223,6 +246,7 @@ if (!isset($_SESSION['nivel'])) {
 </div>
 
 <script>
+
     const addForm = document.getElementById("form-validation");
     addForm.addEventListener("submit", (e)=>{
         if(addForm.checkValidity() ===false){
@@ -236,6 +260,24 @@ if (!isset($_SESSION['nivel'])) {
     function cedularif(a,b) {
         var final = document.getElementsByName(a).value
         document.getElementsByName(b).value= final + "-"
+    }
+</script>
+
+<script>
+    a=1
+    function anadir(a) {
+      $.ajax({
+        url: 'anadir.php',
+        type: 'POST',
+        data: {a:a},
+        success: function(data) {
+          $('#Container').append(data);
+        },
+        error:
+ function() {
+          alert('Error al obtener los detalles completos');
+        }
+      });
     }
 </script>
 

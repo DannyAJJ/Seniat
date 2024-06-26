@@ -23,7 +23,7 @@ if (!isset($_SESSION['nivel'])) {
 
 <div class="form-group">
     
-    <label for="rif">Ingrese el Rif del Contribullente</label>
+    <label for="rif">Ingrese el Rif del Contribuyente</label>
     <input type="text" placeholder="Rif" name="rif" id="rif" required>
     <small>Ingrese campos</small>
 </div>
