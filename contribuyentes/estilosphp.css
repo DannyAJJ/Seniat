@@ -2,18 +2,23 @@
 table {
     border-collapse: collapse;
     width: 100%;
-    border: 1px solid #ccc;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
+    /*border: 5px solid #da7373;*/
+    /*box-shadow: 0 0 10px rgba(9, 11, 155, 0.1);*/
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
   
+/*=========BORDE DE LA TABLA=========*/
   th, td {
-    border: 1px solid #ddd;
+    border: 3px solid #080808;
     padding: 10px;
     text-align: left;
+    Box-shadow: 0 0 15px rgb(47, 171, 209);
   }
   
   th {
-    background-color: #f0f0f0;
+    background-color: #b8cccf;
     font-weight: bold;
   }
   
@@ -24,12 +29,14 @@ table {
   /* Estilos para los enlaces */
   .enlace {
     text-decoration: none;
-    color: #337ab7;
-    margin-right: 10px;
+    color: #fc0000;
+    /*margin-right: 10px;*/
     border-radius: 5px;
     padding: 5px 10px;
-    background-color: #f7f7f7;
-    border: 1px solid #ccc;
+    background-color: #fcfffb;
+    border: 1px solid #030303;
+    margin: 0 auto;
+    display: block;
   }
   
   .enlace:hover {

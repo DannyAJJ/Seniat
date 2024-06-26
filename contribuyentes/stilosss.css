@@ -4,10 +4,22 @@ body {
     background: linear-gradient(130deg, rgb(233, 54, 54), rgb(250, 249, 249));
   }
   
-  .container {
+  .container{
     max-width: 800px;
     margin: 40px auto;
     padding: 20px;
+    /*background: linear-gradient(130deg, rgb(80, 218, 45), rgb(206, 114, 114));*/
+    background-color: #e63737;
+    box-shadow: 0 0 25px rgb(255, 255, 255);
+    border-radius: 25px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .container2{
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px 80px;
     /*background: linear-gradient(130deg, rgb(80, 218, 45), rgb(206, 114, 114));*/
     background-color: #e63737;
     box-shadow: 0 0 25px rgb(255, 255, 255);
@@ -126,3 +138,4 @@ video{
   opacity: 0.5;
   mix-blend-mode: overlay;
 }
+
