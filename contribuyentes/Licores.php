@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION['nivel'])) {
+    header('location: ../login/index.html');
+}
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
