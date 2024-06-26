@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-06-2024 a las 21:28:23
+-- Tiempo de generación: 26-06-2024 a las 14:55:02
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -373,7 +373,8 @@ CREATE TABLE `unidades` (
 --
 
 INSERT INTO `unidades` (`Id_unidad`, `Unidad`) VALUES
-(1, 'VALENCIA');
+(1, 'VALENCIA'),
+(2, 'Maracay');
 
 -- --------------------------------------------------------
 
@@ -396,7 +397,9 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`Cedula_funcionario`, `Nombre_funcionario`, `Nivel_usuario`, `Unidad`, `Correo_institucional`, `Contraseña`, `Username`) VALUES
-('28249780', 'Danny', 3, 1, 'Dannyalejandro.jj@gmail.com', '1234', '');
+('', 'Gabriel', 1, 2, 'gabrielcorreo', '1234', 'Gabriel'),
+('28249780', 'Danny', 3, 1, 'Dannyalejandro.jj@gmail.com', '1234', 'DAJardim'),
+('28249781', 'Marco Antonio Herrera', 2, 1, 'marcocorreo', '4321', 'MAHerrera');
 
 --
 -- Índices para tablas volcadas
@@ -590,7 +593,7 @@ ALTER TABLE `segundo_firmante`
 -- AUTO_INCREMENT de la tabla `unidades`
 --
 ALTER TABLE `unidades`
-  MODIFY `Id_unidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Id_unidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
