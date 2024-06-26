@@ -22,9 +22,8 @@ if (!isset($_SESSION['nivel'])) {
         <center><h3>BUSCAR CONTRIBUYENTES</h3></center>
 
 <div class="form-group">
-    
-    <label for="rif">Ingrese el Rif del Contribullente</label>
-    <input type="text" placeholder="Rif" name="rif" id="rif" required>
+    <label for="rif">Ingrese el Rif del Contribuyente</label>
+    <input type="text" placeholder="RIF" name="rif" id="rif" required>
     <small>Ingrese campos</small>
 </div>
 
