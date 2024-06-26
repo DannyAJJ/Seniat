@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION['nivel'])) {
+    header('location: ../login/index.html');
+}
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -11,7 +17,7 @@
 <div class="container">
 
         <form id="form-validation" novalidate>
-        <a href="../menu/index.html"></a> 
+        <a href="../menu/index.php"></a> 
 
             <center><h3>BUSCAR USUARIO</h3></center>
 

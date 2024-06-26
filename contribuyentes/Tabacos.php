@@ -1,3 +1,9 @@
+<?php
+session_start();
+if (!isset($_SESSION['nivel'])) {
+    header('location: ../login/index.html');
+}
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,7 +15,7 @@
 <body>
     <div class="container" id="container1">
         <form id="form-validation" novalidate>
-        <a class="links" href="../menu/index.html"></a>
+        <a class="links" href="../menu/index.php"></a>
 
             <center><h2>PLANILLA TABACO</h2></center>
 

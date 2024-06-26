@@ -11,7 +11,7 @@ $dbname = "expendiobd";
 // Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
 $rif_contribullente = $_POST['rif'];
-$sql = "SELECT autorizacion_licores.Numero_autorizacion, unidades.Unidad, autorizacion_licores.Razon_social FROM autorizacion_licores, unidades WHERE `Numero_rif_solicitante` = \"$rif_contribullente\" AND `Habilitado` = 1;";
+$sql = "SELECT licencia_licores.Numero_autorizacion, unidades.Unidad, licencia_licores.Razon_social FROM licencia_licores, unidades WHERE `Numero_rif_solicitante` = \"$rif_contribullente\" AND `Habilitado` = 1;";
 $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
