@@ -12,19 +12,20 @@
 
 <div class="container" id="container1">
 
-        <form id="form-validation" action="licoresinsertar.php"  novalidate>
-        <a class="links" href="../menu/index.html"></a>
+        <form id="form-validation" action="insertar_licencia_licores.php" method="POST"  novalidate>
+        <a class="links" href="../menu/index.php"></a>
 
         <center><h2>PLANILLA LICORES</h2></center>
 
         <div class="form-group">
                 <span>Sector/sector</span>
-                <select type="text" name="sector" name="sector" required>
+                <select type="text"  name="sector" required>
                     <option value="">Seleccione sector</option>
-                    <option value="Maracay">Maracay</option>
-                    <option value="Cojedes">Cojedes</option>
-                    <option value="Bejuma">Bajuma</option>
-                    <option value="La Victoria">La Victoria</option>
+                    <option value="1">Valencia</option>
+                    <option value="2">Cojedes</option>
+                    <option value="3">Bajuma</option>
+                    <option value="4">La Victoria</option>
+                    <option value="5">Maracay</option>
                 </select>
                 <small>Ingrese campos</small>
             </div>
@@ -32,10 +33,10 @@
                            <h3>DATOS DEL SOLICITANTE</h3>
             <div class="form-group">
                 <span>Tipo de persona</span>
-                <select type="text" name="Tipo de persona" name="tipodepersona" required>
-                    <option value="">Seleccione</option>
-                    <option value="Natural">Natural</option>
-                    <option value="Juridica">Juridica</option>
+                <select type="text" name="tipodepersona" required>
+                    <option value="0">Seleccione</option>
+                    <option value="1">Natural</option>
+                    <option value="2">Juridica</option>
                 </select>
                 <small>Ingrese campos</small>
             </div>
@@ -48,10 +49,10 @@
             
             <div class="form-group">
                 <span>Nacionalidad</span>
-                <select type="text"  name="cedulacombo" required>
+                <select type="text"  name="nacionalidad" required>
                     <option value="">Seleccione</option>
-                    <option value="V">V</option>
-                    <option value="E">E</option>
+                    <option value="1">V</option>
+                    <option value="2">E</option>
                 </select>
                 <small>Ingrese campos</small>
             </div>
@@ -64,32 +65,30 @@
 
             <div class="form-group">
                 <span>RIF</span>
-                <input type="text" placeholder="RIF" name="rif" required>
+                <input type="text" placeholder="RIF" name="rifempresa" required>
                 <small>Ingrese campos</small>
             </div>
 
             <div class="form-group">
                 <span>Domicilio fiscal</span>
-                <input type="text" placeholder="Domicilio fiscal" name="domicilio fiscal" required>
+                <input type="text" placeholder="Domicilio fiscal" name="domiciliofiscal" required>
                 <small>Ingrese campos</small>
             </div>
 
             <div class="form-group">
                 <span>Ciudad</span>
-                <select type="text"  name="cedulacombo" required>
+                <select type="text"  name="ciudad" required>
                     <option value="">Seleccione</option>
-                    <option value="V">V</option>
-                    <option value="E">E</option>
+                    <option value="1">V</option>
                 </select>
                 <small>Ingrese campos</small>
             </div>
 
             <div class="form-group">
                 <span>Estado</span>
-                <select type="text"  name="cedulacombo" required>
+                <select type="text"  name="estado" required>
                     <option value="">Seleccione</option>
-                    <option value="V">V</option>
-                    <option value="E">E</option>
+                    <option value="1">V</option>
                 </select>
                 <small>Ingrese campos</small>
             </div>
@@ -103,7 +102,7 @@
 
             <div class="form-group">
                 <span>N° Inscripción</span>
-                <input type="number" placeholder="N° Inscripción" name="inscripción" required>
+                <input type="number" placeholder="N° Inscripción" name="inscripcion" required>
                 <small>Ingrese campos</small>
             </div>
             <div class="form-group">
@@ -113,7 +112,7 @@
             </div>
             <div class="form-group">
                 <span>Fecha</span>
-                <input type="date" name="Fecha" required>
+                <input type="date" name="fecha" required>
                 <small>Ingrese campos</small>
             </div>
 
@@ -127,53 +126,53 @@
 
             <div class="form-group">
                 <span>Nombres</span>
-                <input type="text" placeholder="Nombres" name="nombre.empresa" required>
+                <input type="text" placeholder="Nombres" name="nombrerepresentante" required>
                 <small>Ingrese campos</small>
             </div>
 
             <div class="form-group">
                 <span>Apellidos</span>
-                <input type="text" placeholder="Apellidos" name="apellidos.empresa" required>
+                <input type="text" placeholder="Apellidos" name="apellidorepresentante" required>
                 <small>Ingrese campos</small>
             </div>
 
             <div class="form-group">
                 <span>Nacionalidad</span>
-                <select type="text"  name="cedulacombo" required>
+                <select type="text"  name="nacionalidadrepresentante" required>
                     <option value="">Seleccione</option>
-                    <option value="V">V</option>
-                    <option value="E">E</option>
+                    <option value="1">V</option>
+                    <option value="2">E</option>
                 </select>
                 <small>Ingrese campos</small>
             </div>
 
             <div class="form-group">
                 <span>Cedula de identidad</span>
-                <input type="text" placeholder="Cedula" name="cedula.empresa" onkeyup="cedularif('cedula.empresa','rif.empresa')" required>
+                <input type="text" placeholder="Cedula" name="cedularepresentante" required>
                 <small>Ingrese campos</small>
             </div>
 
             <div class="form-group">
                 <span>RIF</span>
-                <input type="text" placeholder="RIF" name="rif.empresa" required>
+                <input type="text" placeholder="RIF" name="rif" required>
                 <small>Ingrese campos</small>
             </div>
 
             <div class="form-group">
                 <span>Direccion</span>
-                <input type="text" placeholder="Direccion" name="direccion.empresa" required>
+                <input type="text" placeholder="Direccion" name="direccionrepresentante" required>
                 <small>Ingrese campos</small>
             </div>
 
             <div class="form-group">
                 <span>Correo Electronico</span>
-                <input type="email" placeholder="Correo Electronico" name="correo.empresa" required>
+                <input type="email" placeholder="Correo Electronico" name="correorepresentante" required>
                 <small>Ingrese campos</small>
             </div>
 
             <div class="form-group">
                 <span>Telefono</span>
-                <input type="number" placeholder="Telefono" name="telefono.empresa" required>
+                <input type="number" placeholder="Telefono" name="telefonorepresentante" required>
                 <small>Ingrese campos</small>
             </div>
 
@@ -181,33 +180,31 @@
 
             <div class="form-group">
                 <span>Direccion</span>
-                <input type="text" placeholder="Direccion" name="direccion.establecimiento" required>
+                <input type="text" placeholder="Direccion" name="direccionestablecimiento" required>
                 <small>Ingrese campos</small>
             </div>
             
             <div class="form-group">
                 <span>Ciudad</span>
-                <select type="text"  name="cedulacombo" required>
+                <select type="text"  name="ciudadestablecimiento" required>
                     <option value="">Seleccione</option>
-                    <option value="V">V</option>
-                    <option value="E">E</option>
+                    <option value="1">V</option>
                 </select>
                 <small>Ingrese campos</small>
             </div>
 
             <div class="form-group">
                 <span>Estado</span>
-                <select type="text"  name="cedulacombo" required>
+                <select type="text"  name="estadoestablecimiento" required>
                     <option value="">Seleccione</option>
-                    <option value="V">V</option>
-                    <option value="E">E</option>
+                    <option value="1">V</option>
                 </select>
                 <small>Ingrese campos</small>
             </div>
 
             <div class="form-group">
                 <span>Telefono</span>
-                <input type="number" placeholder="Telefono" name="telefono.establecimiento" required>
+                <input type="number" placeholder="Telefono" name="telefonoestablecimiento" required>
                 <small>Ingrese campos</small>
             </div>
 
@@ -215,10 +212,10 @@
 
             <div class="form-group">
                 <span>Clase del producto 1</span>
-                <select type="text" name="Tipo de persona" name="tipodepersona" required>
-                    <option value="">Seleccione</option>
-                    <option value="Natural">Natural</option>
-                    <option value="Juridica">Juridica</option>
+                <select type="text"  name="claseproducto" required>
+                    <option value="0">Seleccione</option>
+                    <option value="1">Natural</option>
+                    <option value="2">Juridica</option>
                 </select>
                 <div id="Container"></div>
                 <button type="button" onclick="a=a+1,anadir(a)">anadir</button>
@@ -227,13 +224,13 @@
             
             <div class="form-group">
                 <span>Fuerza real o Grado lcohólico G.L, °GL</span>
-                <input type="text" placeholder="Fuerza real o Grado lcohólico G.L, °GL" name="gradoalcoholico.producto" required>
+                <input type="text" placeholder="Fuerza real o Grado lcohólico G.L, °GL" name="gradoalcoholicoproducto" required>
                 <small>Ingrese campos</small>
             </div>
 
             <div class="form-group">
                 <span>Materia prima</span>
-                <input type="text" placeholder="Materia prima" name="materiaprima.producto" required>
+                <input type="text" placeholder="Materia prima" name="materiaprimaproducto" required>
                 <small>Ingrese campos</small>
             </div>
             

@@ -5,7 +5,7 @@ body {
   }
   
   .container{
-    max-width: 800px;
+    max-width: 650px;
     margin: 40px auto;
     padding: 20px;
     /*background: linear-gradient(130deg, rgb(80, 218, 45), rgb(206, 114, 114));*/
@@ -17,7 +17,7 @@ body {
   }
 
   .container2{
-    max-width: 800px;
+    max-width: 900px;
     margin: 40px auto;
     padding: 20px 80px;
     /*background: linear-gradient(130deg, rgb(80, 218, 45), rgb(206, 114, 114));*/

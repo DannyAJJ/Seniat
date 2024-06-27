@@ -17,7 +17,7 @@ if (!isset($_SESSION['nivel'])) {
 
 <div class="container" id="container1">
 
-        <form id="form-validation" action="licoresinsertar.php"  novalidate>
+        <form id="form-validation" action="insertar_licencia_licores.php" method="POST" novalidate>
         <a class="links" href="../menu/index.php"></a>
 
         <center><h2>PLANILLA LICORES</h2></center>
