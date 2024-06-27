@@ -16,7 +16,7 @@
   
   #report-container {
     position: relative;
-    max-width: 800px;
+    width: 60%;
     margin: 40px auto;
     padding: 20px;
     background-color: #e63737;
