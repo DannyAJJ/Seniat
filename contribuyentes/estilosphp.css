@@ -40,9 +40,9 @@ table {
   }
   
   .enlace:hover {
-    color: #23527c;
-    background-color: #eee;
-    border-color: #aaa;
+    color: #bd3636;
+    background-color: #eeeeee;
+    border-color: #e00808;
   }
   
   /* Estilos para el mensaje de sin resultados */

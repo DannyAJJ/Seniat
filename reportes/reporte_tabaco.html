@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes</title>
+    <link rel="stylesheet" href="estilosr.css">
+</head>
+
+<div id="report-container">
+
+        <center><h3>REPORTES TABACO</h3></center>
+
+    <div id="year-controls">
+      <button id="prev-year">«</button>
+      <span id="current-year">2022</span>
+      <button id="next-year">»</button>
+    </div>
+    <table id="report-table">
+      <thead>
+        <tr>
+          <th>Mes</th>
+          <th>Total Hecho</th>
+          <th>Total Ganado</th>
+        </tr>
+      </thead>
+      <tbody id="report-body">
+        <!-- Filas de reporte por mes -->
+      </tbody>
+      <tfoot>
+        <tr>
+          <th>Total Año</th>
+          <td id="total-year-done">0</td>
+          <td id="total-year-earned">0</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <main>
+    <video muted autoplay loop>
+        <source src="./video/videof.mp4" type="video/mp4">
+    </video>
+    <div class="capa"></div>
+  </main>
+
+<script>
+
+  let currentYear = 2022;
+let reportData = [];
+
+// Datos de ejemplo
+reportData.push({ month: 'Enero', done: 1000, earned: 5000 });
+reportData.push({ month: 'Febrero', done: 2000, earned: 8000 });
+reportData.push({ month: 'Marzo', done: 3000, earned: 12000 });
+reportData.push({ month: 'Abril', done: 4000, earned: 16000 });
+reportData.push({ month: 'Mayo', done: 5000, earned: 20000 });
+reportData.push({ month: 'Junio', done: 6000, earned: 24000 });
+reportData.push({ month: 'Julio', done: 7000, earned: 28000 });
+reportData.push({ month: 'Agosto', done: 8000, earned: 32000 });
+reportData.push({ month: 'Septiembre', done: 9000, earned: 36000 });
+reportData.push({ month: 'Octubre', done: 10000, earned: 40000 });
+reportData.push({ month: 'Noviembre', done: 11000, earned: 44000 });
+reportData.push({ month: 'Diciembre', done: 12000, earned: 48000 });
+
+// Función para renderizar la tabla
+function renderReportTable(year) {
+  let totalYearDone = 0;
+  let totalYearEarned = 0;
+  const reportBody = document.getElementById('report-body');
+  reportBody.innerHTML = '';
+  
+  for (let i = 0; i < 12; i++) {
+    const month = getMonthName(i);
+    const data = reportData.find(item => item.month === month);
+    const row = document.createElement('tr');
+    row.innerHTML = `
+      <td>${month}</td>
+      <td>${data.done}</td>
+      <td>${data.earned}</td>
+    `;
+    reportBody.appendChild(row);
+    totalYearDone += data.done;
+    totalYearEarned += data.earned;
+  }
+  
+  document.getElementById('total-year-done').textContent = totalYearDone;
+  document.getElementById('total-year-earned').textContent = totalYearEarned;
+}
+
+// Función para obtener el nombre del mes
+function getMonthName(monthIndex) {
+  const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+  return months[monthIndex];
+}
+
+// Eventos para adelantar o retroceder el año
+document.getElementById('prev-year').addEventListener('click', () => {
+  currentYear--;
+  renderReportTable(currentYear);
+});
+
+document.getElementById('next-year').addEventListener('click', () => {
+  currentYear++;
+  renderReportTable(currentYear);
+});
+
+// Renderizar la tabla inicialmente
+renderReportTable(currentYear);
+
+</script>
+</html>
