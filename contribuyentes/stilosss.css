@@ -5,9 +5,9 @@ body {
   }
   
   .container{
-    max-width: 800px;
+    width: 60%;
     margin: 40px auto;
-    padding: 20px;
+    padding: 45px;
     /*background: linear-gradient(130deg, rgb(80, 218, 45), rgb(206, 114, 114));*/
     background-color: #e63737;
     box-shadow: 0 0 25px rgb(255, 255, 255);
@@ -17,9 +17,9 @@ body {
   }
 
   .container2{
-    max-width: 1000px;
+    width: 60%;
     margin: 40px auto;
-    padding: 20px 80px;
+    padding: 40px;
     /*background: linear-gradient(130deg, rgb(80, 218, 45), rgb(206, 114, 114));*/
     background-color: #e63737;
     box-shadow: 0 0 25px rgb(255, 255, 255);
@@ -112,6 +112,7 @@ body {
     background-repeat: no-repeat;
     background-position: center center;
     padding: 20px 40px;
+    
 }
 
 .links:hover{
