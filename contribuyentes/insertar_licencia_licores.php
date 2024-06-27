@@ -14,7 +14,6 @@ $estado = $_POST['estado'];
 $telefono = $_POST['telefono'];
 $inscripcion = $_POST['inscripcion'];
 $tomo = $_POST['tomo'];
-$fecha = $_POST['fecha'];
 $registro = $_POST['registro'];
 $nombrerepresentante = $_POST['nombrerepresentante'];
 $apellidorepresentante = $_POST['apellidorepresentante'];
@@ -76,6 +75,8 @@ $idfirmante2 = $row['Id_firmante'];
 
 
 $fechahoy = date('d-m-Y');
+if ($tipopersona == 0) {
+    
 $sql = "INSERT INTO `licencia_licores` ( `Fecha_autorizacion`, `Numero_autorizacion`, `Unidad`, `Razon_social`,
 `Numero_rif_solicitante`, `Direccion`, `Administrador_representante_legal`, `Nacionalidad`, `Cedula_representante`,
 `Numero_rif_representante`, `Firmante`, `Segunda_firma`, `Persona_juridica`, `Grado_alcoholico`, `Materia_prima`, `Telefono_solicitante`, 
@@ -87,6 +88,19 @@ $sql = "INSERT INTO `licencia_licores` ( `Fecha_autorizacion`, `Numero_autorizac
  '$ciudad');";
 
 $ejecutada = $conn->query($sql);
+}else {
+    $sql = "INSERT INTO `licencia_licores` ( `Fecha_autorizacion`, `Numero_autorizacion`, `Unidad`, `Razon_social`,
+`Numero_rif_solicitante`, `Direccion`, `Administrador_representante_legal`, `Cedula_representante`,
+`Numero_rif_representante`, `Firmante`, `Segunda_firma`, `Persona_juridica`, `Grado_alcoholico`, `Materia_prima`, `Telefono_solicitante`, 
+`Telefono_reprensentante`, `Direccion_representante_legal`, `Correo_representante`, `N_inscripcion`, `Tomo`, 
+`Oficina_resgistro_mercantil`, `Ciudad`) VALUES ( '$fechahoy', '$sigla $ultimoValor', '$sector', '$nombre', 
+'$rifempresa', '$domfiscal', '$nombrerepresentante', '$cedularepresentante', 
+'$rif', '$idfirmante', '$idfirmante2', '$tipopersona', '$grado', '$materia', '$telefono', '$telefonorepresentante', '$direccionrepresentante',
+ '$correorepresentante', '$inscripcion', '$tomo', '$registro', 
+ '$ciudad');";
+
+$ejecutada = $conn->query($sql);
+}
 header("Location:../menu/index.php");
 //$ejecutada->fetch_assoc();
 ?>

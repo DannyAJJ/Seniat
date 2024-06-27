@@ -34,9 +34,8 @@
             <div class="form-group">
                 <span>Tipo de persona</span>
                 <select type="text" name="tipodepersona" required>
-                    <option value="0">Seleccione</option>
-                    <option value="1">Natural</option>
-                    <option value="2">Juridica</option>
+                    <option value="0">Natural</option>
+                    <option value="1">Juridica</option>
                 </select>
                 <small>Ingrese campos</small>
             </div>
@@ -49,10 +48,9 @@
             
             <div class="form-group">
                 <span>Nacionalidad</span>
-                <select type="text"  name="nacionalidad" required>
-                    <option value="">Seleccione</option>
+                <select type="text"  name="nacionalidad">
                     <option value="1">V</option>
-                    <option value="2">E</option>
+                    <option value="0">E</option>
                 </select>
                 <small>Ingrese campos</small>
             </div>
@@ -108,11 +106,6 @@
             <div class="form-group">
                 <span>tomo</span>
                 <input type="text" placeholder="Tomo" name="tomo" required>
-                <small>Ingrese campos</small>
-            </div>
-            <div class="form-group">
-                <span>Fecha</span>
-                <input type="date" name="fecha" required>
                 <small>Ingrese campos</small>
             </div>
 
@@ -219,6 +212,12 @@
                 </select>
                 <div id="Container"></div>
                 <button type="button" onclick="a=a+1,anadir(a)">anadir</button>
+                <small>Ingrese campos</small>
+            </div>
+
+            <div class="form-group">
+                <span>Denominacion del producto</span>
+                <input type="text" placeholder="Denominacion del producto" name="denominacionproducto" required>
                 <small>Ingrese campos</small>
             </div>
             
