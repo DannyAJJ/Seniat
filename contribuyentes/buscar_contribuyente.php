@@ -79,11 +79,12 @@ if ($result->num_rows > 0) {
 ?>
 <script>
   function eliminartabaco(i) {
-    $d
+    var eltd = document.getElementById(`autorizaciontabaco${i}`);
+    var texointerior = eltd.textContent;
     $.ajax({
 url: 'eliminar_tabaco.php',
 type: 'POST',
-data: {},
+data: {texto : texointerior},
 success: function() {
     anadir();
 },
