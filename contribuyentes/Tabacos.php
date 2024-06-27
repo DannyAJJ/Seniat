@@ -12,10 +12,10 @@
 
 <div class="container" id="container1">
 
-        <form id="form-validation" action="insertar_licencia_licores.php" method="POST"  novalidate>
+        <form id="form-validation" action="insertar_licencia_tabaco.php" method="POST"  novalidate>
         <a class="links" href="../menu/index.php"></a>
 
-        <center><h2>PLANILLA LICORES</h2></center>
+        <center><h2>PLANILLA TABACOS</h2></center>
 
         <div class="form-group">
                 <span>Sector/sector</span>
@@ -72,25 +72,6 @@
                 <input type="text" placeholder="Domicilio fiscal" name="domiciliofiscal" required>
                 <small>Ingrese campos</small>
             </div>
-
-            <div class="form-group">
-                <span>Ciudad</span>
-                <select type="text"  name="ciudad" required>
-                    <option value="">Seleccione</option>
-                    <option value="1">V</option>
-                </select>
-                <small>Ingrese campos</small>
-            </div>
-
-            <div class="form-group">
-                <span>Estado</span>
-                <select type="text"  name="estado" required>
-                    <option value="">Seleccione</option>
-                    <option value="1">V</option>
-                </select>
-                <small>Ingrese campos</small>
-            </div>
-
 
             <div class="form-group">
                 <span>Telefono</span>
@@ -169,39 +150,7 @@
                 <small>Ingrese campos</small>
             </div>
 
-            <h3>UBICACIÓN DEL ESTABLECIMIENTO</h3>
-
-            <div class="form-group">
-                <span>Direccion</span>
-                <input type="text" placeholder="Direccion" name="direccionestablecimiento" required>
-                <small>Ingrese campos</small>
-            </div>
-            
-            <div class="form-group">
-                <span>Ciudad</span>
-                <select type="text"  name="ciudadestablecimiento" required>
-                    <option value="">Seleccione</option>
-                    <option value="1">V</option>
-                </select>
-                <small>Ingrese campos</small>
-            </div>
-
-            <div class="form-group">
-                <span>Estado</span>
-                <select type="text"  name="estadoestablecimiento" required>
-                    <option value="">Seleccione</option>
-                    <option value="1">V</option>
-                </select>
-                <small>Ingrese campos</small>
-            </div>
-
-            <div class="form-group">
-                <span>Telefono</span>
-                <input type="number" placeholder="Telefono" name="telefonoestablecimiento" required>
-                <small>Ingrese campos</small>
-            </div>
-
-            <h3>BEBIDA ALCOHÓLICA</h3>
+            <h3>TABACO</h3>
 
             <div class="form-group">
                 <span>Clase del producto 1</span>
@@ -212,18 +161,6 @@
                 </select>
                 <div id="Container"></div>
                 <button type="button" onclick="a=a+1,anadir(a)">anadir</button>
-                <small>Ingrese campos</small>
-            </div>
-
-            <div class="form-group">
-                <span>Denominacion del producto</span>
-                <input type="text" placeholder="Denominacion del producto" name="denominacionproducto" required>
-                <small>Ingrese campos</small>
-            </div>
-            
-            <div class="form-group">
-                <span>Fuerza real o Grado lcohólico G.L, °GL</span>
-                <input type="text" placeholder="Fuerza real o Grado lcohólico G.L, °GL" name="gradoalcoholicoproducto" required>
                 <small>Ingrese campos</small>
             </div>
 
@@ -275,6 +212,12 @@
         }
       });
     }
+
+function tipodepersona() {
+    if (getElementsByName("tipodepersona") == 1 ) {
+
+    }
+}
 </script>
 
     <main>

@@ -74,25 +74,6 @@
             </div>
 
             <div class="form-group">
-                <span>Ciudad</span>
-                <select type="text"  name="ciudad" required>
-                    <option value="">Seleccione</option>
-                    <option value="1">V</option>
-                </select>
-                <small>Ingrese campos</small>
-            </div>
-
-            <div class="form-group">
-                <span>Estado</span>
-                <select type="text"  name="estado" required>
-                    <option value="">Seleccione</option>
-                    <option value="1">V</option>
-                </select>
-                <small>Ingrese campos</small>
-            </div>
-
-
-            <div class="form-group">
                 <span>Telefono</span>
                 <input type="number" placeholder="Telefono" name="telefono" required>
                 <small>Ingrese campos</small>
@@ -169,46 +150,16 @@
                 <small>Ingrese campos</small>
             </div>
 
-            <h3>UBICACIÓN DEL ESTABLECIMIENTO</h3>
-
-            <div class="form-group">
-                <span>Direccion</span>
-                <input type="text" placeholder="Direccion" name="direccionestablecimiento" required>
-                <small>Ingrese campos</small>
-            </div>
-            
-            <div class="form-group">
-                <span>Ciudad</span>
-                <select type="text"  name="ciudadestablecimiento" required>
-                    <option value="">Seleccione</option>
-                    <option value="1">V</option>
-                </select>
-                <small>Ingrese campos</small>
-            </div>
-
-            <div class="form-group">
-                <span>Estado</span>
-                <select type="text"  name="estadoestablecimiento" required>
-                    <option value="">Seleccione</option>
-                    <option value="1">V</option>
-                </select>
-                <small>Ingrese campos</small>
-            </div>
-
-            <div class="form-group">
-                <span>Telefono</span>
-                <input type="number" placeholder="Telefono" name="telefonoestablecimiento" required>
-                <small>Ingrese campos</small>
-            </div>
-
             <h3>BEBIDA ALCOHÓLICA</h3>
 
             <div class="form-group">
                 <span>Clase del producto 1</span>
                 <select type="text"  name="claseproducto" required>
-                    <option value="0">Seleccione</option>
-                    <option value="1">Natural</option>
-                    <option value="2">Juridica</option>
+                    <option value="1">Cerveza</option>
+                    <option value="2">Bebidas y Especies Alcohólicas</option>
+                    <option value="3">Sangria Fermentada</option>
+                    <option value="4">Sangria Adición de Alcohol</option>
+                    <option value="5">Vinos</option>
                 </select>
                 <div id="Container"></div>
                 <button type="button" onclick="a=a+1,anadir(a)">anadir</button>
@@ -216,14 +167,8 @@
             </div>
 
             <div class="form-group">
-                <span>Denominacion del producto</span>
-                <input type="text" placeholder="Denominacion del producto" name="denominacionproducto" required>
-                <small>Ingrese campos</small>
-            </div>
-            
-            <div class="form-group">
                 <span>Fuerza real o Grado lcohólico G.L, °GL</span>
-                <input type="text" placeholder="Fuerza real o Grado lcohólico G.L, °GL" name="gradoalcoholicoproducto" required>
+                <input type="number" placeholder="Fuerza real o Grado lcohólico G.L, °GL" name="gradoalcoholicoproducto" required>
                 <small>Ingrese campos</small>
             </div>
 

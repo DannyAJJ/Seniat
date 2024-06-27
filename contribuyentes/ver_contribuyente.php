@@ -22,9 +22,8 @@ if (!isset($_SESSION['nivel'])) {
         <center><h3>BUSCAR CONTRIBUYENTES</h3></center>
 
 <div class="form-group">
-    
     <label for="rif">Ingrese el Rif del Contribuyente</label>
-    <input type="text" placeholder="Rif" name="rif" id="rif" required>
+    <input type="text" placeholder="RIF" name="rif" id="rif" required>
     <small>Ingrese campos</small>
 </div>
 
@@ -35,6 +34,9 @@ if (!isset($_SESSION['nivel'])) {
 </div>
 
 <script>
+
+
+
 const addForm = document.getElementById("form-validation");
 addForm.addEventListener("submit", (e)=>{
 if(addForm.checkValidity() ===false){
@@ -57,8 +59,7 @@ data: {
 success: function(data) {
   $('#Container').html(data);
 },
-error:
-function() {
+error: function() {
   alert('Error al obtener los detalles completos');
 }
 });

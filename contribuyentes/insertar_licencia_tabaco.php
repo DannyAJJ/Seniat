@@ -22,7 +22,6 @@ $direccionrepresentante = $_POST['direccionrepresentante'];
 $correorepresentante = $_POST['correorepresentante'];
 $telefonorepresentante = $_POST['telefonorepresentante'];
 $clase = $_POST['claseproducto'];
-$grado = $_POST['gradoalcoholicoproducto'];
 $materia = $_POST['materiaprimaproducto'];
 
 // Parámetros de conexión a la base de datos
@@ -35,24 +34,7 @@ $dbname = "expendiobd";
 $conn = new mysqli($servername, $username, $password, $dbname);
 
 
-$sql = "SELECT `Siglas` FROM `clase_producto` WHERE `Id` = $clase;";
-$siglas = $conn->query($sql);
-$row = $siglas->fetch_assoc();
-$sigla = $row['Siglas'];
-$siglab = $row['Siglas'].'%';
-//if (mysqli_num_rows($siglas) > 0) {$sigla = $siglas;}
 
-
-$sql = "SELECT `Numero_autorizacion` FROM `licencia_licores` WHERE `Numero_autorizacion` LIKE '$siglab' ORDER BY Numero_autorizacion DESC LIMIT 1;";
-$ultimalicencia = $conn->query($sql);
-$row = $ultimalicencia->fetch_assoc();
-$ultimoValor = filter_var($row['Numero_autorizacion'], FILTER_SANITIZE_NUMBER_INT);
-$cantidaduv = strlen($ultimoValor);
-$ultimoValor = intval($ultimoValor)+1;
-while (strlen($ultimoValor) < $cantidaduv) {
-    $ultimoValor = '0'.$ultimoValor;
-}
-//if (mysqli_num_rows($ultimalicencia) > 0) {$ultimoValor = intval($ultimalicencia['Numero_autorizacion'])+1;};
 
 $sql = "SELECT `Id_firmante` FROM `firmantes` ORDER by Id_firmante DESC LIMIT 1;";
 $ultimofirmante = $conn->query($sql);
@@ -71,7 +53,7 @@ $idfirmante2 = $row['Id_firmante'];
 $fechahoy = date('d-m-Y');
 
 $ultimafecha = date('Y');
-    $sql = "SELECT `Numero_registro` FROM `licencia_licores` WHERE `Fecha_autorizacion` LIKE '%$ultimafecha' ORDER BY Numero_registro DESC LIMIT 1;";    
+    $sql = "SELECT `Numero_registro` FROM `licencia_tabaco` WHERE `Fecha_autorizacion` LIKE '%$ultimafecha' ORDER BY Numero_registro DESC LIMIT 1;";    
     $ejecutada = $conn->query($sql);
     if ($ejecutada->num_rows > 0) {
         $fecha = $ejecutada-> fetch_assoc();
@@ -83,28 +65,30 @@ $ultimafecha = date('Y');
 
 if ($tipopersona == 0) {
     
-$sql = "INSERT INTO `licencia_licores` ( `Fecha_autorizacion`, `Numero_autorizacion`, `Unidad`, `Razon_social`,
+$sql = "INSERT INTO `licencia_tabaco` ( `Fecha_autorizacion`, `Unidad`, `Razon_social`,
 `Numero_rif_solicitante`, `Direccion`, `Administrador_representante_legal`, `Nacionalidad`, `Cedula_representante`,
-`Numero_rif_representante`, `Firmante`, `Segunda_firma`, `Persona_juridica`, `Grado_alcoholico`, `Materia_prima`, `Telefono_solicitante`, 
+`Numero_rif_representante`, `Firmante`, `Segunda_firma`, `Persona_juridica`, `Materia_prima`, `Telefono_solicitante`, 
 `Telefono_reprensentante`, `Direccion_representante_legal`, `Correo_representante`, `N_inscripcion`, `Tomo`, 
-`Oficina_resgistro_mercantil`, `Numero_registro`) VALUES ( '$fechahoy', '$sigla-$ultimoValor', '$sector', '$nombre', 
+`Oficina_resgistro_mercantil`, `Numero_registro`) VALUES ( '$fechahoy', '$sector', '$nombre', 
 '$rifempresa', '$domfiscal', '$nombrerepresentante','$nacionalidad', '$cedularepresentante', 
-'$rif', '$idfirmante', '$idfirmante2', '$tipopersona', '$grado', '$materia', '$telefono', '$telefonorepresentante', '$direccionrepresentante',
+'$rif', '$idfirmante', '$idfirmante2', '$tipopersona', '$materia', '$telefono', '$telefonorepresentante', '$direccionrepresentante',
  '$correorepresentante', '$inscripcion', '$tomo', '$registro','$numregistro');";
 
 $ejecutada = $conn->query($sql);
 }else {
-    $sql = "INSERT INTO `licencia_licores` ( `Fecha_autorizacion`, `Numero_autorizacion`, `Unidad`, `Razon_social`,
+    $sql = "INSERT INTO `licencia_tabaco` ( `Fecha_autorizacion`, `Unidad`, `Razon_social`,
 `Numero_rif_solicitante`, `Direccion`, `Administrador_representante_legal`, `Cedula_representante`,
-`Numero_rif_representante`, `Firmante`, `Segunda_firma`, `Persona_juridica`, `Grado_alcoholico`, `Materia_prima`, `Telefono_solicitante`, 
+`Numero_rif_representante`, `Firmante`, `Segunda_firma`, `Persona_juridica`, `Materia_prima`, `Telefono_solicitante`, 
 `Telefono_reprensentante`, `Direccion_representante_legal`, `Correo_representante`, `N_inscripcion`, `Tomo`, 
-`Oficina_resgistro_mercantil`, `Numero_registro`) VALUES ( '$fechahoy', '$sigla-$ultimoValor', '$sector', '$nombre', 
+`Oficina_resgistro_mercantil`, `Numero_registro`) VALUES ( '$fechahoy' '$sector', '$nombre', 
 '$rifempresa', '$domfiscal', '$nombrerepresentante', '$cedularepresentante', 
-'$rif', '$idfirmante', '$idfirmante2', '$tipopersona', '$grado', '$materia', '$telefono', '$telefonorepresentante', '$direccionrepresentante',
- '$correorepresentante', '$inscripcion', '$tomo', '$registro','$numregistro');";
+'$rif', '$idfirmante', '$idfirmante2', '$tipopersona', '$materia', '$telefono', '$telefonorepresentante', '$direccionrepresentante',
+ '$correorepresentante', '$inscripcion', '$tomo', '$registro' ,'$numregistro');";
 
 $ejecutada = $conn->query($sql);
 }
+
+
 
 
 header("Location:../menu/index.php");
