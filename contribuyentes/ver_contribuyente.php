@@ -1,24 +1,29 @@
+<?php
+session_start();
+if (!isset($_SESSION['nivel'])) {
+    header('location: ../login/index.html');
+}
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stilosss.css">
     <link rel="icon" href="img/icono.png">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="../jquery-3.7.1.min.js"></script>
     <title>formulario3</title>
 </head>
 <body>
 
-<div class="container">
+<div class="container2">
 
-        <a class="links" href="../menu/index.html"></a> 
+        <a class="links" href="../menu/index.php"></a> 
 
         <center><h3>BUSCAR CONTRIBUYENTES</h3></center>
 
 <div class="form-group">
-    
-    <label for="rif">Ingrese el Rif del Contribullente</label>
-    <input type="text" placeholder="Rif" name="rif" id="rif" required>
+    <label for="rif">Ingrese el Rif del Contribuyente</label>
+    <input type="text" placeholder="RIF" name="rif" id="rif" required>
     <small>Ingrese campos</small>
 </div>
 
@@ -43,7 +48,7 @@ function anadir() {
 
 var rif = $('#rif').val();
 $.ajax({
-url: 'buscarcontribullente.php',
+url: 'buscar_contribuyente.php',
 type: 'POST',
 data: {
     rif: rif,
