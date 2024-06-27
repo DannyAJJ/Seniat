@@ -1,123 +1,98 @@
-<?php
-session_start();
-if (!isset($_SESSION['nivel'])) {
-    header('location: ../login/index.html');
-}
-?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stilosss.css">
     <link rel="icon" href="img/icono.png">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <title>formulario3</title>
+
 </head>
 <body>
-    <div class="container" id="container1">
-        <form id="form-validation" novalidate>
+
+<div class="container" id="container1">
+
+        <form id="form-validation" action="insertar_licencia_tabaco.php" method="POST"  novalidate>
         <a class="links" href="../menu/index.php"></a>
 
-            <center><h2>PLANILLA TABACO</h2></center>
+        <center><h2>PLANILLA TABACOS</h2></center>
 
-            <div class="form-group">
+        <div class="form-group">
                 <span>Sector/sector</span>
-                <select type="text" name="sector" id="sector" required>
+                <select type="text"  name="sector" required>
                     <option value="">Seleccione sector</option>
-                    <option value="Maracay">Maracay</option>
-                    <option value="Cojedes">Cojedes</option>
-                    <option value="Bejuma">Bajuma</option>
-                    <option value="La Victoria">La Victoria</option>
+                    <option value="1">Valencia</option>
+                    <option value="2">Cojedes</option>
+                    <option value="3">Bajuma</option>
+                    <option value="4">La Victoria</option>
+                    <option value="5">Maracay</option>
                 </select>
                 <small>Ingrese campos</small>
             </div>
 
-            <h3>DATOS DEL SOLICITANTE</h3>
+                           <h3>DATOS DEL SOLICITANTE</h3>
             <div class="form-group">
                 <span>Tipo de persona</span>
-                <select type="text" name="Tipo de persona" id="tipodepersona" required>
-                    <option value="">Seleccione</option>
-                    <option value="Natural">Natural</option>
-                    <option value="Juridica">Juridica</option>
+                <select type="text" name="tipodepersona" required>
+                    <option value="0">Natural</option>
+                    <option value="1">Juridica</option>
                 </select>
                 <small>Ingrese campos</small>
             </div>
             
             <div class="form-group">
                 <span>Nombre y apellidos/Denominacion</span>
-                <input type="text" placeholder="Ingrese Nombre y Aepllido/Denominacion" id="nombre" required>
+                <input type="text" placeholder="Ingrese Nombre y Aepllido/Denominacion" name="nombre" required>
                 <small>Ingrese campos</small>
             </div>
             
             <div class="form-group">
-                <span>Cedula de identidad</span>
-                <select type="text" name="Cedula" id="cedulacombo" required>
-                    <option value="">Seleccione</option>
-                    <option value="V">V</option>
-                    <option value="E">E</option>
+                <span>Nacionalidad</span>
+                <select type="text"  name="nacionalidad">
+                    <option value="1">V</option>
+                    <option value="0">E</option>
                 </select>
                 <small>Ingrese campos</small>
             </div>
 
             <div class="form-group">
                 <span>Cedula</span>
-                <input type="text" placeholder="Cedula" id="cedula" onkeyup="cedularif('cedula','rif')" required>
+                <input type="text" placeholder="Cedula" name="cedula" onkeyup="cedularif('cedula','rif')" required>
                 <small>Ingrese campos</small>
             </div>
 
             <div class="form-group">
                 <span>RIF</span>
-                <input type="text" placeholder="RIF" id="rif" required>
+                <input type="text" placeholder="RIF" name="rifempresa" required>
                 <small>Ingrese campos</small>
             </div>
 
             <div class="form-group">
                 <span>Domicilio fiscal</span>
-                <input type="text" placeholder="Domicilio fiscal" id="domicilio fiscal" required>
-                <small>Ingrese campos</small>
-            </div>
-
-            <div class="form-group">
-                <span>Ciudad</span>
-                <input type="text" placeholder="Ciudad" id="ciudad" required>
-                <small>Ingrese campos</small>
-            </div>
-
-            <div class="form-group">
-                <span>Estado</span>
-                <input type="text" placeholder="Estado" id="estado" required>
+                <input type="text" placeholder="Domicilio fiscal" name="domiciliofiscal" required>
                 <small>Ingrese campos</small>
             </div>
 
             <div class="form-group">
                 <span>Telefono</span>
-                <input type="number" placeholder="Telefono" id="telefono" required>
+                <input type="number" placeholder="Telefono" name="telefono" required>
                 <small>Ingrese campos</small>
             </div>
 
             <div class="form-group">
-                <span>Correro Electronico</span>
-                <input type="Email" placeholder="Ingrese Correo Electronico" required>
-                <small>Ingrese campos</small>
-            </div>
-            <div class="form-group">
                 <span>N° Inscripción</span>
-                <input type="number" placeholder="N° Inscripción" id="inscripción" required>
+                <input type="number" placeholder="N° Inscripción" name="inscripcion" required>
                 <small>Ingrese campos</small>
             </div>
             <div class="form-group">
                 <span>tomo</span>
-                <input type="text" placeholder="Tomo" id="tomo" required>
-                <small>Ingrese campos</small>
-            </div>
-            <div class="form-group">
-                <span>Fecha</span>
-                <input type="date" id="Fecha" required>
+                <input type="text" placeholder="Tomo" name="tomo" required>
                 <small>Ingrese campos</small>
             </div>
 
             <div class="form-group">
                 <span>Oficina de Registro</span>
-                <input type="text" placeholder="Oficina de Registro" id="registro" required>
+                <input type="text" placeholder="Oficina de Registro" name="registro" required>
                 <small>Ingrese campos</small>
             </div>
 
@@ -125,92 +100,78 @@ if (!isset($_SESSION['nivel'])) {
 
             <div class="form-group">
                 <span>Nombres</span>
-                <input type="text" placeholder="Nombres" id="nombre.empresa" required>
+                <input type="text" placeholder="Nombres" name="nombrerepresentante" required>
                 <small>Ingrese campos</small>
             </div>
 
             <div class="form-group">
                 <span>Apellidos</span>
-                <input type="text" placeholder="Apellidos" id="apellidos.empresa" required>
+                <input type="text" placeholder="Apellidos" name="apellidorepresentante" required>
+                <small>Ingrese campos</small>
+            </div>
+
+            <div class="form-group">
+                <span>Nacionalidad</span>
+                <select type="text"  name="nacionalidadrepresentante" required>
+                    <option value="">Seleccione</option>
+                    <option value="1">V</option>
+                    <option value="2">E</option>
+                </select>
                 <small>Ingrese campos</small>
             </div>
 
             <div class="form-group">
                 <span>Cedula de identidad</span>
-                <input type="text" placeholder="Cedula" id="cedula.empresa" onkeyup="cedularif('cedula.empresa','rif.empresa')" required>
+                <input type="text" placeholder="Cedula" name="cedularepresentante" required>
                 <small>Ingrese campos</small>
             </div>
 
             <div class="form-group">
                 <span>RIF</span>
-                <input type="text" placeholder="RIF" id="rif.empresa" required>
+                <input type="text" placeholder="RIF" name="rif" required>
                 <small>Ingrese campos</small>
             </div>
 
             <div class="form-group">
                 <span>Direccion</span>
-                <input type="text" placeholder="Direccion" id="direccion.empresa" required>
+                <input type="text" placeholder="Direccion" name="direccionrepresentante" required>
                 <small>Ingrese campos</small>
             </div>
 
             <div class="form-group">
                 <span>Correo Electronico</span>
-                <input type="email" placeholder="Correo Electronico" id="correo.empresa" required>
+                <input type="email" placeholder="Correo Electronico" name="correorepresentante" required>
                 <small>Ingrese campos</small>
             </div>
 
             <div class="form-group">
                 <span>Telefono</span>
-                <input type="number" placeholder="Telefono" id="telefono.empresa" required>
+                <input type="number" placeholder="Telefono" name="telefonorepresentante" required>
                 <small>Ingrese campos</small>
             </div>
 
-            <h3>UBICACIÓN DEL ESTABLECIMIENTO</h3>
+            <h3>TABACO</h3>
 
             <div class="form-group">
-                <span>Direccion</span>
-                <input type="text" placeholder="Direccion" id="direccion.establecimiento" required>
-                <small>Ingrese campos</small>
-            </div>
-
-            <div class="form-group">
-                <span>Ciudad</span>
-                <input type="text" placeholder="Ciudad" id="ciudad.establecimiento" required>
-                <small>Ingrese campos</small>
-            </div>
-
-            <div class="form-group">
-                <span>Estado</span>
-                <input type="text" placeholder="Estado" id="Estado.establecimiento" required>
-                <small>Ingrese campos</small>
-            </div>
-
-            <div class="form-group">
-                <span>Telefono</span>
-                <input type="number" placeholder="Telefono" id="telefono.establecimiento" required>
-                <small>Ingrese campos</small>
-            </div>
-
-            <h3>PRODUCTO</h3>
-
-            <div class="form-group">
-                <span>Clase del producto</span>
-                <input type="text" placeholder="Clase del producto" id="clase.producto" required>
-                <small>Ingrese campos</small>
-            </div>
-
-            <div class="form-group">
-                <span>Denominación del producto</span>
-                <input type="text" placeholder="Denominación del producto" id="denominacion.producto" required>
+                <span>Clase del producto 1</span>
+                <select type="text"  name="claseproducto" required>
+                    <option value="0">Seleccione</option>
+                    <option value="1">Natural</option>
+                    <option value="2">Juridica</option>
+                </select>
+                <div id="Container"></div>
+                <button type="button" onclick="a=a+1,anadir(a)">anadir</button>
                 <small>Ingrese campos</small>
             </div>
 
             <div class="form-group">
                 <span>Materia prima</span>
-                <input type="text" placeholder="Materia prima" id="materiaprima.producto" required>
+                <input type="text" placeholder="Materia prima" name="materiaprimaproducto" required>
                 <small>Ingrese campos</small>
             </div>
-        
+            
+
+
             <div class="button">
                 <input type="submit" value="REGISTRAR">
             </div>
@@ -218,6 +179,7 @@ if (!isset($_SESSION['nivel'])) {
 </div>
 
 <script>
+
     const addForm = document.getElementById("form-validation");
     addForm.addEventListener("submit", (e)=>{
         if(addForm.checkValidity() ===false){
@@ -229,9 +191,33 @@ if (!isset($_SESSION['nivel'])) {
     })
 
     function cedularif(a,b) {
-        var final = document.getElementById(a).value
-        document.getElementById(b).value= final + "-"
+        var final = document.getElementsByName(a).value
+        document.getElementsByName(b).value= final + "-"
     }
+</script>
+
+<script>
+    a=1
+    function anadir(a) {
+      $.ajax({
+        url: 'anadir.php',
+        type: 'POST',
+        data: {a:a},
+        success: function(data) {
+          $('#Container').append(data);
+        },
+        error:
+ function() {
+          alert('Error al obtener los detalles completos');
+        }
+      });
+    }
+
+function tipodepersona() {
+    if (getElementsByName("tipodepersona") == 1 ) {
+
+    }
+}
 </script>
 
     <main>

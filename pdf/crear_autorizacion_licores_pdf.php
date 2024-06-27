@@ -1,7 +1,6 @@
 <?php
 
 require 'FPDF/fpdf.php';
-
 /*
 
 
@@ -10,23 +9,22 @@ metodo post
 
 */
 
-$Tipo_autorizacion=$_POST('');
-$N_registro=$_POST('N_registro');
-$Fecha_registro=$_POST('');
-$N_autorizacion=$_POST('');
-$Fecha_autorizacion=$_POST('');
-$Razon_social=$_POST('');
-$N_rif=$_POST('');
-$Direccion=$_POST('');
-$Autorizacion_ejerce=$_POST('');
-$Clasificacion_indole=$_POST('');
-$Representante_legal=$_POST('');
-$Nacionalidad_representante=$_POST('');
-$Cedula_representante=$_POST('');
-$N_rif_representante=$_POST('');
-$Observaciones=$_POST('');
-$Firmante[]=$_POST('');
-$Segundo_firmante=$_POST('');
+$N_registro='';
+$Fecha_registro=$fechahoy;
+$N_autorizacion=$sigla.' '.$ultimoValor;
+$Fecha_autorizacion=$fechahoy;
+$Razon_social=$nombre;
+$N_rif=$rifempresa;
+$Direccion=$direccion;
+$Autorizacion_ejerce='INDUSTRIA DE ALCOHOL Y ESPECIES ALCOHOLICAS';
+$Clasificacion_indole='';
+$Representante_legal=$nombrerepresentante;
+$Nacionalidad_representante='';
+$Cedula_representante=$cedularepresentante;
+$N_rif_representante=$rif;
+$Observaciones='Por cuánto el contribuyente arriba indicado, ha cumplido con los requisitos exigidos por la ley de impuesto sobre alcohol y especies alcohólicas y su reglamento, se le concede la presente AUTORIZACIÓN DE FÁBRICA DE ESPECIES ALCOHÓLICAS de acuerdo a las especificaciones contenidas en el respectivo registro.'."\n\nNOTA: De conformidad con el artículo 10 dela de la ley del timbre Fiscal los contribuyentes deben renovar su Registro de Expendio de Alcohol y Especies Alcohólicas anualmente antes de la fecha en la que fue entregado el Registro, asi como cumplir con todos los tramites que modifiquen el mismo conforme a la ley de Impuesto Sobre Alcohol y Especies Alcohólicas y su Reglamento en caso contrario, serán sancionados de acuerdo a lo establecido en el artículo 108 del Código Organico Tributario Vigente. Resuelve conceder la correspondiente autorización.";
+$Firmante='';
+$Segundo_firmante='';
 
 /*
 
@@ -41,11 +39,8 @@ $pdf->SetFont('Arial','B','12');
 $pdf->SetLeftMargin(15);
 
 $pdf->Sety(40);
-if ($Tipo_autorizacion=='licores') {
     $pdf->MultiCell('185','8',mb_convert_encoding('CONSTANCIA DE AUTORIZACIÓN PARA FÁBRICA DE ESPECIES ALCOHÓLICAS Y BEBIDAS ALCOHÓLICAS','ISO-8859-1','UTF-8'),1,'C',false);
-}else {
-    $pdf->MultiCell('185','8',mb_convert_encoding('CONSTANCIA DE AUTORIZACIÓN PARA FÁBRICA DE TABACO','ISO-8859-1','UTF-8'),1,'C',false);
-}
+
 
 $pdf->SetFont('Arial','','9');
 

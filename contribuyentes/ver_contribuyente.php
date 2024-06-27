@@ -34,6 +34,9 @@ if (!isset($_SESSION['nivel'])) {
 </div>
 
 <script>
+
+
+
 const addForm = document.getElementById("form-validation");
 addForm.addEventListener("submit", (e)=>{
 if(addForm.checkValidity() ===false){
@@ -56,8 +59,7 @@ data: {
 success: function(data) {
   $('#Container').html(data);
 },
-error:
-function() {
+error: function() {
   alert('Error al obtener los detalles completos');
 }
 });
