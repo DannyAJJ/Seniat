@@ -1,101 +1,70 @@
 /* Estilos para la tabla */
 table {
-    border-collapse: collapse;
-    table-layout: fixed;
-    max-width: 60vw;
-    /*border: 5px solid #da7373;*/
-    /*box-shadow: 0 0 10px rgba(9, 11, 155, 0.1);*/
-    /*display: flex;*/
-    margin: 0 auto;
-    justify-content: center;
-    margin-top: 20px;
+  border-collapse: collapse;
+  table-layout: auto;
+  width: 100%; /* Cambiado de max-width a width */
+  box-sizing: border-box; /* Agregado para incluir bordes y padding en el ancho */
+  margin: 0 auto;
+  margin-top: 20px;
 }
-  
-/*=========BORDE DE LA TABLA=========*/
+
+/* Estilos para los bordes de la tabla */
+th, td {
+  border: 3px solid #080808;
+  padding: 10px;
+  text-align: left;
+  box-shadow: 0 0 15px rgb(47, 171, 209);
+}
+
+th {
+  background-color: #b8cccf;
+  font-weight: bold;
+}
+
+td {
+  vertical-align: middle;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  word-break: break-all; /* Agregado para romper palabras y enlaces largos */
+}
+
+/* Estilos para los enlaces */
+.enlace {
+  text-decoration: none;
+  color: #fc0000;
+  border-radius: 5px;
+  padding: 5px 10px;
+  background-color: #fcfffb;
+  border: 1px solid #030303;
+  margin: 0 auto;
+  display: block;
+}
+
+.enlace:hover {
+  color: #bd3636;
+  background-color: #eeeeee;
+  border-color: #e00808;
+}
+
+/* Estilos para el mensaje de sin resultados */
+p {
+  font-size: 18px;
+  font-weight: bold;
+  color: #666;
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f7f7f7;
+}
+
+/* Media query para pantallas pequeñas */
+@media (max-width: 768px) {
+  table {
+      font-size: 0.8em;
+  }
   th, td {
-    border: 3px solid #080808;
-    padding: 10px;
-    text-align: left;
-    Box-shadow: 0 0 15px rgb(47, 171, 209);
+      width: auto; /* Cambiado de 20% a auto */
   }
-  
-  th {
-    background-color: #b8cccf;
-    font-weight: bold;
-  }
-  
-  td {
-    vertical-align: middle;
-    max-width: 70px;
-    overflow-wrap: break-word;
-    hyphens: auto;
-  }
-  
-  /* Estilos para los enlaces */
-  .enlace {
-    text-decoration: none;
-    color: #fc0000;
-    /*margin-right: 10px;*/
-    border-radius: 5px;
-    padding: 5px 10px;
-    background-color: #fcfffb;
-    border: 1px solid #030303;
-    margin: 0 auto;
-    display: block;
-  }
-  
-  .enlace:hover {
-    color: #bd3636;
-    background-color: #eeeeee;
-    border-color: #e00808;
-  }
-  
-  /* Estilos para el mensaje de sin resultados */
-  p {
-    font-size: 18px;
-    font-weight: bold;
-    color: #666;
-    text-align: center;
-    margin-top: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    background-color: #f7f7f7;
-  }
-
-  /*.titulo {
-    font-weight: bold;
-    color: #b47e08;
-  }*/
-
-
-
-
-/*<?php
-
-// Parámetros de conexión a la base de datos
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "expendiobd";
-
-// Crear conexión
-$conn = new mysqli($servername, $username, $password, $dbname);
-$rif_contribullente = $_POST['rif'];
-$sql = "SELECT autorizacion_licores.Numero_autorizacion, unidades.Unidad, autorizacion_licores.Razon_social FROM autorizacion_licores, unidades WHERE `Numero_rif_solicitante` = \"$rif_contribullente\" AND `Habilitado` = 1;";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    echo "<table><tbody>";
-  // Mostrar los detalles completos de todas las demás columnas
-  while($row = $result->fetch_assoc()) {
-    echo "<tr>";
-    echo "<td>" . $row["Numero_autorizacion"]. "</td><td>" .$row["Razon_social"]. "</td><td>" . $row["Unidad"] . "</td>";
-
-    echo "<td><a class='enlace' href>VER</a><a class='enlace' href=''>LIQUIDAR PRODUCCIÓN</a><a class='enlace' href=''>LIQUIDAR P.V.P</a><a class='enlace' href=''>RENOVACIÓN</a><a class='enlace' href=''>ELIMINAR</a></td></tr>";
-    }
-    echo "</tbody></table>";
-} else {
-  echo "<p>SIN RESULTADOS</p>";
 }
-?>*/

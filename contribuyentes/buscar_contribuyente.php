@@ -10,12 +10,11 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "expendiobd";
-$_COOKIE['myCookie'] = "AND `Habilitado` = 1";
-$habilitado = $_COOKIE['myCookie'];
+$habilitado = $_POST['habil'];
 // Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
 $rif_contribullente = $_POST['rif'];
-$sql = "SELECT licencia_licores.Numero_autorizacion,licencia_licores.Fecha_autorizacion, unidades.Unidad, licencia_licores.Razon_social FROM licencia_licores, unidades WHERE `Numero_rif_solicitante` = \"$rif_contribullente\" AND `Habilitado` = 1 AND unidades.Id_unidad = licencia_licores.Unidad; ";
+$sql = "SELECT licencia_licores.Numero_autorizacion,licencia_licores.Fecha_autorizacion, unidades.Unidad, licencia_licores.Razon_social, licencia_licores.Habilitado FROM licencia_licores, unidades WHERE `Numero_rif_solicitante` = \"$rif_contribullente\" $habilitado AND unidades.Id_unidad = licencia_licores.Unidad; ";
 $result = $conn->query($sql);
 echo "<button type='button' class='enlace' onclick='renovaciones()'>renovaciones</button>";
 echo "<button onclick='habilitar()' class='enlace' type='button'>INHABILITADOS </button>";
@@ -36,25 +35,31 @@ if ($result->num_rows > 0) {
     echo "<tr>";
     echo "<td id= 'autorizacionlicor$i'>" . $row["Numero_autorizacion"]. "</td><td>" .$row["Razon_social"]. "</td><td>" . $row["Unidad"] . "</td>"."<td>" . $fechas. "</td>";
 
-    echo "<td><a class='enlace' href>VER</a>
-          <td><a class='enlace' href=''>LIQ. PROD.</a></td>
-          <td><a class='enlace' href=''>LIQ. P.V.P</a></td>
-          <td><button class='enlace' type= 'button'>RENOVACIÓN</button></td>";
+    if ($row["Habilitado"] == 1) {
+    echo "<td><button class='enlace' type= 'button'>VER</button>";
+    echo "<td><button class='enlace' type= 'button'>LIQ. PROD.</button></td>
+    <td><button class='enlace' type= 'button'>LIQ. P.V.P</button></td>
+    <td><button class='enlace' type= 'button'>RENOVACIÓN</button></td>";
+    
     if ($_SESSION['nivel'] == 3) {
-      echo "<td><button onclick='eliminartabaco($i)' class='enlace' type='button'>BORRAR</button></td></tr>";
+      echo "<td><button onclick='eliminarlicor($i,0)' class='enlace' type='button'>BORRAR</button></td></tr>";
     }
+  }else {
+    echo "<td colspan ='2'><button class='enlace' type= 'button'>VER</button>";
+    echo "<td colspan ='3'><button onclick = 'eliminarlicor($i,1)'  class='enlace' type='button'>RESTAURAR</button></td>";
+  }
     $i= $i+1;
 
   }
   
   echo "</tbody></table>";
-echo "<div id='renova'></div>";
 } else {
   echo "<p>SIN RESULTADOS</p>";
 }
+echo "<div id='renova'></div>";
 
 
-$sql = "SELECT licencia_tabaco.Numero_autorizacion,licencia_tabaco.Fecha_autorizacion, unidades.Unidad, licencia_tabaco.Razon_social FROM licencia_tabaco, unidades WHERE `Numero_rif_solicitante` = \"$rif_contribullente\" $habilitado  AND unidades.Id_unidad = licencia_tabaco.Unidad; ";
+$sql = "SELECT licencia_tabaco.Numero_autorizacion,licencia_tabaco.Fecha_autorizacion, unidades.Unidad, licencia_tabaco.Razon_social, licencia_tabaco.Habilitado FROM licencia_tabaco, unidades WHERE `Numero_rif_solicitante` = \"$rif_contribullente\" $habilitado  AND unidades.Id_unidad = licencia_tabaco.Unidad; ";
 $result = $conn->query($sql);
 
 echo "<center><strong><h2>Licencias de Tabaco</h2></strong></center>";
@@ -71,11 +76,15 @@ if ($result->num_rows > 0) {
     echo "<tr>";
     echo "<td id= 'autorizaciontabaco$i'>" . $row["Numero_autorizacion"]. "</td><td>" .$row["Razon_social"]. "</td><td>" . $row["Unidad"] . "</td>"."<td>" . $fechas. "</td>";
 
-    echo "<td><a class='enlace' href>VER</a>
-          <td><a class='enlace' href=''>LIQ. P.V.P</a></td>";
-    if ($_SESSION['nivel'] == 3) {
-      echo "<td><button onclick='eliminartabaco($i)' class='enlace' type='button'>BORRAR</a></td></tr>";
-    }
+    echo "<td><a class='enlace' href>VER</a>";
+    if ($row['Habilitado'] == 1) {
+      echo "<td><a class='enlace' href=''>LIQ. P.V.P</a></td>";
+      if ($_SESSION['nivel'] == 3) {
+        echo "<td><button onclick='eliminartabaco($i,0)' class='enlace' type='button'>BORRAR</button></td></tr>";
+      }
+    }else{
+      echo "<td><button onclick='eliminartabaco($i,1)' class='enlace' type='button'>RESTAURAR</button></td></tr>";}
+   
     
     $i= $i+1;
     }
@@ -85,15 +94,46 @@ if ($result->num_rows > 0) {
 }
 ?>
 <script>
-  function eliminartabaco(i) {
+  function eliminarlicor(i,n) {
+    var eltd = document.getElementById(`autorizacionlicor${i}`);
+    var texointerior = eltd.textContent;
+    console.log(texointerior);
+    $.ajax({
+url: 'eliminar_licor.php',
+type: 'POST',
+data: {Texto : texointerior,
+  Numero: n
+},
+success: function(dato) {
+  console.log(dato);
+    anadir(true);
+    if (n = 1) {
+      t = true;
+    }else{
+      t = false;
+    }
+},
+error: function() {
+  alert('error de eliminacion');
+}
+});
+}
+  function eliminartabaco(i,n) {
     var eltd = document.getElementById(`autorizaciontabaco${i}`);
     var texointerior = eltd.textContent;
+    console.log(texointerior);
     $.ajax({
 url: 'eliminar_tabaco.php',
 type: 'POST',
-data: {texto : texointerior},
+data: {Texto : texointerior,
+  Numero: n},
 success: function() {
-    anadir();
+    anadir(true);
+    if (n = 1) {
+      t = true;
+    }else{
+      t = false;
+    }
 },
 error: function() {
   alert('error de eliminacion');
@@ -101,48 +141,38 @@ error: function() {
 });
 }
 
-var renovacion = false;
+ var renovacion;
   function renovaciones(){
     const rif = '<?php echo $rif_contribullente; ?>';
     if (!renovacion) {
+      
+      //console.log(renovacion)
       $.ajax({
       url: 'busqueda_renovacion.php',
       type: 'POST',
       data: { rif: rif },
       //contentType: 'json',
-      success: function(elecho){
-        //var el = elecho.toString();
-        $('#renova').html(elecho);
-        //anadir();
-        renovacion = !renovacion;
-      },
-      error(){
-
-      }
-    })
-    }else {
-      $('#renova').html("");
-      renovacion = !renovacion;
-    }
+      success: function(elecho){$('#renova').html(elecho);},
+      error(){alert('epa');}
+      })
+    }else {$('#renova').html("");}
+    renovacion = !renovacion;
+        //console.log(renovacion)
     
   }
 
-  function habilitar() {
-    document.cookie="myCookie='AND `Habilitado` = 0'";
-    
-    anadir();
-  }
-  
+      var t;
       function habilitar() {
-        $.ajax({
-          type: "POST",
-          url: "habilitar.php",
-          data: { habilitado: "true" },
-          success: function(response) {
-            
-          }
-        });
+        //console.log(t);
+        
+       if (!t) {
+        anadir(true);
+       }else{
+        anadir(false)
+       }
       }
+      
+      t = !t;
 
     </script>
 

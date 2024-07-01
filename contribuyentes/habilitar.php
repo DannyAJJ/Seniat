@@ -1,4 +1,4 @@
 <?php
-  session_start();
-  $_SESSION['habilitado'] = 'AND `Habilitado` = 0';
-  echo "Habilitado con éxito!";
+  $habilitado = '';
+  //echo "Habilitado con éxito!";
+?>
