@@ -39,9 +39,9 @@ if ($result->num_rows > 0) {
     echo "<td><a class='enlace' href>VER</a>
           <td><a class='enlace' href=''>LIQ. PROD.</a></td>
           <td><a class='enlace' href=''>LIQ. P.V.P</a></td>
-          <td><a class='enlace' href=''>RENOVACIÓN</a></td>";
+          <td><button class='enlace' type= 'button'>RENOVACIÓN</button></td>";
     if ($_SESSION['nivel'] == 3) {
-      echo "<td><button onclick='eliminartabaco($i)' class='enlace' type='button'>ELIMINAR</td></tr>";
+      echo "<td><button onclick='eliminartabaco($i)' class='enlace' type='button'>BORRAR</button></td></tr>";
     }
     $i= $i+1;
 
@@ -74,7 +74,7 @@ if ($result->num_rows > 0) {
     echo "<td><a class='enlace' href>VER</a>
           <td><a class='enlace' href=''>LIQ. P.V.P</a></td>";
     if ($_SESSION['nivel'] == 3) {
-      echo "<td><button onclick='eliminartabaco($i)' class='enlace' type='button'>ELIMINAR</a></td></tr>";
+      echo "<td><button onclick='eliminartabaco($i)' class='enlace' type='button'>BORRAR</a></td></tr>";
     }
     
     $i= $i+1;
@@ -100,9 +100,12 @@ error: function() {
 }
 });
 }
+
+var renovacion = false;
   function renovaciones(){
     const rif = '<?php echo $rif_contribullente; ?>';
-    $.ajax({
+    if (!renovacion) {
+      $.ajax({
       url: 'busqueda_renovacion.php',
       type: 'POST',
       data: { rif: rif },
@@ -111,11 +114,17 @@ error: function() {
         //var el = elecho.toString();
         $('#renova').html(elecho);
         //anadir();
+        renovacion = !renovacion;
       },
       error(){
 
       }
     })
+    }else {
+      $('#renova').html("");
+      renovacion = !renovacion;
+    }
+    
   }
 
   function habilitar() {
@@ -123,18 +132,18 @@ error: function() {
     
     anadir();
   }
-
-      function enviarVariable() {
-        var valor = $("#miCampo").val();
+  
+      function habilitar() {
         $.ajax({
           type: "POST",
-          url: "procesar_variable.php",
-          data: { variable: valor },
+          url: "habilitar.php",
+          data: { habilitado: "true" },
           success: function(response) {
-            $("#resultado").html(response);
+            
           }
         });
       }
+
     </script>
 
 </script>
