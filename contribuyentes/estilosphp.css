@@ -1,10 +1,12 @@
 /* Estilos para la tabla */
 table {
     border-collapse: collapse;
-    width: 100%;
+    table-layout: fixed;
+    max-width: 60vw;
     /*border: 5px solid #da7373;*/
     /*box-shadow: 0 0 10px rgba(9, 11, 155, 0.1);*/
-    display: flex;
+    /*display: flex;*/
+    margin: 0 auto;
     justify-content: center;
     margin-top: 20px;
 }
@@ -24,6 +26,9 @@ table {
   
   td {
     vertical-align: middle;
+    max-width: 70px;
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
   
   /* Estilos para los enlaces */
@@ -58,7 +63,10 @@ table {
     background-color: #f7f7f7;
   }
 
-
+  /*.titulo {
+    font-weight: bold;
+    color: #b47e08;
+  }*/
 
 
 
