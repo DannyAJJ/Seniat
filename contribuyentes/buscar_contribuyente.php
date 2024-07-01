@@ -10,12 +10,16 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "expendiobd";
-
+$_COOKIE['myCookie'] = "AND `Habilitado` = 1";
+$habilitado = $_COOKIE['myCookie'];
 // Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
 $rif_contribullente = $_POST['rif'];
 $sql = "SELECT licencia_licores.Numero_autorizacion,licencia_licores.Fecha_autorizacion, unidades.Unidad, licencia_licores.Razon_social FROM licencia_licores, unidades WHERE `Numero_rif_solicitante` = \"$rif_contribullente\" AND `Habilitado` = 1 AND unidades.Id_unidad = licencia_licores.Unidad; ";
 $result = $conn->query($sql);
+echo "<button type='button' class='enlace' onclick='renovaciones()'>renovaciones</button>";
+echo "<button onclick='habilitar()' class='enlace' type='button'>INHABILITADOS </button>";
+
 $i = 0; 
 echo "<center><strong><h2>Licencias de Licores</h2></strong></center>";
 if ($result->num_rows > 0) {
@@ -37,17 +41,20 @@ if ($result->num_rows > 0) {
           <td><a class='enlace' href=''>LIQ. P.V.P</a></td>
           <td><a class='enlace' href=''>RENOVACIÓN</a></td>";
     if ($_SESSION['nivel'] == 3) {
-      echo "<td><button onclick='eliminartabaco($i)' class='enlace' type='button'>ELIMINAR</a></td></tr>";
+      echo "<td><button onclick='eliminartabaco($i)' class='enlace' type='button'>ELIMINAR</td></tr>";
     }
     $i= $i+1;
+
   }
-    echo "</tbody></table>";
+  
+  echo "</tbody></table>";
+echo "<div id='renova'></div>";
 } else {
   echo "<p>SIN RESULTADOS</p>";
 }
 
 
-$sql = "SELECT licencia_tabaco.Numero_autorizacion,licencia_tabaco.Fecha_autorizacion, unidades.Unidad, licencia_tabaco.Razon_social FROM licencia_tabaco, unidades WHERE `Numero_rif_solicitante` = \"$rif_contribullente\" AND `Habilitado` = 1 AND unidades.Id_unidad = licencia_tabaco.Unidad; ";
+$sql = "SELECT licencia_tabaco.Numero_autorizacion,licencia_tabaco.Fecha_autorizacion, unidades.Unidad, licencia_tabaco.Razon_social FROM licencia_tabaco, unidades WHERE `Numero_rif_solicitante` = \"$rif_contribullente\" $habilitado  AND unidades.Id_unidad = licencia_tabaco.Unidad; ";
 $result = $conn->query($sql);
 
 echo "<center><strong><h2>Licencias de Tabaco</h2></strong></center>";
@@ -93,4 +100,41 @@ error: function() {
 }
 });
 }
+  function renovaciones(){
+    const rif = '<?php echo $rif_contribullente; ?>';
+    $.ajax({
+      url: 'busqueda_renovacion.php',
+      type: 'POST',
+      data: { rif: rif },
+      //contentType: 'json',
+      success: function(elecho){
+        //var el = elecho.toString();
+        $('#renova').html(elecho);
+        //anadir();
+      },
+      error(){
+
+      }
+    })
+  }
+
+  function habilitar() {
+    document.cookie="myCookie='AND `Habilitado` = 0'";
+    
+    anadir();
+  }
+
+      function enviarVariable() {
+        var valor = $("#miCampo").val();
+        $.ajax({
+          type: "POST",
+          url: "procesar_variable.php",
+          data: { variable: valor },
+          success: function(response) {
+            $("#resultado").html(response);
+          }
+        });
+      }
+    </script>
+
 </script>
