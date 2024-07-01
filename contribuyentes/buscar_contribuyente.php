@@ -37,7 +37,7 @@ if ($result->num_rows > 0) {
           <td><a class='enlace' href=''>LIQ. P.V.P</a></td>
           <td><a class='enlace' href=''>RENOVACIÓN</a></td>";
     if ($_SESSION['nivel'] == 3) {
-      echo "<td><button onclick='eliminartabaco($i)' class='enlace' type='button'>ELIMINAR</a></td></tr>";
+      echo "<td><button onclick='eliminartabaco($i)' class='enlace' type='button'>BORRAR</a></td></tr>";
     }
     $i= $i+1;
   }
@@ -54,6 +54,9 @@ echo "<center><strong><h2>Licencias de Tabaco</h2></strong></center>";
 if ($result->num_rows > 0) {
     echo "<table><tbody>";
     echo "<tr><td><b>Nº de Licencia</b></td><td><b>Razon Social</b></td><td><b>Unidad</b></td><td><b>Expira</b></td><td colspan ='5'><center><b>Opciones</b></center></td></tr>";
+
+    //echo "<tr><td><b class='titulo'>Nº de Licencia</b></td><td><b class='titulo'>Razon Social</b></td><td><b class='titulo'>Unidad</b></td><td><b class='titulo'>Expira</b></td><td colspan ='5'><center><b class='titulo'>Opciones</b></center></td></tr>";
+
 
   // Mostrar los detalles completos de todas las demás columnas
   while($row = $result->fetch_assoc()) {
