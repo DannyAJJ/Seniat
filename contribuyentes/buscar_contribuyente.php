@@ -14,10 +14,18 @@ $habilitado = $_POST['habil'];
 // Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
 $rif_contribullente = $_POST['rif'];
-$sql = "SELECT licencia_licores.Numero_autorizacion,licencia_licores.Fecha_autorizacion, unidades.Unidad, licencia_licores.Razon_social, licencia_licores.Habilitado FROM licencia_licores, unidades WHERE `Numero_rif_solicitante` = \"$rif_contribullente\" $habilitado AND unidades.Id_unidad = licencia_licores.Unidad; ";
+if ($_SESSION['unidad']==1) {
+  $limitunidadl = '';
+  $limitunidadt = '';
+}else {
+  $limitunidadl = 'AND licencia_licores.Unidad = '.$_SESSION['unidad'];
+  $limitunidadt = 'AND licencia_tabaco.Unidad = '.$_SESSION['unidad'];
+}
+$sql = "SELECT licencia_licores.Numero_autorizacion,licencia_licores.Fecha_autorizacion, unidades.Unidad, licencia_licores.Razon_social, licencia_licores.Habilitado FROM licencia_licores, unidades WHERE `Numero_rif_solicitante` = \"$rif_contribullente\" $habilitado $limitunidadl AND unidades.Id_unidad = licencia_licores.Unidad; ";
 $result = $conn->query($sql);
-echo "<button type='button' class='enlace' onclick='renovaciones()'>renovaciones</button>";
-echo "<button onclick='habilitar()' class='enlace' type='button'>INHABILITADOS </button>";
+echo "<div style = 'display: flex;flex-flow: row; with: 70%; justify-content: space-between'>
+<button type='button' class='busc' onclick='renovaciones()'>RENOVACIONES</button>";
+echo "<button onclick='habilitar()' class='busc' type='button'>INHABILITADOS </button></div>";
 
 $i = 0; 
 echo "<center><strong><h2>Licencias de Licores</h2></strong></center>";
@@ -59,7 +67,7 @@ if ($result->num_rows > 0) {
 echo "<div id='renova'></div>";
 
 
-$sql = "SELECT licencia_tabaco.Numero_autorizacion,licencia_tabaco.Fecha_autorizacion, unidades.Unidad, licencia_tabaco.Razon_social, licencia_tabaco.Habilitado FROM licencia_tabaco, unidades WHERE `Numero_rif_solicitante` = \"$rif_contribullente\" $habilitado  AND unidades.Id_unidad = licencia_tabaco.Unidad; ";
+$sql = "SELECT licencia_tabaco.Numero_autorizacion,licencia_tabaco.Fecha_autorizacion, unidades.Unidad, licencia_tabaco.Razon_social, licencia_tabaco.Habilitado FROM licencia_tabaco, unidades WHERE `Numero_rif_solicitante` = \"$rif_contribullente\" $habilitado $limitunidadt  AND unidades.Id_unidad = licencia_tabaco.Unidad; ";
 $result = $conn->query($sql);
 
 echo "<center><strong><h2>Licencias de Tabaco</h2></strong></center>";
@@ -83,7 +91,7 @@ if ($result->num_rows > 0) {
         echo "<td><button onclick='eliminartabaco($i,0)' class='enlace' type='button'>BORRAR</button></td></tr>";
       }
     }else{
-      echo "<td><button onclick='eliminartabaco($i,1)' class='enlace' type='button'>RESTAURAR</button></td></tr>";}
+      echo "<td colspan = '2'><button onclick='eliminartabaco($i,1)' class='enlace' type='button'>RESTAURAR</button></td></tr>";}
    
     
     $i= $i+1;

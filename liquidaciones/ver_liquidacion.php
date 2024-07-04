@@ -28,7 +28,7 @@ if (!isset($_SESSION['nivel'])) {
 </div>
 
 <div class="button">
-    <button id="busc" class="busc" onclick="anadir(true)">BUSCAR</button>
+    <button id="busc" class="busc" onclick="anadir()">BUSCAR</button>
 </div>
 <div id="Container"></div>
 </div>
@@ -54,14 +54,12 @@ return false
 }
 })
 
-function anadir(h) {
-if (h) {var habil = 'AND `Habilitado` = 1';}else{ var habil = '';}
+function anadir() {
 var rif = $('#rif').val();
 $.ajax({
-url: 'buscar_contribuyente.php',
+url: 'buscar_liquidacion.php',
 type: 'POST',
 data: {
-    habil : habil,
     rif: rif,
 },
 success: function(data) {

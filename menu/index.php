@@ -43,12 +43,10 @@ if (!isset($_SESSION['nivel'])) {
                                 <!--Opcion 1-->
                             <li><a id="selected" onclick="cerrar()"></a></li>
 
-                            <!-- style="width: 1000px;"> <img src="img/salir.png" alt="imagen clickeable" width="50" height="50"> -->
-
                                 <!--Opcion 2-->
                             <li><a href="#">Liquidaciones</a>
                                 <ul>
-                                    <li><a href="#">BUSCAR</a></li>
+                                    <li><a href="../liquidaciones/ver_liquidacion.php">BUSCAR</a></li>
                                 </ul>
                             </li>
 
