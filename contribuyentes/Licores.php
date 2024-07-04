@@ -31,7 +31,7 @@
             </div>
 
                            <h3>DATOS DEL SOLICITANTE</h3>
-            <div class="form-group">
+            <div class="form-group" id="combo">
                 <span>Tipo de persona</span>
                 <select type="text" name="tipodepersona" required>
                     <option value="0">Natural</option>
@@ -46,7 +46,7 @@
                 <small>Ingrese campos</small>
             </div>
             
-            <div class="form-group">
+            <div class="form-group" >
                 <span>Nacionalidad</span>
                 <select type="text"  name="nacionalidad">
                     <option value="1">V</option>
@@ -55,7 +55,7 @@
                 <small>Ingrese campos</small>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" id="cedula" style="display: block;">
                 <span>Cedula</span>
                 <input type="text" placeholder="Cedula" name="cedula" onkeyup="cedularif('cedula','rif')" required>
                 <small>Ingrese campos</small>
@@ -153,16 +153,18 @@
             <h3>BEBIDA ALCOHÓLICA</h3>
 
             <div class="form-group">
-                <span>Clase del producto 1</span>
-                <select type="text"  name="claseproducto" required>
+                
+                <div id="Container">
+                <span>Clase del producto</span>
+                <select type="text"  name="claseproducto" id="comboproducto1" required>
                     <option value="1">Cerveza</option>
                     <option value="2">Bebidas y Especies Alcohólicas</option>
                     <option value="3">Sangria Fermentada</option>
                     <option value="4">Sangria Adición de Alcohol</option>
                     <option value="5">Vinos</option>
                 </select>
-                <div id="Container"></div>
-                <button type="button" onclick="a=a+1,anadir(a)">anadir</button>
+                </div>
+                <button id="añadir" style="display: none;" type="button" onclick="a=a+1,anadir(a)">AÑADIR</button>
                 <small>Ingrese campos</small>
             </div>
 
@@ -206,11 +208,31 @@
 
 <script>
     a=1
+    if (typeof sangria == 'undefined') {
+        var sangria = 1
+    }
+    if (typeof conalcohol == 'undefined') {
+        var conalcohol=1;    
+    }
+    if(typeof vinos == 'undefined'){
+        var vinos= 1;
+    }
+    
     function anadir(a) {
+        //const c = $('#comboproducto'+a-1).val();
+    var b = document.getElementById("comboproducto"+(a-1));
+    console.log(b.value);
+    if (b.value==3) {
+        sangria=0;
+    }if (b.value==4) {
+        conalcohol=0;
+    }if (b.value==5){
+        vinos=0;
+    };
       $.ajax({
         url: 'anadir.php',
         type: 'POST',
-        data: {a:a},
+        data: {a:a,sangria:sangria,conalcohol:conalcohol,vinos:vinos},
         success: function(data) {
           $('#Container').append(data);
         },
@@ -220,6 +242,38 @@
         }
       });
     }
+
+const comboproducto = document.getElementById("comboproducto1");
+const boton = document.getElementById("añadir");
+
+comboproducto.addEventListener("change", function() {
+
+    console.log(this.value);
+  if (this.value >2) {
+    boton.style.display = "block";
+  } else {
+    boton.style.display = "none";
+    $('#Container').html('<span>Clase del producto</span><select type="text"  name="claseproducto" id="comboproducto1" required><option value="1">Cerveza</option><option value="2">Bebidas y Especies Alcohólicas</option><option value="3">Sangria Fermentada</option><option value="4">Sangria Adición de Alcohol</option><option value="5">Vinos</option>');
+    }
+});
+
+
+
+
+const combo = document.getElementById("combo");
+const cajaTexto = document.getElementById("cedula");
+var trampa = false;
+combo.addEventListener("change", function() {
+  if (trampa) {
+    cajaTexto.style.display = "block";
+  } else {
+    cajaTexto.style.display = "none";
+  }
+  trampa = !trampa;
+});
+
+
+
 </script>
 
     <main>

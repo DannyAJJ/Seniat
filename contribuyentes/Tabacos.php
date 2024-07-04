@@ -31,7 +31,7 @@
             </div>
 
                            <h3>DATOS DEL SOLICITANTE</h3>
-            <div class="form-group">
+            <div class="form-group" id="combo">
                 <span>Tipo de persona</span>
                 <select type="text" name="tipodepersona" required>
                     <option value="0">Natural</option>
@@ -55,7 +55,7 @@
                 <small>Ingrese campos</small>
             </div>
 
-            <div class="form-group">
+            <div class="form-group" id="cedula" style="display: block;">
                 <span>Cedula</span>
                 <input type="text" placeholder="Cedula" name="cedula" onkeyup="cedularif('cedula','rif')" required>
                 <small>Ingrese campos</small>
@@ -218,6 +218,19 @@ function tipodepersona() {
 
     }
 }
+
+const combo = document.getElementById("combo");
+const cajaTexto = document.getElementById("cedula");
+var trampa = false;
+combo.addEventListener("change", function() {
+  if (trampa) {
+    cajaTexto.style.display = "block";
+  } else {
+    cajaTexto.style.display = "none";
+  }
+  trampa = !trampa;
+});
+
 </script>
 
     <main>

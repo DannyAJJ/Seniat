@@ -40,19 +40,9 @@ document.addEventListener('keydown', function(event) {
     
   if (event.key == 'Enter') {
     button.click();
-  }
+}
 });
 
-
-const addForm = document.getElementById("form-validation");
-addForm.addEventListener("submit", (e)=>{
-if(addForm.checkValidity() ===false){
-e.preventDefault();
-e.stopPropagation();
-addForm.classList.add('was-validate');
-return false
-}
-})
 
 function anadir(h) {
 if (h) {var habil = 'AND `Habilitado` = 1';}else{ var habil = '';}

@@ -44,7 +44,7 @@ if ($result->num_rows > 0) {
     echo "<td id= 'autorizacionlicor$i'>" . $row["Numero_autorizacion"]. "</td><td>" .$row["Razon_social"]. "</td><td>" . $row["Unidad"] . "</td>"."<td>" . $fechas. "</td>";
 
     if ($row["Habilitado"] == 1) {
-    echo "<td><button class='enlace' type= 'button'>VER</button>";
+    echo "<td><button onclick='verlicl($i)' class='enlace' type= 'button'>VER</button>";
     echo "<td><button class='enlace' type= 'button'>LIQ. PROD.</button></td>
     <td><button class='enlace' type= 'button'>LIQ. P.V.P</button></td>
     <td><button class='enlace' type= 'button'>RENOVACIÓN</button></td>";
@@ -54,7 +54,9 @@ if ($result->num_rows > 0) {
     }
   }else {
     echo "<td colspan ='2'><button class='enlace' type= 'button'>VER</button>";
+    if ($_SESSION['nivel'] == 3) {
     echo "<td colspan ='3'><button onclick = 'eliminarlicor($i,1)'  class='enlace' type='button'>RESTAURAR</button></td>";
+    }
   }
     $i= $i+1;
 
@@ -84,15 +86,16 @@ if ($result->num_rows > 0) {
     echo "<tr>";
     echo "<td id= 'autorizaciontabaco$i'>" . $row["Numero_autorizacion"]. "</td><td>" .$row["Razon_social"]. "</td><td>" . $row["Unidad"] . "</td>"."<td>" . $fechas. "</td>";
 
-    echo "<td><a class='enlace' href>VER</a>";
+    echo "<td><button onclick='verlict($i)' type= 'button' class='enlace' >VER</a>";
     if ($row['Habilitado'] == 1) {
-      echo "<td><a class='enlace' href=''>LIQ. P.V.P</a></td>";
+      echo "<td><button class='enlace' type= 'button' >LIQ. P.V.P</button></td>";
       if ($_SESSION['nivel'] == 3) {
         echo "<td><button onclick='eliminartabaco($i,0)' class='enlace' type='button'>BORRAR</button></td></tr>";
       }
     }else{
+      if ($_SESSION['nivel'] == 3) {
       echo "<td colspan = '2'><button onclick='eliminartabaco($i,1)' class='enlace' type='button'>RESTAURAR</button></td></tr>";}
-   
+      }
     
     $i= $i+1;
     }
@@ -102,10 +105,19 @@ if ($result->num_rows > 0) {
 }
 ?>
 <script>
+  function verlict($i){
+    var eltd = document.getElementById(`autorizacionlicor${i}`);
+    var vari = eltd.textContent;
+    location.href = '../pdf/crear_autorizacion_licores_pdf.php?Variable='+vari
+  }
+  function verlicl(i) {
+    var eltd = document.getElementById(`autorizacionlicor${i}`);
+    var vari = eltd.textContent;
+    location.href = '../pdf/crear_autorizacion_licores_pdf.php?Variable='+vari
+  }
   function eliminarlicor(i,n) {
     var eltd = document.getElementById(`autorizacionlicor${i}`);
     var texointerior = eltd.textContent;
-    console.log(texointerior);
     $.ajax({
 url: 'eliminar_licor.php',
 type: 'POST',
@@ -114,12 +126,12 @@ data: {Texto : texointerior,
 },
 success: function(dato) {
   console.log(dato);
-    anadir(true);
     if (n = 1) {
       t = true;
     }else{
       t = false;
     }
+    anadir(true);
 },
 error: function() {
   alert('error de eliminacion');
@@ -129,19 +141,18 @@ error: function() {
   function eliminartabaco(i,n) {
     var eltd = document.getElementById(`autorizaciontabaco${i}`);
     var texointerior = eltd.textContent;
-    console.log(texointerior);
     $.ajax({
 url: 'eliminar_tabaco.php',
 type: 'POST',
 data: {Texto : texointerior,
   Numero: n},
 success: function() {
-    anadir(true);
     if (n = 1) {
       t = true;
     }else{
       t = false;
     }
+    anadir(true);
 },
 error: function() {
   alert('error de eliminacion');
@@ -173,15 +184,13 @@ error: function() {
       function habilitar() {
         //console.log(t);
         
+      t = !t;
        if (!t) {
         anadir(true);
        }else{
         anadir(false)
        }
       }
-      
-      t = !t;
-
     </script>
 
 </script>
