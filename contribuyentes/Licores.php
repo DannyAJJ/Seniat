@@ -155,16 +155,28 @@
             <div class="form-group">
                 
                 <div id="Container">
-                <span>Clase del producto</span>
+                <span>Tipo de fabrica</span>
                 <select type="text"  name="claseproducto" id="comboproducto1" required>
                     <option value="1">Cerveza</option>
                     <option value="2">Bebidas y Especies Alcohólicas</option>
-                    <option value="3">Sangria Fermentada</option>
-                    <option value="4">Sangria Adición de Alcohol</option>
-                    <option value="5">Vinos</option>
+                    <option value="3">Fabrica de vinos</option>
                 </select>
                 </div>
-                <button id="añadir" style="display: none;" type="button" onclick="a=a+1,anadir(a)">AÑADIR</button>
+                <table>
+                    <tr>
+                        <td><input type="checkbox" id="check1" style="display: none;"></td>
+                        <td><label for="check1" id="labelcheck1" style="display: none;color: rgb(255, 255, 255);padding-left: 10px;">Sangria adicion de alcohol</label></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" id="check2" style="display: none;"></td>
+                        <td><label for="check1" id="labelcheck2" style="display: none; color: rgb(255, 255, 255);padding-left: 10px;">Sangria fermentada</label></td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" id="check3" style="display: none;" ></td>
+                        <td><label for="check1" id="labelcheck3" style="display: none; color: rgb(255, 255, 255);padding-left: 10px;">Vinos</label></td>
+                    </tr>
+                </table>
+                <!--<button id="añadir" style="display: none;" type="button" onclick="a=a+1,anadir(a)">AÑADIR</button> -->
                 <small>Ingrese campos</small>
             </div>
 
@@ -244,17 +256,56 @@
     }
 
 const comboproducto = document.getElementById("comboproducto1");
-const boton = document.getElementById("añadir");
+const check1 = document.getElementById("check1");
+const check2= document.getElementById("check2");
+const check3 = document.getElementById("check3");
+const label1 = document.getElementById("labelcheck1");
+const label2 = document.getElementById("labelcheck2");
+const label3 = document.getElementById("labelcheck3");
 
 comboproducto.addEventListener("change", function() {
 
-    console.log(this.value);
   if (this.value >2) {
-    boton.style.display = "block";
+    check1.style.display = "block";
+    check2.style.display = "block";
+    check3.style.display = "block";
+    label1.style.display = "block";
+    label2.style.display = "block";
+    label3.style.display = "block";
   } else {
-    boton.style.display = "none";
-    $('#Container').html('<span>Clase del producto</span><select type="text"  name="claseproducto" id="comboproducto1" required><option value="1">Cerveza</option><option value="2">Bebidas y Especies Alcohólicas</option><option value="3">Sangria Fermentada</option><option value="4">Sangria Adición de Alcohol</option><option value="5">Vinos</option>');
+    check1.checked = false;
+    check2.checked = false;
+    check3.checked = false;
+    check1.style.display = "none";
+    check2.style.display = "none";
+    check3.style.display = "none";
+    label1.style.display = "none";
+    label2.style.display = "none";
+    label3.style.display = "none";
+    
     }
+});
+
+check1.addEventListener("change", function() {
+  if (check1.checked) {
+    check1.value=1;
+  } else {
+    check1.value=0;
+  }
+});
+check2.addEventListener("change", function() {
+  if (check2.checked) {
+    check2.value=1;
+  } else {
+    check2.value=0;
+  }
+});
+check3.addEventListener("change", function() {
+  if (check3.checked) {
+    check3.value=1;
+  } else {
+    check3.value=0;
+  }
 });
 
 

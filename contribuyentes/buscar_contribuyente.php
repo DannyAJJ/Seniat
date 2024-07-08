@@ -45,9 +45,9 @@ if ($result->num_rows > 0) {
 
     if ($row["Habilitado"] == 1) {
     echo "<td><button onclick='verlicl($i)' class='enlace' type= 'button'>VER</button>";
-    echo "<td><button class='enlace' type= 'button'>LIQ. PROD.</button></td>
-    <td><button class='enlace' type= 'button'>LIQ. P.V.P</button></td>
-    <td><button class='enlace' type= 'button'>RENOVACIÓN</button></td>";
+    echo "<td><button onclick='liqprolic($i,1)' class='enlace' type= 'button'>LIQ. PROD.</button></td>
+    <td><button onclick='liqprolic($i,0)' class='enlace' type= 'button'>LIQ. P.V.P</button></td>
+    <td><button onclick='renovacion($i)' class='enlace' type= 'button'>RENOVACIÓN</button></td>";
     
     if ($_SESSION['nivel'] == 3) {
       echo "<td><button onclick='eliminarlicor($i,0)' class='enlace' type='button'>BORRAR</button></td></tr>";
@@ -88,7 +88,7 @@ if ($result->num_rows > 0) {
 
     echo "<td><button onclick='verlict($i)' type= 'button' class='enlace' >VER</a>";
     if ($row['Habilitado'] == 1) {
-      echo "<td><button class='enlace' type= 'button' >LIQ. P.V.P</button></td>";
+      echo "<td><button onclick='verpvp($i)' class='enlace' type= 'button' >LIQ. P.V.P</button></td>";
       if ($_SESSION['nivel'] == 3) {
         echo "<td><button onclick='eliminartabaco($i,0)' class='enlace' type='button'>BORRAR</button></td></tr>";
       }
@@ -105,10 +105,25 @@ if ($result->num_rows > 0) {
 }
 ?>
 <script>
-  function verlict($i){
+   function liqprolic(i,e){
     var eltd = document.getElementById(`autorizacionlicor${i}`);
     var vari = eltd.textContent;
-    location.href = '../pdf/crear_autorizacion_licores_pdf.php?Variable='+vari
+    location.href = '../liquidacionfor/liq1.php?tipo='+ e +'&licencia='+vari
+  }
+  function renovacion(i){
+    var eltd = document.getElementById(`autorizacionlicor${i}`);
+    var vari = eltd.textContent;
+    location.href = '../renovacioneslicores/renovacion1.php?licencia='+vari
+  }
+  function verlict(i){
+    var eltd = document.getElementById(`autorizaciontabaco${i}`);
+    var vari = eltd.textContent;
+    location.href = '../pdf/crear_autorizacion_tabaco_pdf.php?Variable='+vari
+  }
+  function verpvp(i){
+    var eltd = document.getElementById(`autorizaciontabaco${i}`);
+    var vari = eltd.textContent;
+    location.href = '../liquidacionfor/liqtabaco.php?Variable='+vari
   }
   function verlicl(i) {
     var eltd = document.getElementById(`autorizacionlicor${i}`);

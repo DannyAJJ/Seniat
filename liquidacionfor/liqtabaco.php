@@ -1,3 +1,12 @@
+<?php $licencia = $_GET['Variable'];
+// Parámetros de conexión a la base de datos
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "expendiobd";
+// Crear conexión
+$conn = new mysqli($servername, $username, $password, $dbname);
+?>
 <!DOCTYPE html>
 
 <html>
@@ -12,69 +21,13 @@
 
 <table width="50%" align="center">
   <tr>
-    <th>GERENCIA REGIONAL</th>
-    <td colspan="5"><input type="text" placeholder="Gerencia regional"> </td>
+    <td width="170">Nombre / Razon social</td>
+    <td ><?php echo"guanabana destructora de mundos compañia anonima"?></td>
+    <td width="170">Numero de resolucion</td>
+    <td width="150"><?php echo"N°resolucion"?></td>
+    <td width="100">RIF</td>
+    <td width="150"><?php echo"J-29750553-4"?></td>
   </tr>
-  <tr>
-    <th>LIQUIDACION N°</th>
-    <td colspan="5"><input type="text" placeholder="Liquidacion"></td>
-  </tr>
-  <tr>
-    <th>GCIA.</th>
-    <th>OFI.LIQ</th>
-    <th>AÑO</th>
-    <th>N°PORC.</th>
-    <th>TIPOLIQ</th>
-    <th>SERIE</th>
-  </tr>
-  <tr>
-    <td colspan="1"><input type="text" placeholder="GCIA"></td>
-    <td colspan="1"><input type="text" placeholder="OFI.LIQ"></td>
-    <td colspan="1"><input type="text" placeholder="AÑO"></td>
-    <td colspan="1"><input type="text" placeholder="N°PORC"></td>
-    <td colspan="1"><input type="text" placeholder="TIPOLIQ"></td>
-    <td colspan="1"><input type="text" placeholder="SERIE"></td>
-  </tr>
-  <TR>
-    <td colspan="1"><div align="center"><font color="red" size="4"><strong></strong></font></div> N° DE RIF</td>
-    <td colspan="5"><input type="text" placeholder="N° RIF"></td>
-  </TR>
-  <tr>
-    <td colspan="2"><div align="center"><font color="red" size="4"><strong>01</strong></font></div> APELLIDOS Y NOMBRES - NOMBRE O RAZON SOCIAL</td>
-    <td colspan="4"><input type="text" placeholder="Apellidos y Nombres - Razon social"></td>
-  </tr>
-  <tr>
-    <td colspan="2"><div align="center"><font color="red" size="4"><strong>06</strong></font></div> DIRECCION:</td>
-    <td colspan="4"><input type="text" placeholder="Direccion"></td>
-  </tr>
-
-
-  <tr>
-    <td colspan="2">RESOLUCION N°</td>
-    <td colspan="4"><input type="text" placeholder="Resolucion N°"></td>
-  </tr>
-
-  <tr>
-    <td colspan="1">FECHA LIQUIDACION / RESOLUCION</td>
-    <td colspan="2"><input type="text" placeholder="DIA"></td>
-    <td colspan="2"><input type="text" placeholder="MES"></td>
-    <td colspan="1"><input type="text" placeholder="AÑO"></td>
-  </tr>
-
-  <tr>
-    <td><div align="center"><font color="red" size="4"><strong>08</strong></font></div> FECHA DE GARANTIA</td>
-    <td colspan="2"><input type="text" placeholder="DIA"></td>
-    <td colspan="2"><input type="text" placeholder="MES"></td>
-    <td colspan="1"><input type="text" placeholder="AÑO"></td>
-  </tr>
-
-  <tr>
-    <td colspan="1">FECHA DE VENCIMIENTO</td>
-    <td colspan="2"><input type="text" placeholder="DIA"></td>
-    <td colspan="2"><input type="text" placeholder="MES"></td>
-    <td colspan="1"><input type="text" placeholder="AÑO"></td>
-  </tr>
-
 </table>
 
 <table width="50%" align="center">
@@ -83,7 +36,7 @@
   <tr>
     <th width = "30" rowspan= "2"></th>
     <th rowspan="2">MARCA</th>
-    <th colspan="2">EXPEDICION</th>
+    <th colspan="2">EXPENDIO</th>
     <th rowspan="2">PVP Bs</th>
     <th rowspan="2" colspan="3">VENTA</th>
     <th rowspan="2" colspan="3">IMPUESTO O DERECHOS</th>
@@ -166,28 +119,36 @@
     11 =>53,
     12 =>56
   );
-
+  $sql = "SELECT r.Id_producto, p.Nombre_producto FROM relacion_productos_tabaco r, clase_producto p WHERE r.Id_licencia = $licencia AND r.Id_producto = p.Id;";
+  $productos = $conn->query($sql);
+  while ($row = $productos->fetch_assoc()) {
+    $nuevo[$row['Id_producto']] =  $row['Nombre_producto'];
+   };
 for($i=1;$i<=12;$i++){
   echo '<tr>
   <td>'.$codigos1[$i].'</td>
-  <td><input type="text" placeholder="Marca"></td>
+  <td><select name="marca'.$i.'">
+  <option value="0">Seleccione</option>';
+  foreach ($nuevo as $id => $clase) {
+    echo '<option value="'.$id.'">'.$clase.'</option>';};
+  echo '</select></td>
   <td><input type="text" size="10" placeholder="Unidad"></td>
   <td><input type="text" size="10" placeholder="Cantidad"></td>
   <td><input type="text" size="10" placeholder="PVP Bs"></td>
-  <td width="30">'.$codigos2[$i].'</td>
-  <td><input type="text" placeholder="Venta"></td>
+  <td width="20">'.$codigos2[$i].'</td>
+  <td>Venta</td>
   <td width="30">'.$codigos3[$i].'</td>
   <td width="30">'.$codigos4[$i].'</td>
-  <td><input type="text" placeholder="Impuesto a pagar ventas"></td>
+  <td>Impuesto a pagar ventas</td>
   <td>'.$codigos[$i].'</td>
 </tr>';
 }
   ?>
 
-  <tr>
+<tr>
     <td colspan="5">TOTAL VENTA</td>
     <td width="50">58</td>
-    <td colspan="1"><input type="text" placeholder="Total venta"></td>
+    <td colspan="1"><?php echo"Total venta"?></td>
     <td>2</td>
     <td></td>
     <td></td>
@@ -197,12 +158,11 @@ for($i=1;$i<=12;$i++){
   <TR>
     <td colspan="8">TOTAL IMPUESTO</td>
     <td>90</td>
-    <td colspan="1"><input type="text" placeholder="Total impuesto"></td>
+    <td colspan="1"><?php echo"Total impuesto"?></td>
     <td width="10" colspan="1">0</td>
   </TR>
 </table>
 
-</table>
 
 <table width="50%" align="center">
   <tr>
@@ -217,34 +177,34 @@ for($i=1;$i<=12;$i++){
     <td></td>
     <td width="800">TOTAL IMPUESTO (91=90)</td>
     <td width="20">91</td>
-    <td width="275"><input type="text" size="20" placeholder="Monto en Bs"></td>
+    <td><?php echo"Monto en Bs1"?></td>
     <td width="30">9</td>
   </tr>
   <tr>
     <td width="250"></td>
     <td>MULTAS</td>
     <td width="20">91</td>
-    <td><input type="text" placeholder="Monto en Bs"></td>
+    <td><input type="text" placeholder="monto en bs"></td>
     <td>9</td>
   </tr>
   <tr>
     <td></td>
     <td>INTERESES DE MORA</td>
     <td width="20">91</td>
-    <td><input type="text" placeholder="Monto en Bs"></td>
+    <td><input type="text" placeholder="monto en bs"></td>
     <td>9</td>
   </tr>
   <tr>
     <td></td>
     <td>INGRESOS VARIOS</td>
     <td width="20">91</td>
-    <td><input type="text" placeholder="Monto en Bs"></td>
+    <td><input type="text" placeholder="monto en bs"></td>
     <td>9</td>
   </tr>
   <tr>
     <td colspan="2">TOTAL POR PAGAR</td>
     <td width="20">91</td>
-    <td><input type="text" placeholder="Monto en Bs"></td>
+    <?php echo"<td>total por pagar</td>"?>
     <td>9</td>
   </tr>
 </table>
