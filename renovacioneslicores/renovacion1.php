@@ -10,10 +10,11 @@
 
 </head>
 <body>
+    <?php $licencia = $_GET['licencia']; ?>
 
 <div class="container3" id="container">
 
-        <form id="form-validation" action="registrar.php" method="POST"  novalidate>
+        <form id="form-validation" action="registrar.php?licencia=<?php echo $licencia;?>" method="POST"  novalidate>
         <a class="links" href="../menu/index.php"></a>
 
         <center><h2>RENOVACIÓN DE LICORES</h2></center>

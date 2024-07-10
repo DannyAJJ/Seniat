@@ -1,6 +1,6 @@
 <?php 
 
-$banco = $_POST['banco'];
+$banco = $_POST['bancos'];
 $fechapago = $_POST['fechapago'];
 $forma16 = $_POST['forma16'];
 $monto = $_POST['monto'];
@@ -35,10 +35,10 @@ $row = $ultimofirmante2->fetch_assoc();
 $idfirmante2 = $row['Id_firmante'];
 
     $fechahoy = date('d-m-Y');
-    $fecha = DateTime::createFromFormat('d-m-Y',$row["Fecha_autorizacion"]);
+    $fecha = DateTime::createFromFormat('d-m-Y',$fechahoy);
     $fecha->modify('+1 year');
     $proxima = $fecha->format('d-m-Y');
-$sql = "INSERT INTO `renovacion_licores` ( `Constancia_renovacion`, `Numero_autorizacion`, `Fecha_renovacion`, `Banco`, `Fecha_pago`, `Forma16`, `Monto_cancelado`, `Proxima_renovacion`, `Primer_firmante`, `Segundo_firmante`) VALUES ('$numregistro', \'$licencia\', '$fechahoy', '$banco', '$fechapago', '$forma16', '$monto', '$proxima', '$idfirmante', '$idfirmante2');";
+$sql = "INSERT INTO `renovacion_licores` ( `Constancia_renovacion`, `Numero_autorizacion`, `Fecha_renovacion`, `Banco`, `Fecha_pago`, `Forma16`, `Monto_cancelado`, `Proxima_renovacion`, `Primer_firmante`, `Segundo_firmante`) VALUES ('$numregistro', '$licencia', '$fechahoy', '$banco', '$fechapago', '$forma16', '$monto', '$proxima', '$idfirmante', '$idfirmante2');";
 $conn->query($sql);
 header("Location:../menu/index.php");
 ?>
