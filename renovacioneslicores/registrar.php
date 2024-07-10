@@ -45,5 +45,5 @@ $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 $id = $row['Id_renovacion'];
 
-header("Location:../pdf/crear_renovacion_licores_pdf.php?id=$id&fecha=$fechahoy");
+header("Location:../pdf/crear_renovacion_licores_pdf.php?id=$id&fecha=$fechahoy&tipo=1");
 ?>

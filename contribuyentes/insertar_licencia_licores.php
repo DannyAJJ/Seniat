@@ -106,7 +106,9 @@ $ejecutada = $conn->query($sql);
 $ejecutada = $conn->query($sql);
 }
 
-
+echo "<script>
+  window.open('../pdf/crear_autorizacion_licores_pdf.php?Variable="."$sigla-$ultimoValor"."', '_blank');
+</script>";
 header("Location:../menu/index.php");
 //$ejecutada->fetch_assoc();
 ?>

@@ -57,7 +57,7 @@
 
             <div class="form-group" id="cedula" style="display: block;">
                 <span>Cedula</span>
-                <input type="text" placeholder="Cedula" name="cedula" onkeyup="cedularif('cedula','rif')" required>
+                <input type="text" placeholder="Cedula" name="cedula" onkeyup="cedularif('cedula','rif')">
                 <small>Ingrese campos</small>
             </div>
 
