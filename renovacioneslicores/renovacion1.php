@@ -21,23 +21,27 @@
             
             <div class="form-group">
                 <span>BANCO</span>
-                <select name="bancos" id="bancos">
+                <select name="bancos" id="banco">
                     <option value="0">Seleccione</option>
                     <option value="1">SETA</option>
                     <option value="2">SIARTEC</option>
                 </select>
                 <small>Ingrese campos</small>
             </div>
-            
+            <div class="form-group">
+                <span>FECHA DEL PAGO</span>
+                <input type="date" placeholder="Fecha del pago" name="fechapago" required>
+                <small>Ingrese campos</small>
+            </div>
             <div class="form-group">
                 <span>MONTO CANCELADO</span>
-                <input type="text" placeholder="MONTOCANCELADO" name="MONTOCANCELADO" required>
+                <input type="text" placeholder="Monto Cancelado" name="monto" required>
                 <small>Ingrese campos</small>
             </div>
 
             <div class="form-group">
                 <span>FORMA 16 O TIMBRE FISCAL</span>
-                <input type="text" placeholder="TIMBREFISCAL" name="TIMBREFISCAL" required>
+                <input type="text" placeholder="Timbre Fiscal" name="forma16" required>
                 <small>Ingrese campos</small>
             </div>
 
