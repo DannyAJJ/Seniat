@@ -1,9 +1,10 @@
-<?php $tipoliq = $_GET['tipo']; $licencia = $_GET['licencia'];
+<?php 
 
 $banco = $_POST['banco'];
 $fechapago = $_POST['fechapago'];
 $forma16 = $_POST['forma16'];
 $monto = $_POST['monto'];
+$licencia = $_GET['licencia'];
 
 // Parámetros de conexión a la base de datos
 $servername = "localhost";
@@ -13,11 +14,11 @@ $dbname = "expendiobd";
 // Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
 $ultimafecha = date('Y');
-    $sql = "SELECT Fecha_renovacion FROM `renovacion_licores` WHERE Fecha_renovacion LIKE '%$ultimafecha' LIMIT 1;";    
+    $sql = "SELECT Constancia_renovacion FROM `renovacion_licores` WHERE Fecha_renovacion LIKE '%$ultimafecha' LIMIT 1;";    
     $ejecutada = $conn->query($sql);
     if ($ejecutada->num_rows > 0) {
         $fecha = $ejecutada-> fetch_assoc();
-        $numregistro = intval($fecha["Numero_registro"]) + 1;
+        $numregistro = intval($fecha["Constancia_renovacion"]) + 1;
     }else {
         $numregistro = 1;
     }
@@ -37,7 +38,7 @@ $idfirmante2 = $row['Id_firmante'];
     $fecha = DateTime::createFromFormat('d-m-Y',$row["Fecha_autorizacion"]);
     $fecha->modify('+1 year');
     $proxima = $fecha->format('d-m-Y');
-$sql = "INSERT INTO `renovacion_licores` ( `Constancia_renovacion`, `Numero_autorizacion`, `Fecha_renovacion`, `Banco`, `Fecha_pago`, `Forma16`, `Monto_cancelado`, `Proxima_renovacion`, `Primer_firmante`, `Segundo_firmante`) VALUES ('$numregistro', \'FC-00008\', '$fechahoy', '$banco', '$fechapago', '$forma16', '$monto', '$proxima', '$idfirmante', '$idfirmante2');";
+$sql = "INSERT INTO `renovacion_licores` ( `Constancia_renovacion`, `Numero_autorizacion`, `Fecha_renovacion`, `Banco`, `Fecha_pago`, `Forma16`, `Monto_cancelado`, `Proxima_renovacion`, `Primer_firmante`, `Segundo_firmante`) VALUES ('$numregistro', \'$licencia\', '$fechahoy', '$banco', '$fechapago', '$forma16', '$monto', '$proxima', '$idfirmante', '$idfirmante2');";
 $conn->query($sql);
 header("Location:../menu/index.php");
 ?>
