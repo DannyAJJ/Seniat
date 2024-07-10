@@ -7,9 +7,9 @@ $password = "";
 $dbname = "expendiobd";
 // Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
-$licencia = $_GET['Variable'];
-$fechasql = $_GET['Variable1'];
-$sql = "SELECT r.Constancia_renovacion, l.Fecha_autorizacion, u.Unidad, l.Razon_social, l.Numero_rif_solicitante, l.Direccion, l.Telefono_solicitante, r.Fecha_pago, b.Nombre_banco, r.Forma16, r.Monto_cancelado,r.Fecha_pago, r.Proxima_renovacion, f.Nombre_firmante, f.Segunda_linea, f.Tercera_linea, f.Cuarta_linea, sf.Texto_firmante FROM renovacion_licores r, licencia_licores l, unidades u, bancos b, firmantes f, Segundo_firmante sf WHERE r.Numero_autorizacion = '$licencia' AND r.Fecha_renovacion = '$fechasql' AND l.Numero_autorizacion = r.Numero_autorizacion AND l.Unidad = u.Id_unidad AND b.Id_banco = r.Banco AND r.Segundo_firmante = sf.Id_firmante AND f.Id_firmante = r.Primer_firmante;";
+$licencia = $_GET['id'];
+$fechasql = $_GET['fecha'];
+$sql = "SELECT r.Constancia_renovacion, l.Fecha_autorizacion, u.Unidad, l.Razon_social, l.Numero_rif_solicitante, l.Direccion, l.Telefono_solicitante, r.Fecha_pago, b.Nombre_banco, r.Forma16, r.Monto_cancelado,r.Fecha_pago, r.Proxima_renovacion, f.Nombre_firmante, f.Segunda_linea, f.Tercera_linea, f.Cuarta_linea, sf.Texto_firmante FROM renovacion_licores r, licencia_licores l, unidades u, bancos b, firmantes f, Segundo_firmante sf WHERE r.Id_renovacion = '$licencia' AND l.Numero_autorizacion = r.Numero_autorizacion AND l.Unidad = u.Id_unidad AND b.Id_banco = r.Banco AND r.Segundo_firmante = sf.Id_firmante AND f.Id_firmante = r.Primer_firmante;";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 $constancia= $row['Constancia_renovacion'];

@@ -9,7 +9,7 @@ $dbname = "expendiobd";
 $licencia = $_GET['Variable'];
 // Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
-$sql = "SELECT `Numero_registro`, `Fecha_autorizacion`, `Region`, `Unidad`, `Razon_social`, `Numero_rif_solicitante`, `Direccion`, `Autorizacion_ejerce`, `Administrador_representante_legal`, `Nacionalidad`, `Cedula_representante`, `Numero_rif_representante`, `Firmante`, `Segunda_firma` FROM licencia_licores WHERE licencia_licores.Numero_autorizacion = \"$licencia\" ;";
+$sql = "SELECT `Numero_registro`, `Fecha_autorizacion`, `Region`, `Unidad`, `Razon_social`, `Numero_rif_solicitante`, `Direccion`, `Autorizacion_ejerce`, `Administrador_representante_legal`, `Nacionalidad`, `Cedula_representante`, `Numero_rif_representante`, `Firmante`, `Segunda_firma` FROM licencia_tabaco WHERE licencia_tabaco.Numero_autorizacion = \"$licencia\" ;";
 $result = $conn->query($sql);
 $row = $result->fetch_assoc();
 $N_registro= $row['Numero_registro'];
@@ -23,7 +23,7 @@ $Autorizacion_ejerce=$row['Autorizacion_ejerce'];
 $sqlcl = "SELECT `Clasificacion_indole` FROM `clase_producto` WHERE `Siglas` = '".substr($licencia,0,2)."';";
 $resultcl = $conn->query($sqlcl);
 $rowcl = $resultcl->fetch_assoc();
-$Clasificacion_indole=$rowcl['Clasificacion_indole'];
+$Clasificacion_indole="FABRICA DE TABACO";
 $Representante_legal=$row['Administrador_representante_legal'];
 if ($row['Nacionalidad']== 1) {
     $Nacionalidad_representante='Venezonalo';

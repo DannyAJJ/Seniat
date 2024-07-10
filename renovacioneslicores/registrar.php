@@ -14,7 +14,7 @@ $dbname = "expendiobd";
 // Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
 $ultimafecha = date('Y');
-    $sql = "SELECT Constancia_renovacion FROM `renovacion_licores` WHERE Fecha_renovacion LIKE '%$ultimafecha' LIMIT 1;";    
+    $sql = "SELECT Constancia_renovacion FROM `renovacion_licores` WHERE Fecha_renovacion LIKE '%$ultimafecha' ORDER BY Constancia_renovacion DESC LIMIT 1;";    
     $ejecutada = $conn->query($sql);
     if ($ejecutada->num_rows > 0) {
         $fecha = $ejecutada-> fetch_assoc();
@@ -40,5 +40,10 @@ $idfirmante2 = $row['Id_firmante'];
     $proxima = $fecha->format('d-m-Y');
 $sql = "INSERT INTO `renovacion_licores` ( `Constancia_renovacion`, `Numero_autorizacion`, `Fecha_renovacion`, `Banco`, `Fecha_pago`, `Forma16`, `Monto_cancelado`, `Proxima_renovacion`, `Primer_firmante`, `Segundo_firmante`) VALUES ('$numregistro', '$licencia', '$fechahoy', '$banco', '$fechapago', '$forma16', '$monto', '$proxima', '$idfirmante', '$idfirmante2');";
 $conn->query($sql);
-header("Location:../menu/index.php");
+$sql= "SELECT Id_renovacion  FROM `renovacion_licores` ORDER BY Id_renovacion DESC LIMIT 1;";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+$id = $row['Id_renovacion'];
+
+header("Location:../pdf/crear_renovacion_licores_pdf.php?id=$id&fecha=$fechahoy");
 ?>
