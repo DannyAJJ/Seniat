@@ -1,6 +1,6 @@
-<?php $tipoliq = $_GET['tipo']; $licencia = $_GET['licencia'];
+<?php
 
-$banco = $_POST['banco'];
+$banco = $_POST['bancos'];
 $fechapago = $_POST['fechapago'];
 $forma16 = $_POST['forma16'];
 $monto = $_POST['monto'];
