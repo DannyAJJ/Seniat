@@ -153,18 +153,6 @@
             <h3>TABACO</h3>
 
             <div class="form-group">
-                <span>Clase del producto 1</span>
-                <select type="text"  name="claseproducto" required>
-                    <option value="0">Seleccione</option>
-                    <option value="1">Natural</option>
-                    <option value="2">Juridica</option>
-                </select>
-                <div id="Container"></div>
-                <button type="button" onclick="a=a+1,anadir(a)">anadir</button>
-                <small>Ingrese campos</small>
-            </div>
-
-            <div class="form-group">
                 <span>Materia prima</span>
                 <input type="text" placeholder="Materia prima" name="materiaprimaproducto" required>
                 <small>Ingrese campos</small>

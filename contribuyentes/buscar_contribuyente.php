@@ -21,7 +21,15 @@ if ($_SESSION['unidad']==1) {
   $limitunidadl = 'AND licencia_licores.Unidad = '.$_SESSION['unidad'];
   $limitunidadt = 'AND licencia_tabaco.Unidad = '.$_SESSION['unidad'];
 }
-$sql = "SELECT licencia_licores.Numero_autorizacion,licencia_licores.Fecha_autorizacion, unidades.Unidad, licencia_licores.Razon_social, licencia_licores.Habilitado FROM licencia_licores, unidades WHERE `Numero_rif_solicitante` = \"$rif_contribullente\" $habilitado $limitunidadl AND unidades.Id_unidad = licencia_licores.Unidad; ";
+$sql = "SELECT licencia_licores.Numero_autorizacion,
+licencia_licores.Fecha_autorizacion, 
+unidades.Unidad,
+licencia_licores.Razon_social, 
+licencia_licores.Habilitado
+FROM
+licencia_licores,
+unidades
+WHERE `Numero_rif_solicitante` = \"$rif_contribullente\" $habilitado $limitunidadl AND unidades.Id_unidad = licencia_licores.Unidad ; ";
 $result = $conn->query($sql);
 echo "<div style = 'display: flex;flex-flow: row; with: 70%; justify-content: space-between'>
 <button type='button' class='busc' onclick='renovaciones()'>RENOVACIONES</button>";
@@ -36,9 +44,18 @@ if ($result->num_rows > 0) {
   // Mostrar los detalles completos de todas las demás columnas
   
   while($row = $result->fetch_assoc()) {
+
+    $sql1 ="SELECT r.Proxima_renovacion FROM renovacion_licores r, licencia_licores l WHERE  '".$row['Numero_autorizacion']."' = r.Numero_autorizacion GROUP BY r.Id_renovacion ORDER BY r.Id_renovacion DESC LIMIT 1;";
+    $result1 = $conn->query($sql1);
+    if ($result1->num_rows > 0) {
+      $row1 = $result1->fetch_assoc();
+      $fechas = $row1["Proxima_renovacion"];
+    }else {
     $fecha = DateTime::createFromFormat('d-m-Y',$row["Fecha_autorizacion"]);
     $fecha->modify('+1 year');
     $fechas = $fecha->format('d-m-Y');
+    }
+    //echo "<script> console.log('".$row1['Proxima_renovacion']."'); </script>";
     
     echo "<tr>";
     echo "<td id= 'autorizacionlicor$i'>" . $row["Numero_autorizacion"]. "</td><td>" .$row["Razon_social"]. "</td><td>" . $row["Unidad"] . "</td>"."<td>" . $fechas. "</td>";

@@ -34,7 +34,7 @@ if ($_SESSION['unidad']==1) {
     var eltd1 = document.getElementById(`fa${e}`);
     var vari = eltd.textContent;
     var vari1 = eltd1.textContent;
-    location.href = '../pdf/crear_renovacion_licores_pdf.php ?Variable='+vari+'&Variable1='+vari1;
+    location.href = '../pdf/crear_renovacion_licores_pdf.php ?id='+vari+'&fecha='+vari1+'&tipo=0';
   }
 </script>
  
