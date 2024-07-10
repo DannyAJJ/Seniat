@@ -39,16 +39,16 @@ $sql = "SELECT `Siglas` FROM `clase_producto` WHERE `Id` = $clase;";
 $siglas = $conn->query($sql);
 $row = $siglas->fetch_assoc();
 $sigla = $row['Siglas'];
-$siglab = $row['Siglas'].'%';
+$siglab = $row['Siglas'].'-%';
 //if (mysqli_num_rows($siglas) > 0) {$sigla = $siglas;}
 
 
 $sql = "SELECT `Numero_autorizacion` FROM `licencia_licores` WHERE `Numero_autorizacion` LIKE '$siglab' ORDER BY Numero_autorizacion DESC LIMIT 1;";
 $ultimalicencia = $conn->query($sql);
 $row = $ultimalicencia->fetch_assoc();
-$ultimoValor = filter_var($row['Numero_autorizacion'], FILTER_SANITIZE_NUMBER_INT);
+$ultimoValor = preg_replace('/[^0-9]/', '', $row['Numero_autorizacion']);
 $cantidaduv = strlen($ultimoValor);
-$ultimoValor = intval($ultimoValor)+1;
+$ultimoValor = (intval($ultimoValor)+1);
 while (strlen($ultimoValor) < $cantidaduv) {
     $ultimoValor = '0'.$ultimoValor;
 }
