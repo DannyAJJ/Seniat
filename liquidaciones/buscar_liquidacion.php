@@ -35,9 +35,9 @@ if ($result->num_rows > 0) {
   while($row = $result->fetch_assoc()) {
     $liquidacionl[$i] = $row['N_liquidacion'];
     echo "<tr>";
-    echo "<td>" . $row["Licencia"]. "</td><td>" .$row["Secuencial"]. "</td><td>" . $row["Fecha_liquidacion"] . "</td>"."<td>" . $row["Numero_manfiesto"]. "</td>"."<td>" . $row["Total_produccion"]. " Bs.</td>";
+    echo "<td>" . $row["Licencia"]. "</td><td id= 'secuencial$i'>" .$row["Secuencial"]. "</td><td id= 'fecha$i'>" . $row["Fecha_liquidacion"] . "</td>"."<td>" . $row["Numero_manfiesto"]. "</td>"."<td>" . $row["Total_produccion"]. " Bs.</td>";
 
-    echo "<td><button class='enlace' type= 'button'>VER</button>";
+    echo "<td><button class='enlace' type= 'button' onclick='verliql($i,0)'>VER</button>";
     $i= $i+1;
 
   }
@@ -55,11 +55,11 @@ if ($result->num_rows > 0) {
   
   while($row = $result2->fetch_assoc()) {
     
-  $liquidacionl[$i] = $row['N_liquidacion'];
+  //$liquidacionl[$i] = $row['N_liquidacion'];
     echo "<tr>";
-    echo "<td>" . $row["Licencia"]. "</td><td>" .$row["Secuencial"]. "</td><td>" . $row["Fecha_liquidacion"] . "</td>"."<td>" . $row["Numero_manfiesto"]. "</td>"."<td>" . $row["Total_pvp"]. " Bs.</td>";
+    echo "<td>" . $row["Licencia"]. "</td><td id= 'secuencial$i'>" .$row["Secuencial"]. "</td><td id= 'fecha$i'>" . $row["Fecha_liquidacion"] . "</td>"."<td>" . $row["Numero_manfiesto"]. "</td>"."<td>" . $row["Total_pvp"]. " Bs.</td>";
 
-    echo "<td><button class='enlace' type= 'button'>VER</button>";
+    echo "<td><button class='enlace' type= 'button' onclick='verliql($i,1)'>VER</button>";
     $i= $i+1;
 
   }
@@ -81,11 +81,11 @@ if ($result->num_rows > 0) {
 
 // Mostrar los detalles completos de todas las demás columnas
   while($row = $result->fetch_assoc()) {
-  $liquidaciont[$i] = $row['N_liquidacion'];
+  //$liquidaciont[$i] = $row['N_liquidacion'];
     echo "<tr>";
-    echo "<td>" . $row["Licencia"]. "</td><td id= 'secuencial$i'>" .$row["Secuencial"]. "</td><td>" . $row["Fecha_liquidacion"] . "</td>"."<td>" . $row["Total"]. " Bs.</td>";
+    echo "<td>" . $row["Licencia"]. "</td><td id= 'secuencial$i'>" .$row["Secuencial"]. "</td><td id= 'fecha$i'>" . $row["Fecha_liquidacion"] . "</td>"."<td>" . $row["Total"]. " Bs.</td>";
 
-    echo "<td><button class='enlace' type= 'button'>VER</button>";
+    echo "<td><button class='enlace' type= 'button' onclick='verliqt($i)'>VER</button>";
     
     $i= $i+1;
     }
@@ -94,3 +94,15 @@ if ($result->num_rows > 0) {
   echo "<p>SIN RESULTADOS</p>";
 }
 ?>
+<script>  
+  function verliqt(i){
+    var secuencial = document.getElementById(`secuencial${i}`).textContent;
+    var fecha = document.getElementById(`fecha${i}`).textContent;
+    location.href = '../Pruebapdf/crear_liquidacion_tabacos_pdf.php?secuencial='+secuencial+'&fecha='+fecha
+  }
+  function verliql(i,t){
+    var secuencial = document.getElementById(`secuencial${i}`).textContent;
+    var fecha = document.getElementById(`fecha${i}`).textContent;
+    location.href = '../Pruebapdf/crear_liquidacion_pago_impuestos_derechos_licores.php?secuencial='+secuencial+'&fecha='+fecha+'&tipo='+t
+  }
+  </script>

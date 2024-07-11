@@ -1,31 +1,86 @@
 <?php
-
+// Parámetros de conexión a la base de datos
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "expendiobd";
+// Crear conexión
+$conn = new mysqli($servername, $username, $password, $dbname);
 require 'FPDF/fpdf.php';
 
+$secuencial = $_GET['secuencial'];
+$fecharesolu = $_GET['fecha'];
 
-//Metodo POST
-
-$gerenciaregion = '';
+$sql = "SELECT l.Numero_rif_solicitante, lq.Numero_manfiesto, l.Razon_social, l.Numero_autorizacion , l.Direccion, lq.Secuencial, lq.N_liquidacion, fl.Nombre_firmante FROM liquidacion_licores lq, licencia_licores l, firmante_liquidacion fl WHERE lq.Secuencial = '$secuencial' AND fl.Id_firmante = lq.Firmante AND lq.Fecha_liquidacion = '$fecharesolu' AND lq.Licencia = l.Numero_autorizacion;";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+$gerenciaregion = 'REGIÓN CENTRAL';
 $liquidacion = '';
-$rif = '';
-$dialquidacion = '';
-$mesliquidacion = '';
-$añoliquidacion = '';
-$gcia = '';
-$ofiliq = '';
-$año = '';
-$aporoc = '';
-$tipoliq = '';
-$serie = '';
-$secuencial = '';
-$v = '';
+$rif = $row['Numero_rif_solicitante'];
+$dialquidacion = substr($fecharesolu, 0, 2);
+$mesliquidacion = substr($fecharesolu, 3, 2);
+$añoliquidacion = substr($fecharesolu, -4);
+$gcia = '10';
+$ofiliq = '1';
+$año = substr($fecharesolu, -2);
+$aporoc = '1';
+$tipoliq = '1';
+$serie = '46';
+$v = '1';
 $numresolucion = '';
-$nummanifiesto = '';
-$fechamanifiesto = '';
-$razonsocial = '';
-$numregistro = '';
-$fecharegistro = '';
-$direccion = '';
+$nummanifiesto = $row['Numero_manfiesto'];
+$fechamanifiesto = substr($fecharesolu, 0, 2) . '   ' . substr($fecharesolu, 3, 2) . '   ' . substr($fecharesolu, -2);
+$razonsocial = $row['Razon_social'];
+$numregistro = $row['Numero_autorizacion'];
+$fechaformateada = DateTime::createFromFormat('d-m-Y', $fecharesolu);
+$fechaformateada->modify('+1 day');
+$fecharegistro =  $fechaformateada->format('d-m-Y');
+$direccion = $row['Direccion'];
+$nlq = $row['N_liquidacion'];
+//Metodo POST
+if ($_GET['tipo']=='0') {
+$sql = "SELECT c.Nombre_producto, d.Litrovr, d.Frgl, d.Litroaa, d.Vaa, d.Aa, d.Total_detalle FROM detalle_produccion_licores d, liquidacion_licores lq, clase_producto c WHERE lq.N_liquidacion = d.Id_liquidacion AND c.Id = d.Clase AND lq.N_liquidacion = '".$row['N_liquidacion']."';";
+$result = $conn->query($sql);
+    $claseproduccion = array_fill(1, 5, ' ');
+    $litrovr = array_fill(1, 5, ' ');
+    $frogl = array_fill(1, 5, ' ');
+    $litroaa = array_fill(1, 5, ' ');
+    $vr = array_fill(1, 5, ' ');
+    $aa = array_fill(1, 5, ' ');
+    $impuestoproduccion = array_fill(1, 5, ' ');
+    $e = 1;
+while ($row = $result->fetch_assoc()) {
+    $claseproduccion[$e] = $row['Nombre_producto'];
+    $litrovr[$e] = $row['Litrovr'];
+    $frogl[$e] = $row['Frgl'];
+    $litroaa[$e] = $row['Litroaa'];
+    $vr[$e] = $row['Vaa'];
+    $aa[$e] = $row['Aa'];
+    $impuestoproduccion[$e] = $row['Total_detalle'];
+    $e = $e+1;
+}
+$sql = "SELECT SUM(Total_detalle) as 'total' FROM detalle_produccion_licores WHERE Id_liquidacion = '".$nlq."';";
+$result = $conn->query($sql);
+$row = $result->fetch_assoc();
+$totalpagarproduccion = $row['total'];
+$claseventapublico = '';
+$cantidadenvases = '';
+$capenvlistros = '';
+$pvpenvases = '';
+$litrosvr = '';
+$pvpltoprom = '';
+$total = '';
+$sobrepvplt = '';
+$impuestoventapublico = '';
+$totalporpagarvent = '';
+$codigo = '';
+$montobs = '';
+$totalimpuesto = '';
+$menosreintegro = '';
+$impuestoporpagar = '';
+$validacionterminalbanco = '';
+}else {
+
 $claseproduccion = '';
 $litrovr = '';
 $frogl = '';
@@ -50,6 +105,7 @@ $totalimpuesto = '';
 $menosreintegro = '';
 $impuestoporpagar = '';
 $validacionterminalbanco = '';
+}
 
 //fin del metodo POST
 
@@ -198,18 +254,18 @@ $pdf->Cell('60','8',mb_convert_encoding('','ISO-8859-1','UTF-8'),0,1,'C',false);
 //$e = 10;
 //$o = 20;
 for($i=1;$i<=5;$i++){ //for de clase, litro. fr o gl y litro 
-    $pdf->Cell(27,4,$claseproduccion,0,0,'L');
-    $pdf->Cell(27,4,$litrovr,0,0,'L');
-    $pdf->Cell(24,4,$frogl,0,0,'L');
-    $pdf->Cell(24,4,$litrovr * $frogl / 100,0,0,'L');
-    $pdf->Cell(21,4,$$litrovr * $frogl / 100,0,0,'L');
+    $pdf->Cell(27,4,$claseproduccion[$i],0,0,'L');
+    $pdf->Cell(27,4,$litrovr[$i],0,0,'L');
+    $pdf->Cell(24,4,$frogl[$i],0,0,'L');
+    $pdf->Cell(24,4,floatval($litrovr[$i])  * floatval($frogl[$i])  / 100,0,0,'L');
+    $pdf->Cell(21,4,floatval($litrovr[$i]) * floatval($frogl[$i]) / 100,0,0,'L');
     /*if ($i==2 || $i==3 || $i == 4) {
         $e = $e - 1;
         $o = $o + 1;
     }*/
-    $pdf->Cell(23,4,'$aa',0,0,'L');
+    $pdf->Cell(23,4,$aa[$i],0,0,'L');
     $pdf->Cell(6,4,'',0,0,'L');
-    $pdf->Cell(38,4,($litrovr * $frogl / 100) * $aa,0,0,'L');
+    $pdf->Cell(38,4,(floatval($litrovr[$i]) * floatval($frogl[$i]) / 100) * floatval($aa[$i]),0,0,'L');
     $pdf->Cell(5,4,'',0,1,'L');
     $y = $pdf->GetY();
     
@@ -265,16 +321,16 @@ $pdf->Cell('60','8',mb_convert_encoding('','ISO-8859-1','UTF-8'),0,1,'C',false);
 for($i=1;$i<=14;$i++){ //for de clase, litro. fr o gl y litro
     
 
-    $pdf->Cell(25,4,$claseven,0,0,'L');
-    $pdf->Cell(17,4,$canti,0,0,'L');
-    $pdf->Cell(14.5,4,$capenvli,0,0,'L');
+    $pdf->Cell(25,4,$claseventapublico,0,0,'L');
+    $pdf->Cell(17,4,$cantidadenvases,0,0,'L');
+    $pdf->Cell(14.5,4,$capenvlistros,0,0,'L');
     $pdf->Cell(19,4,$pvpenvases,0,0,'L');
-    $pdf->Cell(13,4,$canti * $capenvli,0,0,'L');
+    $pdf->Cell(13,4,'$canti * $capenvli',0,0,'L');
     $pdf->Cell(17.5,4,'',0,0,'L');
-    $pdf->Cell(15.3,4,$canti * $pvpenvases,0,0,'L');
+    $pdf->Cell(15.3,4,'$canti * $pvpenvases',0,0,'L');
     $pdf->Cell(13,4,$sobrepvplt,0,0,'L');
     $pdf->Cell(10,4,'',0,0,'L');
-    $pdf->Cell(45.5,4,(($canti * $pvpenvases) * $sobrepvplt) / $pvpenvases,0,0,'L');
+    $pdf->Cell(45.5,4,'(($canti * $pvpenvases) * $sobrepvplt) / $pvpenvases',0,0,'L');
     //$total = ((($canti * $pvpenvases) * $sobrepvplt) / $pvpenvases) +$total;
     $pdf->Cell(5,4,'',0,1,'L');
     $y = $pdf->GetY();
@@ -321,7 +377,7 @@ $pdf-> SetY($y-1);
 $pdf->Cell('125','4.5',mb_convert_encoding('','ISO-8859-1','UTF-8'),0,0,'C',false);
 $pdf->Cell('71','4.5',mb_convert_encoding('','ISO-8859-1','UTF-8'),0,1,'C',false);
 $pdf->Cell('125','10',mb_convert_encoding($validacionterminalbanco,'ISO-8859-1','UTF-8'),0,0,'C',false);
-$pdf->Cell('71','10',mb_convert_encoding($firma,'ISO-8859-1','UTF-8'),0,1,'C',false);
+$pdf->Cell('71','10',mb_convert_encoding('$firma','ISO-8859-1','UTF-8'),0,1,'C',false);
 
 
 
