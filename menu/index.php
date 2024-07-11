@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['nivel'])) {
-    header('location: ../login/index.html');
+    header('location: ../index.html');
 }
 ?>
 <!DOCTYPE html>
@@ -108,7 +108,7 @@ if (!isset($_SESSION['nivel'])) {
 
     <main>
         <video muted autoplay loop>
-            <source src="./video/videof.mp4" type="video/mp4">
+            <source src="../video/videof.mp4" type="video/mp4">
         </video>
         <div class="capa"></div>
     </main>
@@ -120,7 +120,7 @@ url: 'cerrar_sesion.php',
 type: 'POST',
 data: {},
 success: function(data) {
-    location.href = "../login/index.html";
+    location.href = "../index.html";
 },
 error:
 function() {

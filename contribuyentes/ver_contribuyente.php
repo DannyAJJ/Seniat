@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['nivel'])) {
-    header('location: ../login/index.html');
+    header('location: ../index.html');
 }
 ?>
 <html lang="en">
@@ -67,7 +67,7 @@ error: function() {
 
     <main>
         <video muted autoplay loop>
-            <source src="./video/videof.mp4" type="video/mp4">
+            <source src="../video/videof.mp4" type="video/mp4">
         </video>
         <div class="capa"></div>
     </main>

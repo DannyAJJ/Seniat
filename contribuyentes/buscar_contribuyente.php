@@ -3,7 +3,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['nivel'])) {
-    header('location: ../login/index.html');
+    header('location: ../index.html');
 }
 // Parámetros de conexión a la base de datos
 $servername = "localhost";
@@ -125,7 +125,7 @@ if ($result->num_rows > 0) {
    function liqprolic(i,e){
     var eltd = document.getElementById(`autorizacionlicor${i}`);
     var vari = eltd.textContent;
-    location.href = '../liquidacionfor/liq1.php?tipo='+ e +'&licencia='+vari
+    location.href = '../liquidaciones/liq1.php?tipo='+ e +'&licencia='+vari
   }
   function renovacion(i){
     var eltd = document.getElementById(`autorizacionlicor${i}`);
@@ -140,7 +140,7 @@ if ($result->num_rows > 0) {
   function verpvp(i){
     var eltd = document.getElementById(`autorizaciontabaco${i}`);
     var vari = eltd.textContent;
-    location.href = '../liquidacionfor/liqtabaco.php?Variable='+vari
+    location.href = '../liquidaciones/liqtabaco.php?Variable='+vari
   }
   function verlicl(i) {
     var eltd = document.getElementById(`autorizacionlicor${i}`);

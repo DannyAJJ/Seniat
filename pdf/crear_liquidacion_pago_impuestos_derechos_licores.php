@@ -61,7 +61,7 @@ $pdf->SetFont('Arial','B','8');
 //$pdf->SetBottomMargin(-5);
 $pdf->SetAutoPageBreak(false);
 
-$pdf->Image('fondo.jpeg', 0, 0, 210, 297, '', '', '', '', false, false, 0);
+//$pdf->Image('fondo.jpeg', 0, 0, 210, 297, '', '', '', '', false, false, 0);
 $y = $pdf->GetY();//ESPACIADO
 $pdf-> SetY($y+27);
 

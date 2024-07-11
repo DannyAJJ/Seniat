@@ -20,7 +20,7 @@ if ($result->num_rows == 1) {
   //$_SESSION['iniciado']= true;
   $_SESSION["unidad"] = $usuario['Unidad'];
   $_SESSION["nivel"] = $usuario['Nivel_usuario'];
-  header("Location:../menu/index.php");
+  header("Location:menu/index.php");
   exit();
 
 } else {
