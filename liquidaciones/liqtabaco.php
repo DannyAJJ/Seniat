@@ -1,3 +1,14 @@
+<?php
+session_start();
+if (!isset($_SESSION['nivel'])) {
+    header('location: ../index.html');
+}else {
+    if (intval($_SESSION['nivel'])<2) {
+        header('location: ../menu/index.php');
+    }
+}
+?>
+
 <?php $licencia = $_GET['Variable'];
 // Parámetros de conexión a la base de datos
 $servername = "localhost";
@@ -206,6 +217,9 @@ for($i=1;$i<=12;$i++){
     <td width="20">91</td>
     <?php echo"<td>total por pagar</td>"?>
     <td>9</td>
+  </tr>
+  <tr>
+    <td colspan="10" style="text-align: center;" class="busc"><button id="boton" onclick="alert('paragu')">ENVIAR</button></td>
   </tr>
 </table>
 

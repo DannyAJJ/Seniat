@@ -151,7 +151,7 @@ if ($result->num_rows > 0) {
     var eltd = document.getElementById(`autorizacionlicor${i}`);
     var texointerior = eltd.textContent;
     $.ajax({
-url: 'eliminar_licor.php',
+url: '../insertar_eliminar_contribuyentes/eliminar_licor.php',
 type: 'POST',
 data: {Texto : texointerior,
   Numero: n
@@ -174,7 +174,7 @@ error: function() {
     var eltd = document.getElementById(`autorizaciontabaco${i}`);
     var texointerior = eltd.textContent;
     $.ajax({
-url: 'eliminar_tabaco.php',
+url: '../insertar_eliminar_contribuyentes/eliminar_tabaco.php',
 type: 'POST',
 data: {Texto : texointerior,
   Numero: n},

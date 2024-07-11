@@ -1,3 +1,13 @@
+<?php
+session_start();
+if (!isset($_SESSION['nivel'])) {
+    header('location: ../index.html');
+}else {
+    if (intval($_SESSION['nivel'])<1) {
+        header('location: ../menu/index.php');
+    }
+}
+?>
 
 <html lang="en">
 <head>

@@ -1,7 +1,11 @@
 <?php
 session_start();
 if (!isset($_SESSION['nivel'])) {
-    header('location: ../login/index.html');
+    header('location: ../index.html');
+}else {
+    if (intval($_SESSION['nivel'])<3) {
+        header('location: ../menu/index.php');
+    }
 }
 ?>
 <html lang="en">

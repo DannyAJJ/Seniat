@@ -1,3 +1,14 @@
+<?php
+session_start();
+if (!isset($_SESSION['nivel'])) {
+    header('location: ../index.html');
+}else {
+    if (intval($_SESSION['nivel'])<2) {
+        header('location: ../menu/index.php');
+    }
+}
+?>
+
 <?php $tipoliq = $_GET['tipo']; $licencia = $_GET['licencia'];
 // Parámetros de conexión a la base de datos
 $servername = "localhost";
@@ -254,6 +265,9 @@ while ($row = $productos->fetch_assoc()) {
     <td>90</td>
     <td><?php echo $monto[6]; ?></td>
     <td>0</td>
+  </tr>
+  <tr>
+    <td colspan="10" style="text-align: center;" class="busc"><button id="boton" onclick="alert('paragu')">ENVIAR</button></td>
   </tr>
   
 </table>

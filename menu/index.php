@@ -70,7 +70,7 @@ if (!isset($_SESSION['nivel'])) {
                                     ';
                                     }
                                     ?>
-                                    <li><a href="../contribuyentes/ver_contribuyente.php">Ver</a></li>
+                                    <li><a href="../buscar_contribuyentes/ver_contribuyente.php">Ver</a></li>
                                 </ul>
                             </li>
                             <?php

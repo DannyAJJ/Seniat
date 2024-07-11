@@ -1,3 +1,15 @@
+<?php
+session_start();
+if (!isset($_SESSION['nivel'])) {
+    header('location: ../index.html');
+}else {
+    if (intval($_SESSION['nivel'])<2) {
+        header('location: ../menu/index.php');
+    }
+}
+?>
+
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -12,7 +24,7 @@
 
 <div class="container" id="container1">
 
-        <form id="form-validation" action="insertar_licencia_licores.php" method="POST"  novalidate>
+        <form id="form-validation" action="../insertar_eliminar_contribuyentes/insertar_licencia_licores.php" method="POST"  novalidate>
         <a class="links" href="../menu/index.php"></a>
 
         <center><h2>PLANILLA LICORES</h2></center>
