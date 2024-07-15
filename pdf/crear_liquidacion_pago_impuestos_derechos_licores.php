@@ -152,7 +152,7 @@ $y = $pdf->GetY();
 $x = $pdf->GetX();
 $pdf->SetXY(23, 53);
 $pdf->SetFont('Arial', '', '8');
-$pdf->Cell('30', '4', mb_convert_encoding('liquidaciones', 'ISO-8859-1', 'UTF-8'), 0, 1, 'L', false);
+$pdf->Cell('30', '4', mb_convert_encoding(' ', 'ISO-8859-1', 'UTF-8'), 0, 1, 'L', false);
 $pdf->SetXY(30, 48);
 $pdf->Cell('30', '4', mb_convert_encoding('Region Central', 'ISO-8859-1', 'UTF-8'), 0, 1, 'L', false);
 $pdf->SetXY($x, $y);
