@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['nivel'])) {
-    header('location: ../login/index.html');
+    header('location: ../index.html');
 }
 ?>
 <html lang="en">
@@ -28,7 +28,7 @@ if (!isset($_SESSION['nivel'])) {
 </div>
 
 <div class="button">
-    <button id="busc" class="busc" onclick="anadir()">BUSCAR</button>
+    <button id="busc" class="busc" onclick="anadir(true)">BUSCAR</button>
 </div>
 <div id="Container"></div>
 </div>
@@ -40,26 +40,18 @@ document.addEventListener('keydown', function(event) {
     
   if (event.key == 'Enter') {
     button.click();
-  }
+}
 });
 
 
-const addForm = document.getElementById("form-validation");
-addForm.addEventListener("submit", (e)=>{
-if(addForm.checkValidity() ===false){
-e.preventDefault();
-e.stopPropagation();
-addForm.classList.add('was-validate');
-return false
-}
-})
-
-function anadir() {
+function anadir(h) {
+if (h) {var habil = 'AND `Habilitado` = 1';}else{ var habil = '';}
 var rif = $('#rif').val();
 $.ajax({
-url: 'buscar_liquidacion.php',
+url: 'buscar_contribuyente.php',
 type: 'POST',
 data: {
+    habil : habil,
     rif: rif,
 },
 success: function(data) {

@@ -1,7 +1,11 @@
 <?php
 session_start();
 if (!isset($_SESSION['nivel'])) {
-    header('location: ../login/index.html');
+    header('location: ../index.html');
+}else {
+    if (intval($_SESSION['nivel'])<3) {
+        header('location: ../menu/index.php');
+    }
 }
 ?>
 <html lang="en">
@@ -47,7 +51,7 @@ if (!isset($_SESSION['nivel'])) {
 
     <main>
         <video muted autoplay loop>
-            <source src="./video/videof.mp4" type="video/mp4">
+            <source src="../video/videof.mp4" type="video/mp4">
         </video>
         <div class="capa"></div>
     </main>

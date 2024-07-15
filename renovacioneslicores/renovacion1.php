@@ -1,3 +1,13 @@
+<?php
+session_start();
+if (!isset($_SESSION['nivel'])) {
+    header('location: ../index.html');
+}else {
+    if (intval($_SESSION['nivel'])<1) {
+        header('location: ../menu/index.php');
+    }
+}
+?>
 
 <html lang="en">
 <head>
@@ -97,7 +107,7 @@ function tipodepersona() {
 
     <main>
         <video muted autoplay loop>
-            <source src="./video/videof.mp4" type="video/mp4">
+            <source src="../video/videof.mp4" type="video/mp4">
         </video>
         <div class="capa"></div>
     </main>
