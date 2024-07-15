@@ -38,8 +38,8 @@ echo "<button onclick='habilitar()' class='busc' type='button'>INHABILITADOS </b
 $i = 0; 
 echo "<center><strong><h2>Licencias de Licores</h2></strong></center>";
 if ($result->num_rows > 0) {
-    echo "<table><tbody>";
-    echo "<tr><td><b>Nº de Licencia</b></td><td><b>Razon Social</b></td><td><b>Unidad</b></td><td><b>Expira</b></td><td colspan ='5'><center><b>Opciones</b></center></td></tr>";
+    echo "<table style='color: #FFFFFF;rd'><tbody>";
+    echo "<tr style='color: #1e201e'><td><b>Nº de Licencia</b></td><td><b>Razon Social</b></td><td><b>Unidad</b></td><td><b>Expira</b></td><td colspan ='5'><center><b>Opciones</b></center></td></tr>";
 
   // Mostrar los detalles completos de todas las demás columnas
   
@@ -91,8 +91,8 @@ $result = $conn->query($sql);
 
 echo "<center><strong><h2>Licencias de Tabaco</h2></strong></center>";
 if ($result->num_rows > 0) {
-    echo "<table><tbody>";
-    echo "<tr><td><b>Nº de Licencia</b></td><td><b>Razon Social</b></td><td><b>Unidad</b></td><td><b>Expira</b></td><td colspan ='5'><center><b>Opciones</b></center></td></tr>";
+    echo "<table style='color: #FFFFFF;'><tbody>";
+    echo "<tr style='color: #1e201e'><td><b>Nº de Licencia</b></td><td><b>Razon Social</b></td><td><b>Unidad</b></td><td><b>Expira</b></td><td colspan ='5'><center><b>Opciones</b></center></td></tr>";
 
   // Mostrar los detalles completos de todas las demás columnas
   while($row = $result->fetch_assoc()) {

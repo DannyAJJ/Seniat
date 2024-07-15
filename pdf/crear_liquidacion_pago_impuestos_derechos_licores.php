@@ -28,6 +28,7 @@ $tipoliq = '1';
 $serie = '46';
 $v = '1';
 $numresolucion = '';
+$firma = $row['Nombre_firmante'];
 $nummanifiesto = $row['Numero_manfiesto'];
 $fechamanifiesto = substr($fecharesolu, 0, 2) . '        ' . substr($fecharesolu, 3, 2) . '          ' . substr($fecharesolu, -2);
 $razonsocial = $row['Razon_social'];
@@ -394,7 +395,7 @@ $pdf->SetY($y - 1);
 $pdf->Cell('125', '4.5', mb_convert_encoding('', 'ISO-8859-1', 'UTF-8'), 0, 0, 'C', false);
 $pdf->Cell('71', '4.5', mb_convert_encoding('', 'ISO-8859-1', 'UTF-8'), 0, 1, 'C', false);
 $pdf->Cell('125', '10', mb_convert_encoding($validacionterminalbanco, 'ISO-8859-1', 'UTF-8'), 0, 0, 'C', false);
-$pdf->Cell('71', '10', mb_convert_encoding('$firma', 'ISO-8859-1', 'UTF-8'), 0, 1, 'C', false);
+$pdf->Cell('71', '10', mb_convert_encoding($firma, 'ISO-8859-1', 'UTF-8'), 0, 1, 'C', false);
 
 
 
