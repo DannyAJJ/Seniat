@@ -37,7 +37,7 @@ if ($result->num_rows > 0) {
     echo "<tr>";
     echo "<td>" . $row["Licencia"]. "</td><td id= 'secuencial$i'>" .$row["Secuencial"]. "</td><td id= 'fecha$i'>" . $row["Fecha_liquidacion"] . "</td>"."<td>" . $row["Numero_manfiesto"]. "</td>"."<td>" . $row["Total_produccion"]. " Bs.</td>";
 
-    echo "<td><button class='enlace' type= 'button' onclick='verliql($i,0)'>VER</button>";
+    echo "<td><button class='enlace' type= 'button' onclick='verliql($i,1)'>VER</button>";
     $i= $i+1;
 
   }
@@ -59,7 +59,7 @@ if ($result->num_rows > 0) {
     echo "<tr>";
     echo "<td>" . $row["Licencia"]. "</td><td id= 'secuencial$i'>" .$row["Secuencial"]. "</td><td id= 'fecha$i'>" . $row["Fecha_liquidacion"] . "</td>"."<td>" . $row["Numero_manfiesto"]. "</td>"."<td>" . $row["Total_pvp"]. " Bs.</td>";
 
-    echo "<td><button class='enlace' type= 'button' onclick='verliql($i,1)'>VER</button>";
+    echo "<td><button class='enlace' type= 'button' onclick='verliql($i,0)'>VER</button>";
     $i= $i+1;
 
   }

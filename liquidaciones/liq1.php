@@ -26,7 +26,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 <head>
   <link rel="stylesheet" href="styles.css">
   <title>Planilla de Liquidación</title>
-
+  <script src="../jquery-3.7.1.min.js"></script>
 </head>
 
 <body>
@@ -253,7 +253,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
     ];
     for ($i = 1; $i <= 3; $i++) {
       echo '<tr>
-    <td width="80">' . $codigo[$i] . '</td>
+    <td width="80" id = "codigop' . $i . '">' . $codigo[$i] . '</td>
     <td  width="750">IMPUESTO A PAGAR</td>
     <td>91</td>
     <td>' . $monto[$i] . '</td>
@@ -290,25 +290,50 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 </html>
 
 <Script>
-  if (<?php echo $tipo ?> == "1") {var e = 13;}else {var e = 5;}
+  if (typeof codigos == 'undefined') {
+    var codigos = [];
+  }
+  var tipo = "<?php echo $tipoliq ?>";
+  if (tipo == "1") {
+    var e = 13;
+  } else {
+    var e = 5;
+  }
   for (let i = 1; i <= e; i++) {
 
     $('#clase' + i).change(function() {
       iditem = $(this).val();
-      $.ajax({
-        url: 'buscaralicuota.php',
-        method: 'POST',
-        data: {
-          iditem : iditem
-        },
-        dataType: 'json',
-        success: function(datos) {
-          $('#aa' + i).val(datos)
-        },
-        error: function() {
-          alert('Error ajax de selector');
-        }
-      });
+      if (iditem == 0) {
+        $('#aa' + i).val("")
+      } else {
+        $.ajax({
+          url: 'buscaralicuota.php',
+          method: 'POST',
+          data: {
+            iditem: iditem,
+            tipo: tipo
+          },
+          dataType: 'json',
+          success: function(datos) {
+
+            if (typeof codigos[0] == 'undefined') {
+              codigos[0] = datos['codigo'];
+              $('#codigop1').html(datos['codigo']);
+            } else if (typeof codigos[1] == 'undefined') {
+              codigos[1] = datos['codigo'];
+              $('#codigop2').html(datos['codigo']);
+            } else if (typeof codigos[2] == 'undefined') {
+              codigos[2] = datos['codigo'];
+              $('#codigop3').html(datos['codigo']);
+            }
+            $('#aa' + i).val(datos['alicuota'])
+          },
+          error: function() {
+            alert('Error ajax de selector');
+          }
+        });
+      }
+
     })
   }
 </Script>

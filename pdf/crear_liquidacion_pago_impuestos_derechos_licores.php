@@ -39,7 +39,7 @@ $fecharegistro =  $fechaformateada->format('d-m-Y');
 $direccion = $row['Direccion'];
 $nlq = $row['N_liquidacion'];
 //Metodo POST
-if ($_GET['tipo'] == '0') {
+if ($_GET['tipo'] == '1') {
     $sql = "SELECT c.Nombre_producto, d.Litrovr, d.Frgl, d.Litroaa, d.Aa, d.Total_detalle FROM detalle_produccion_licores d, liquidacion_licores lq, clase_producto c WHERE lq.N_liquidacion = d.Id_liquidacion AND c.Id = d.Clase AND lq.N_liquidacion = '" . $row['N_liquidacion'] . "';";
     $result = $conn->query($sql);
     $claseproduccion = array_fill(1, 5, ' ');
