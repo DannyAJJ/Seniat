@@ -74,10 +74,11 @@ if ($_GET['tipo'] == '0') {
     $impuestoventapublico = array_fill(1, 14, ' ');
     $totalporpagarvent = '';
     $codigo = '';
-    $montobs = '';
-    $totalimpuesto = '';
+    $montobs = array_fill(1, 3, ' ');
+    $montobs[1] = $totalpagarproduccion;
+    $totalimpuesto = $totalpagarproduccion;
     $menosreintegro = '';
-    $impuestoporpagar = '';
+    $impuestoporpagar = $totalpagarproduccion;
     $validacionterminalbanco = '';
 } else {
     $sql = "SELECT Clase, Cantidad_envases, Cap_env_litros, Pvp_envases, Litrosvr, Porcentaje_sobre_pvp, Total_detalle FROM detalle_pvp_licores dt, liquidacion_licores lq WHERE lq.N_liquidacion = dt.Id_liquidacion AND dt.Id_liquidacion = " . $nlq . ";";
@@ -112,6 +113,9 @@ if ($_GET['tipo'] == '0') {
         $impuestoventapublico[$e] =$row['Total_detalle'];
         $e = $e + 1;
     }
+    $sql = "SELECT SUM(Total_detalle) as 'total' FROM detalle_pvp_licores WHERE Id_liquidacion = '" . $nlq . "';";
+    $result = $conn->query($sql);
+    $row = $result->fetch_assoc();
     $totalporpagarvent = 'e';
     $codigo = '';
     $montobs = '';
@@ -366,7 +370,7 @@ for ($i = 1; $i <= 3; $i++) { //for de clase, litro. fr o gl y litro
     $pdf->Cell(27, 4, $codigo, 0, 0, 'C');
     $pdf->Cell(103, 4, '', 0, 0, 'l');
     $pdf->Cell(6, 4, '', 0, 0, 'C');
-    $pdf->Cell(55, 4, $montobs, 0, 0, 'C');
+    $pdf->Cell(55, 4, $montobs[$i], 1, 0, 'C');
     $pdf->Cell(5, 4, '', 0, 1, 'C');
     $y = $pdf->GetY();
 }
