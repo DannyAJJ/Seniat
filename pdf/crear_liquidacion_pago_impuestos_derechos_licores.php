@@ -97,7 +97,6 @@ if ($_GET['tipo'] == '0') {
     $pvpenvases = array_fill(1, 14, ' ');
     $litrosvr = array_fill(1, 14, ' ');
     $pvpltoprom = array_fill(1, 14, ' ');
-    $total = 'a';
     $sobrepvplt = array_fill(1, 14, ' ');
     $impuestoventapublico = array_fill(1, 14, ' ');
     
@@ -117,10 +116,11 @@ if ($_GET['tipo'] == '0') {
     $row = $result->fetch_assoc();
     $totalporpagarvent = 'e';
     $codigo = '';
-    $montobs = '';
-    $totalimpuesto = 'i';
+    $montobs = $row['total'];
+    $total = $montobs;
+    $totalimpuesto = $montobs;
     $menosreintegro = '';
-    $impuestoporpagar = '';
+    $impuestoporpagar = $montobs;
     $validacionterminalbanco = '';
 }
 
