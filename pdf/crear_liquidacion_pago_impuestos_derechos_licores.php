@@ -22,7 +22,7 @@ $mesliquidacion = substr($fecharesolu, 3, 2);
 $añoliquidacion = substr($fecharesolu, -4);
 $gcia = '10';
 $ofiliq = '1';
-$año = substr($fecharesolu, -2);
+$año = substr($fecharesolu, -4);
 $aporoc = '1';
 $tipoliq = '1';
 $serie = '46';
@@ -257,15 +257,15 @@ for($i=1;$i<=5;$i++){ //for de clase, litro. fr o gl y litro
     $pdf->Cell(27,4,$claseproduccion[$i],0,0,'L');
     $pdf->Cell(27,4,$litrovr[$i],0,0,'L');
     $pdf->Cell(24,4,$frogl[$i],0,0,'L');
-    $pdf->Cell(24,4,floatval($litrovr[$i])  * floatval($frogl[$i])  / 100,0,0,'L');
-    $pdf->Cell(21,4,floatval($litrovr[$i]) * floatval($frogl[$i]) / 100,0,0,'L');
+    $pdf->Cell(24,4,$vr[$i],0,0,'L');
+    $pdf->Cell(21,4,$aa[$i],0,0,'L');
     /*if ($i==2 || $i==3 || $i == 4) {
         $e = $e - 1;
         $o = $o + 1;
     }*/
     $pdf->Cell(23,4,$aa[$i],0,0,'L');
     $pdf->Cell(6,4,'',0,0,'L');
-    $pdf->Cell(38,4,(floatval($litrovr[$i]) * floatval($frogl[$i]) / 100) * floatval($aa[$i]),0,0,'L');
+    $pdf->Cell(38,4,$impuestoproduccion[$i],0,0,'L');
     $pdf->Cell(5,4,'',0,1,'L');
     $y = $pdf->GetY();
     
@@ -321,16 +321,16 @@ $pdf->Cell('60','8',mb_convert_encoding('','ISO-8859-1','UTF-8'),0,1,'C',false);
 for($i=1;$i<=14;$i++){ //for de clase, litro. fr o gl y litro
     
 
-    $pdf->Cell(25,4,$claseventapublico,0,0,'L');
-    $pdf->Cell(17,4,$cantidadenvases,0,0,'L');
-    $pdf->Cell(14.5,4,$capenvlistros,0,0,'L');
-    $pdf->Cell(19,4,$pvpenvases,0,0,'L');
-    $pdf->Cell(13,4,'$canti * $capenvli',0,0,'L');
+    $pdf->Cell(25,4,$claseventapublico[$i],0,0,'L');
+    $pdf->Cell(17,4,$cantidadenvases[$i],0,0,'L');
+    $pdf->Cell(14.5,4,$capenvlistros[$i],0,0,'L');
+    $pdf->Cell(19,4,$pvpenvases[$i],0,0,'L');
+    $pdf->Cell(13,4,$litrosvr[$i],0,0,'L');
     $pdf->Cell(17.5,4,'',0,0,'L');
-    $pdf->Cell(15.3,4,'$canti * $pvpenvases',0,0,'L');
-    $pdf->Cell(13,4,$sobrepvplt,0,0,'L');
+    $pdf->Cell(15.3,4,$impuestoventapublico[$i],0,0,'L');
+    $pdf->Cell(13,4,$sobrepvplt[$i],0,0,'L');
     $pdf->Cell(10,4,'',0,0,'L');
-    $pdf->Cell(45.5,4,'(($canti * $pvpenvases) * $sobrepvplt) / $pvpenvases',0,0,'L');
+    $pdf->Cell(45.5,4,$impuestoventapublico[$i],0,0,'L');
     //$total = ((($canti * $pvpenvases) * $sobrepvplt) / $pvpenvases) +$total;
     $pdf->Cell(5,4,'',0,1,'L');
     $y = $pdf->GetY();

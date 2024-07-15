@@ -98,11 +98,11 @@ if ($result->num_rows > 0) {
   function verliqt(i){
     var secuencial = document.getElementById(`secuencial${i}`).textContent;
     var fecha = document.getElementById(`fecha${i}`).textContent;
-    location.href = '../Pruebapdf/crear_liquidacion_tabacos_pdf.php?secuencial='+secuencial+'&fecha='+fecha
+    location.href = '../pdf/crear_liquidacion_tabacos_pdf.php?secuencial='+secuencial+'&fecha='+fecha
   }
   function verliql(i,t){
     var secuencial = document.getElementById(`secuencial${i}`).textContent;
     var fecha = document.getElementById(`fecha${i}`).textContent;
-    location.href = '../Pruebapdf/crear_liquidacion_pago_impuestos_derechos_licores.php?secuencial='+secuencial+'&fecha='+fecha+'&tipo='+t
+    location.href = '../pdf/crear_liquidacion_pago_impuestos_derechos_licores.php?secuencial='+secuencial+'&fecha='+fecha+'&tipo='+t
   }
   </script>
