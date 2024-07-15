@@ -338,7 +338,7 @@ $pdf->Cell('60', '8', mb_convert_encoding('', 'ISO-8859-1', 'UTF-8'), 0, 1, 'C',
 for ($i = 1; $i <= 14; $i++) { //for de clase, litro. fr o gl y litro
 
 
-    $pdf->Cell(25, 4, mb_convert_encoding($claseventapublico[$i], 'ISO-8859-1', 'UTF-8'), 0, 0, 'L');
+    $pdf->Cell(25, 4, mb_convert_encoding($claseventapublico[$i], 'ISO-8859-1', 'UTF-8'),0, 0, 'L');
     $pdf->Cell(17, 4, $cantidadenvases[$i], 0, 0, 'L');
     $pdf->Cell(14.5, 4, $capenvlistros[$i], 0, 0, 'L');
     $pdf->Cell(19, 4, $pvpenvases[$i], 0, 0, 'L');
@@ -352,10 +352,12 @@ for ($i = 1; $i <= 14; $i++) { //for de clase, litro. fr o gl y litro
     $pdf->Cell(5, 4, '', 0, 1, 'L');
     $y = $pdf->GetY();
 }
+
+$x = $pdf->GetX();
+$pdf->SetXY($x-10,$y-3);
 $pdf->Cell(130, 4, '', 0, 0, 'C');
-$pdf->Cell(6, 4, '', 0, 0, 'C');
-$pdf->Cell(55, 4, $montobs, 0, 1, 'C');
-$pdf->Cell(330, 4, $total, 0, 1, 'C');
+$pdf->Cell(55, 4, $total, 0, 1, 'C');
+$pdf->Cell(330, 4,'', 0, 1, 'C');
 
 $y = $pdf->GetY(); //ESPACIADO
 $pdf->SetY($y + 1.5);
@@ -377,6 +379,9 @@ for ($i = 1; $i <= 3; $i++) { //for de clase, litro. fr o gl y litro
 
 $pdf->Cell(130, 4, '', 0, 0, 'C');
 $pdf->Cell(6, 4, '', 0, 0, 'C');
+$y = $pdf->GetY();
+$x = $pdf->GetX();
+$pdf->SetXY($x,$y-1.5);
 $pdf->Cell(55, 4, $totalimpuesto, 0, 0, 'C');
 $pdf->Cell(5, 4, '', 0, 1, 'C');
 $pdf->Cell(130, 4, '', 0, 0, 'C');
@@ -389,11 +394,11 @@ $pdf->Cell(55, 4, $totalporpagarvent, 0, 0, 'C');
 $pdf->Cell(5, 4, '', 0, 1, 'C');
 
 $y = $pdf->GetY(); //ESPACIADO
-$pdf->SetY($y - 1);
+$pdf->SetY($y+5);
 
 $pdf->Cell('125', '4.5', mb_convert_encoding('', 'ISO-8859-1', 'UTF-8'), 0, 0, 'C', false);
 $pdf->Cell('71', '4.5', mb_convert_encoding('', 'ISO-8859-1', 'UTF-8'), 0, 1, 'C', false);
-$pdf->Cell('125', '10', mb_convert_encoding($validacionterminalbanco, 'ISO-8859-1', 'UTF-8'), 0, 0, 'C', false);
+$pdf->Cell('125', '10', mb_convert_encoding('', 'ISO-8859-1', 'UTF-8'), 0, 0, 'C', false);
 $pdf->Cell('71', '10', mb_convert_encoding('$firma', 'ISO-8859-1', 'UTF-8'), 0, 1, 'C', false);
 
 
