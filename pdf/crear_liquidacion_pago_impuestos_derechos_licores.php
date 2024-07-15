@@ -39,7 +39,7 @@ $direccion = $row['Direccion'];
 $nlq = $row['N_liquidacion'];
 //Metodo POST
 if ($_GET['tipo'] == '0') {
-    $sql = "SELECT c.Nombre_producto, d.Litrovr, d.Frgl, d.Litroaa, d.Vaa, d.Aa, d.Total_detalle FROM detalle_produccion_licores d, liquidacion_licores lq, clase_producto c WHERE lq.N_liquidacion = d.Id_liquidacion AND c.Id = d.Clase AND lq.N_liquidacion = '" . $row['N_liquidacion'] . "';";
+    $sql = "SELECT c.Nombre_producto, d.Litrovr, d.Frgl, d.Litroaa, d.Aa, d.Total_detalle FROM detalle_produccion_licores d, liquidacion_licores lq, clase_producto c WHERE lq.N_liquidacion = d.Id_liquidacion AND c.Id = d.Clase AND lq.N_liquidacion = '" . $row['N_liquidacion'] . "';";
     $result = $conn->query($sql);
     $claseproduccion = array_fill(1, 5, ' ');
     $litrovr = array_fill(1, 5, ' ');
@@ -54,7 +54,7 @@ if ($_GET['tipo'] == '0') {
         $litrovr[$e] = $row['Litrovr'];
         $frogl[$e] = $row['Frgl'];
         $litroaa[$e] = $row['Litroaa'];
-        $vr[$e] = $row['Vaa'];
+        $vr[$e] = $row['Litroaa'];
         $aa[$e] = $row['Aa'];
         $impuestoproduccion[$e] = $row['Total_detalle'];
         $e = $e + 1;
@@ -268,11 +268,11 @@ $pdf->Cell('60', '8', mb_convert_encoding('', 'ISO-8859-1', 'UTF-8'), 0, 1, 'C',
 //$e = 10;
 //$o = 20;
 for ($i = 1; $i <= 5; $i++) { //for de clase, litro. fr o gl y litro 
-    $pdf->Cell(27, 4, $claseproduccion[$i], 0, 0, 'L');
+    $pdf->Cell(27, 4, mb_convert_encoding($claseproduccion[$i], 'ISO-8859-1', 'UTF-8') , 0, 0, 'L');
     $pdf->Cell(27, 4, $litrovr[$i], 0, 0, 'L');
     $pdf->Cell(24, 4, $frogl[$i], 0, 0, 'L');
-    $pdf->Cell(24, 4, $vr[$i], 0, 0, 'L');
-    $pdf->Cell(21, 4, $aa[$i], 0, 0, 'L');
+    $pdf->Cell(24, 4, $litroaa[$i], 0, 0, 'L');
+    $pdf->Cell(21, 4, $litroaa[$i], 0, 0, 'L');
     /*if ($i==2 || $i==3 || $i == 4) {
         $e = $e - 1;
         $o = $o + 1;
@@ -334,7 +334,7 @@ $pdf->Cell('60', '8', mb_convert_encoding('', 'ISO-8859-1', 'UTF-8'), 0, 1, 'C',
 for ($i = 1; $i <= 14; $i++) { //for de clase, litro. fr o gl y litro
 
 
-    $pdf->Cell(25, 4, $claseventapublico[$i], 0, 0, 'L');
+    $pdf->Cell(25, 4, mb_convert_encoding($claseventapublico[$i], 'ISO-8859-1', 'UTF-8'), 0, 0, 'L');
     $pdf->Cell(17, 4, $cantidadenvases[$i], 0, 0, 'L');
     $pdf->Cell(14.5, 4, $capenvlistros[$i], 0, 0, 'L');
     $pdf->Cell(19, 4, $pvpenvases[$i], 0, 0, 'L');
