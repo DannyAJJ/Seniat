@@ -182,7 +182,7 @@ $pdf->SetXY(110, +230); //certificado
 $pdf->Cell(8, 7, $certificado, 0, 0);
 
 $pdf->SetXY(170, +235); //certificado 
-$pdf->Cell(30, 15, $firma, 0, 0);
+$pdf->Cell(30, 15,mb_convert_encoding($firma, 'ISO-8859-1', 'UTF-8') , 0, 0);
 
 $pdf->SetXY(61, +250); //certificado 
 $pdf->Cell(30, 15, '', 0, 0);

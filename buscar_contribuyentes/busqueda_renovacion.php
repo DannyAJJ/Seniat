@@ -18,8 +18,8 @@ if ($_SESSION['unidad']==1) {
   $result2 = $conn->query($sql2);
   if ($result2->num_rows > 0) {
     $e = 0;
-      echo "<table><tbody>";
-      echo "<tr><td><strong>Nº de Licencia</strong></td><td><strong>Razón Social</strong></td><td><strong>Renovada</strong></td><td><strong>Expira</strong></td><td><strong>Opciones</strong></td></tr>";
+      echo "<table style='color: #FFFFFF;'><tbody>";
+      echo "<tr style='color: #1e201e'><td><strong>Nº de Licencia</strong></td><td><strong>Razón Social</strong></td><td><strong>Renovada</strong></td><td><strong>Expira</strong></td><td><strong>Opciones</strong></td></tr>";
     while($row2 = $result2->fetch_assoc()) {
       echo "<tr><td id= 'na$e'>". $row2['Numero_autorizacion'] ."</td><td>". $row2['Razon_social'] ."</td><td id= 'fa$e'>". $row2['Fecha_renovacion'] ."</td><td>". $row2['Proxima_renovacion'] ."</td><td><button onclick='verrenovacion($e)' class= 'enlace' type = 'button'>VER</button></td></tr>";
     $e=$e+1;

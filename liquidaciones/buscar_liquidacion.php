@@ -27,8 +27,8 @@ $result2 = $conn->query($sql2);
 $i = 0; 
 echo "<center><strong><h2>Producción de Licores</h2></strong></center>";
 if ($result->num_rows > 0) {
-    echo "<table><tbody>";
-    echo "<tr><td><b>Licencia</b></td><td><b>Secuencial</b></td><td><b>Fecha Liquidada</b></td><td><b>Manifiesto</b></td><td><b>Total Produccion</b></td><td><b>Opciones</b></td></tr>";
+    echo "<table style='color: #FFFFFF;rd'><tbody>";
+    echo "<tr style='color: #1e201e'><td><b>Licencia</b></td><td><b>Secuencial</b></td><td><b>Fecha Liquidada</b></td><td><b>Manifiesto</b></td><td><b>Total Produccion</b></td><td><b>Opciones</b></td></tr>";
 
   // Mostrar los detalles completos de todas las demás columnas
   
@@ -48,8 +48,8 @@ if ($result->num_rows > 0) {
 }
 echo "<center><strong><h2>P.V.P. de Licores</h2></strong></center>";
 if ($result->num_rows > 0) {
-    echo "<table><tbody>";
-    echo "<tr><td><b>Licencia</b></td><td><b>Secuencial</b></td><td><b>Fecha Liquidada</b></td><td><b>Manifiesto</b></td><td><b>Total P.V.P.</b></td><td><b>Opciones</b></td></tr>";
+    echo "<table style='color: #FFFFFF;rd'><tbody>";
+    echo "<tr style='color: #1e201e'><td><b>Licencia</b></td><td><b>Secuencial</b></td><td><b>Fecha Liquidada</b></td><td><b>Manifiesto</b></td><td><b>Total P.V.P.</b></td><td><b>Opciones</b></td></tr>";
 
   // Mostrar los detalles completos de todas las demás columnas
   
@@ -76,8 +76,8 @@ $result = $conn->query($sql);
 echo "<center><strong><h2>P.V.P. de Tabaco</h2></strong></center>";
 if ($result->num_rows > 0) {
   
-    echo "<table><tbody>";
-    echo "<tr><td><b>Nº de Licencia</b></td><td><b>Secuencial</b></td><td><b>Fecha Liquidada</b></td><td><b>Total P.V.P.</b></td><td><b>Opciones</b></tr>";
+    echo "<table style='color: #FFFFFF;rd'><tbody>";
+    echo "<tr style='color: #1e201e'><td><b>Nº de Licencia</b></td><td><b>Secuencial</b></td><td><b>Fecha Liquidada</b></td><td><b>Total P.V.P.</b></td><td><b>Opciones</b></tr>";
 
 // Mostrar los detalles completos de todas las demás columnas
   while($row = $result->fetch_assoc()) {
