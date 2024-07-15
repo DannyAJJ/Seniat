@@ -85,22 +85,22 @@ $pdf->Cell(30, 10, mb_convert_encoding($gerenciaregional, 'ISO-8859-1', 'UTF-8')
 $pdf->SetXY(+147.25, +30.5); // rif
 $pdf->Cell(30, 10, $rif, 0, 0);
 
-$pdf->SetFont('Arial', '', 6);
-$pdf->SetXY(+4, +45.5); //liquidacion
+$pdf->SetFont('Arial', '', 9);
+$pdf->SetXY(+3, +45.5); //liquidacion
 $pdf->Cell(5, 10, $gcia, 0, 0);
-$pdf->SetXY(+8, +45.5); //liquidacion
-$pdf->Cell(5, 10, $ofiliq, 0, 0);
 $pdf->SetXY(+12, +45.5); //liquidacion
-$pdf->Cell(5, 10, $año, 0, 0);
-$pdf->SetXY(+16, +45.5); //liquidacion
-$pdf->Cell(5, 10, $aporoc, 0, 0);
+$pdf->Cell(5, 10, $ofiliq, 0, 0);
 $pdf->SetXY(+20, +45.5); //liquidacion
-$pdf->Cell(5, 10, $tipoliq, 0, 0);
-$pdf->SetXY(+24, +45.5); //liquidacion
-$pdf->Cell(5, 10, '40', 0, 0);
+$pdf->Cell(5, 10, $año, 0, 0);
 $pdf->SetXY(+30, +45.5); //liquidacion
+$pdf->Cell(5, 10, $aporoc, 0, 0);
+$pdf->SetXY(+40, +45.5); //liquidacion
+$pdf->Cell(5, 10, $tipoliq, 0, 0);
+$pdf->SetXY(+47, +45.5); //liquidacion
+$pdf->Cell(5, 10, '40', 0, 0);
+$pdf->SetXY(+63, +45.5); //liquidacion
 $pdf->Cell(15, 10, $secuencial, 0, 0);
-$pdf->SetXY(+43, +45.5); //liquidacion
+$pdf->SetXY(+78, +45.5); //liquidacion
 $pdf->Cell(5, 10, $v, 0, 0);
 
 $pdf->SetFont('Arial', '', 9);
@@ -109,7 +109,7 @@ $pdf->SetXY(+110, +45.5); //resolucion
 $pdf->Cell(30, 10, $resolucionnum, 0, 0);
 
 $pdf->SetXY(+182, +45.5); //liquidacion
-$pdf->Cell(30, 10, substr($fecharesolu, 0, 2) . '   ' . substr($fecharesolu, 3, 2) . '   ' . substr($fecharesolu, -2), 0, 0);
+$pdf->Cell(30, 10, substr($fecharesolu, 0, 2) . '       ' . substr($fecharesolu, 3, 2) . '      ' . substr($fecharesolu, -2), 0, 0);
 
 $pdf->SetXY(+4, +56.5); //razon social
 $pdf->Cell(30, 10,mb_convert_encoding($razonsocial, 'ISO-8859-1', 'UTF-8') , 0, 0);
@@ -122,7 +122,7 @@ $pdf->Cell(30, 10,mb_convert_encoding($direccion, 'ISO-8859-1', 'UTF-8') , 0, 0)
 
 $pdf->SetXY(+163, +64.5); //fecha de vencimiento
 $pdf->Cell(30, 10, $fechavencimiento, 0, 0);
-$y = 82.8;
+$y = 85;
 for ($i = 1; $i <= 12; $i++) { //for de marca, venta y impuesto
     $pdf->SetXY(+6, +$y);
     $pdf->Cell(49, 6.54,mb_convert_encoding( $marca[$i], 'ISO-8859-1', 'UTF-8'), 0, 0);
