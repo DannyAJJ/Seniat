@@ -29,7 +29,7 @@ $serie = '46';
 $v = '1';
 $numresolucion = '';
 $nummanifiesto = $row['Numero_manfiesto'];
-$fechamanifiesto = substr($fecharesolu, 0, 2) . '   ' . substr($fecharesolu, 3, 2) . '   ' . substr($fecharesolu, -2);
+$fechamanifiesto = substr($fecharesolu, 0, 2) . '        ' . substr($fecharesolu, 3, 2) . '          ' . substr($fecharesolu, -2);
 $razonsocial = $row['Razon_social'];
 $numregistro = $row['Numero_autorizacion'];
 $fechaformateada = DateTime::createFromFormat('d-m-Y', $fecharesolu);
@@ -193,17 +193,17 @@ $pdf->SetX($x + 4);
 $pdf->Cell('34', '3.5', mb_convert_encoding('', 'ISO-8859-1', 'UTF-8'), 0, 0, 'C', false);
 
 $x = $pdf->GetX();
-$pdf->SetX($x + 3);
-$pdf->Cell('63', '3.5', mb_convert_encoding('', 'ISO-8859-1', 'UTF-8'), 0, 1, 'C', false);
-$pdf->SetX($x - 133);
-$pdf->Cell('10', '5.5', mb_convert_encoding('10', 'ISO-8859-1', 'UTF-8'), 0, 0, 'C', false);
-$pdf->Cell('10', '5.5', mb_convert_encoding('1', 'ISO-8859-1', 'UTF-8'), 0, 0, 'C', false);
-$pdf->Cell('10', '5.5', mb_convert_encoding($año, 'ISO-8859-1', 'UTF-8'), 0, 0, 'C', false);
-$pdf->Cell('12', '5.5', mb_convert_encoding('1', 'ISO-8859-1', 'UTF-8'), 0, 0, 'C', false);
-$pdf->Cell('12', '5.5', mb_convert_encoding('1', 'ISO-8859-1', 'UTF-8'), 0, 0, 'C', false);
-$pdf->Cell('12', '5.5', mb_convert_encoding('46', 'ISO-8859-1', 'UTF-8'), 0, 0, 'C', false);
-$pdf->Cell('16', '5.5', mb_convert_encoding($secuencial, 'ISO-8859-1', 'UTF-8'), 0, 0, 'C', false);
-$pdf->Cell('5', '5.5', mb_convert_encoding('1', 'ISO-8859-1', 'UTF-8'), 0, 0, 'C', false);
+$pdf->SetX($x+3);
+$pdf->Cell('63','3.5',mb_convert_encoding('','ISO-8859-1','UTF-8'),0,1,'C',false);
+$pdf->SetX($x-133);
+$pdf->Cell('10','5.5',mb_convert_encoding('10','ISO-8859-1','UTF-8'),0,0,'C',false);
+$pdf->Cell('10','5.5',mb_convert_encoding('1','ISO-8859-1','UTF-8'),0,0,'C',false);
+$pdf->Cell('10','5.5',mb_convert_encoding($año,'ISO-8859-1','UTF-8'),0,0,'C',false);
+$pdf->Cell('11.5','5.5',mb_convert_encoding('1','ISO-8859-1','UTF-8'),0,0,'C',false);
+$pdf->Cell('12','5.5',mb_convert_encoding('1','ISO-8859-1','UTF-8'),0,0,'C',false);
+$pdf->Cell('12','5.5',mb_convert_encoding('46','ISO-8859-1','UTF-8'),0,0,'C',false);
+$pdf->Cell('16','5.5',mb_convert_encoding($secuencial,'ISO-8859-1','UTF-8'),0,0,'C',false);
+$pdf->Cell('5','5.5',mb_convert_encoding('1','ISO-8859-1','UTF-8'),0,0,'C',false);
 
 $x = $pdf->GetX();
 $pdf->SetX($x + 9);
@@ -213,9 +213,9 @@ $pdf->SetX($x + 13);
 $pdf->Cell('35', '5.5', mb_convert_encoding('' . '18', 'ISO-8859-1', 'UTF-8'), 0, 0, 'L', false);
 $x = $pdf->GetX();
 $y = $pdf->GetY();
-$pdf->Cell('28', '2.5', mb_convert_encoding('', 'ISO-8859-1', 'UTF-8'), 0, 1, 'C', false);
-$pdf->SetXY($x - 6, $y + 4);
-$pdf->Cell('28', '3', mb_convert_encoding($fechamanifiesto, 'ISO-8859-1', 'UTF-8'), 0, 1, 'C', false);
+$pdf->Cell('28','2.5',mb_convert_encoding('','ISO-8859-1','UTF-8'),0,1,'C',false);
+$pdf->SetXY($x-4,$y+2.5);
+$pdf->Cell('28','3',mb_convert_encoding( $fechamanifiesto,'ISO-8859-1','UTF-8'),0,1,'C',false);
 
 
 $y = $pdf->GetY();
@@ -233,18 +233,19 @@ $pdf->Cell('60', '4.5', mb_convert_encoding('', 'ISO-8859-1', 'UTF-8'), 0, 1, 'L
 $pdf->SetX($x - 130);
 $pdf->Cell('105', '7', mb_convert_encoding($razonsocial, 'ISO-8859-1', 'UTF-8'), 0, 0, 'L', false);
 
+$y = $pdf->GetY();
 $x = $pdf->GetX();
-$pdf->SetX($x);
-$pdf->Cell('23', '5.5', mb_convert_encoding($numregistro, 'ISO-8859-1', 'UTF-8'), 0, 0, 'C', false);
-
+$pdf->SetXY($x,$y+2);
+$pdf->Cell('23','5.5',mb_convert_encoding($numregistro,'ISO-8859-1','UTF-8'),0,0,'C',false);
+$y = $pdf->GetY();
 $x = $pdf->GetX();
-$pdf->SetX($x + 10);
-$pdf->Cell('60', '5.5', mb_convert_encoding($fecharegistro, 'ISO-8859-1', 'UTF-8'), 0, 1, 'L', false);
+$pdf->SetXY($x+15,$y);
+$pdf->Cell('60','5.5',mb_convert_encoding($fecharegistro,'ISO-8859-1','UTF-8'),0,1,'L',false);
 
 
 $y = $pdf->GetY();
-$pdf->SetY($y + 3);
-$pdf->MultiCell('196', '5', mb_convert_encoding('' . "\n " . $direccion, 'ISO-8859-1', 'UTF-8'), 0, 'L', false);
+$pdf->SetY($y+1);
+$pdf->MultiCell('196','5',mb_convert_encoding(''."\n ". $direccion,'ISO-8859-1','UTF-8'),0,'L',false);
 
 
 $y = $pdf->GetY();
@@ -266,9 +267,9 @@ $pdf->Cell('23', '4', mb_convert_encoding('', 'ISO-8859-1', 'UTF-8'), 0, 0, 'C',
 //$pdf->SetXY($x+23,$y);
 
 $y = $pdf->GetY();
-$pdf->SetXY(140, $y - 1);
-$pdf->Cell('6', '8', mb_convert_encoding('', 'ISO-8859-1', 'UTF-8'), 0, 0, 'C', false);
-$pdf->Cell('60', '8', mb_convert_encoding('', 'ISO-8859-1', 'UTF-8'), 0, 1, 'C', false);
+$pdf->SetXY(140,$y-4);
+$pdf->Cell('6','8',mb_convert_encoding('','ISO-8859-1','UTF-8'),0,0,'C',false);
+$pdf->Cell('60','8',mb_convert_encoding('','ISO-8859-1','UTF-8'),0,1,'C',false);
 //$e = 10;
 //$o = 20;
 for ($i = 1; $i <= 5; $i++) { //for de clase, litro. fr o gl y litro 
@@ -287,10 +288,10 @@ for ($i = 1; $i <= 5; $i++) { //for de clase, litro. fr o gl y litro
     $pdf->Cell(5, 4, '', 0, 1, 'L');
     $y = $pdf->GetY();
 }
-$pdf->Cell(130, 4, '', 0, 0, 'C');
-$pdf->Cell(6, 4, '', 0, 0, 'C');
-$pdf->Cell(50, 4, $totalpagarproduccion, 0, 0, 'C');
-$pdf->Cell(5, 4, '', 0, 1, 'C');
+$pdf->Cell(130,4,'',0,0,'C');
+$pdf->Cell(22,4,'',0,0,'C');
+$pdf->Cell(38,4,$totalpagarproduccion,0,0,'L');
+$pdf->Cell(5,4,'',0,1,'C');
 
 $y = $pdf->GetY();
 $pdf->SetY($y + 3);
