@@ -17,9 +17,13 @@ $dbname = "expendiobd";
 
 // Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
+echo "
+<script>
+    console.log('".$user."')
+</script>
+";
 
-
-$sql = "INSERT INTO `usuarios` (`Cedula_funcionario`,`Nombre_funcionario`,`Nivel_usuario`,`Unidad`,`Correo_intitucional`,`Contraseña`,`Username`) VALUES ('$cedula','$nombre','$nivel','$unidad','$correo','$contra',$user)";
+$sql = "INSERT INTO `usuarios` (`Cedula_funcionario`,`Nombre_funcionario`,`Nivel_usuario`,`Unidad`,`Correo_institucional`,`Contraseña`,`Username`) VALUES ('$cedula','$nombre','$nivel',$unidad,'$correo','$contra','$user')";
 $siglas = $conn->query($sql);
 header("Location:../menu/index.php");
 
@@ -27,3 +31,4 @@ header("Location:../menu/index.php");
 
 
 ?>
+

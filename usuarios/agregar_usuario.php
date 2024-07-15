@@ -50,7 +50,14 @@ if (!isset($_SESSION['nivel'])) {
             
             <div class="form-group">
                 <span>Unidad</span>
-                <input type="text" placeholder="Ingrese Unidad" name="unidad" required>
+                <select type="text"  name="unidad" required>
+                    <option value="">Seleccione</option>
+                    <option value="1">Valencia</option>
+                    <option value="2">Cojedes</option>
+                    <option value="3">Bejuma</option>
+                    <option value="4">La victoria</option>
+                    <option value="5">Maracay</option>
+                </select>
                 <small>Ingrese campos</small>
             </div>
 
