@@ -80,7 +80,6 @@ if (!isset($_SESSION['nivel'])) {
                             <li><a href="#">Gestion de usuario</a>
                                 <ul>
                                     <li><a href="../usuarios/agregar_usuario.php">Agregar</a></li>
-                                    <li><a href="../usuarios/ver_usarios.php">Ver</a></li>
                                 </ul>
                             </li>
 
