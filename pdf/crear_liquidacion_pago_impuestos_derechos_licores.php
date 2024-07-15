@@ -74,8 +74,7 @@ if ($_GET['tipo'] == '0') {
     $impuestoventapublico = array_fill(1, 14, ' ');
     $totalporpagarvent = '';
     $codigo = '';
-    $montobs = array_fill(1, 3, ' ');
-    $montobs[1] = $totalpagarproduccion;
+    $montobs = $totalpagarproduccion;
     $totalimpuesto = $totalpagarproduccion;
     $menosreintegro = '';
     $impuestoporpagar = $totalpagarproduccion;
@@ -355,7 +354,7 @@ for ($i = 1; $i <= 14; $i++) { //for de clase, litro. fr o gl y litro
 }
 $pdf->Cell(130, 4, '', 0, 0, 'C');
 $pdf->Cell(6, 4, '', 0, 0, 'C');
-$pdf->Cell(50, 4, '', 0, 1, 'C');
+$pdf->Cell(55, 4, $montobs, 0, 1, 'C');
 $pdf->Cell(330, 4, $total, 0, 1, 'C');
 
 $y = $pdf->GetY(); //ESPACIADO
@@ -365,13 +364,13 @@ $pdf->Cell('196', '4.5', mb_convert_encoding('', 'ISO-8859-1', 'UTF-8'), 0, 1, '
 $pdf->Cell('27', '4', mb_convert_encoding('', 'ISO-8859-1', 'UTF-8'), 0, 0, 'C', false);
 $pdf->Cell(103, 4, '', 0, 0, 'C');
 $pdf->Cell(6, 4, '', 0, 0, 'C');
-$pdf->Cell(60, 4, '', 0, 1, 'C');
+$pdf->Cell(55, 4, '', 0, 1, 'C');
 
 for ($i = 1; $i <= 3; $i++) { //for de clase, litro. fr o gl y litro 
     $pdf->Cell(27, 4, $codigo, 0, 0, 'C');
     $pdf->Cell(103, 4, '', 0, 0, 'l');
     $pdf->Cell(6, 4, '', 0, 0, 'C');
-    $pdf->Cell(55, 4, $montobs[$i], 1, 0, 'C');
+    $pdf->Cell(55, 4, '', 0, 0, 'C');
     $pdf->Cell(5, 4, '', 0, 1, 'C');
     $y = $pdf->GetY();
 }
