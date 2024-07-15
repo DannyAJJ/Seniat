@@ -80,7 +80,7 @@ $pdf->SetFont('Arial', '', 9);
 $pdf->SetAutoPageBreak(true, 0);
 
 $pdf->SetXY(+45.25, +30.5); //gerencia regional
-$pdf->Cell(30, 10, $gerenciaregional, 0, 0, 'l');
+$pdf->Cell(30, 10, mb_convert_encoding($gerenciaregional, 'ISO-8859-1', 'UTF-8'), 0, 0, 'l');
 
 $pdf->SetXY(+147.25, +30.5); // rif
 $pdf->Cell(30, 10, $rif, 0, 0);
@@ -112,20 +112,20 @@ $pdf->SetXY(+182, +45.5); //liquidacion
 $pdf->Cell(30, 10, substr($fecharesolu, 0, 2) . '   ' . substr($fecharesolu, 3, 2) . '   ' . substr($fecharesolu, -2), 0, 0);
 
 $pdf->SetXY(+4, +56.5); //razon social
-$pdf->Cell(30, 10, $razonsocial, 0, 0);
+$pdf->Cell(30, 10,mb_convert_encoding($razonsocial, 'ISO-8859-1', 'UTF-8') , 0, 0);
 
 $pdf->SetXY(+163, +56.5); //fecha de garantia
 $pdf->Cell(30, 10, $fechagarantia, 0, 0);
 
 $pdf->SetXY(+4, +64.5); //direccion
-$pdf->Cell(30, 10, $direccion, 0, 0);
+$pdf->Cell(30, 10,mb_convert_encoding($direccion, 'ISO-8859-1', 'UTF-8') , 0, 0);
 
 $pdf->SetXY(+163, +64.5); //fecha de vencimiento
 $pdf->Cell(30, 10, $fechavencimiento, 0, 0);
 $y = 82.8;
 for ($i = 1; $i <= 12; $i++) { //for de marca, venta y impuesto
     $pdf->SetXY(+6, +$y);
-    $pdf->Cell(49, 6.54, $marca[$i], 0, 0);
+    $pdf->Cell(49, 6.54,mb_convert_encoding( $marca[$i], 'ISO-8859-1', 'UTF-8'), 0, 0);
     $pdf->Cell(17, 6.54, $unidad[$i], 0, 0, 'C');
     $pdf->Cell(16, 6.54, $cantidad[$i], 0, 0, 'C');
     $pdf->Cell(18, 6.54, $pvp[$i], 0, 0, 'C');
