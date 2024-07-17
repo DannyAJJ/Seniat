@@ -60,7 +60,7 @@ $pdf->SetFont('Arial','B','12');
 $pdf->SetLeftMargin(15);
 
 $pdf->Sety(40);
-    $pdf->MultiCell('185','8',mb_convert_encoding('CONSTANCIA DE AUTORIZACIÓN PARA FÁBRICA DE ESPECIES ALCOHÓLICAS Y BEBIDAS ALCOHÓLICAS','ISO-8859-1','UTF-8'),1,'C',false);
+    $pdf->MultiCell('185','8',mb_convert_encoding('CONSTANCIA DE AUTORIZACIÓN PARA FÁBRICA DE TABACO','ISO-8859-1','UTF-8'),1,'C',false);
 
 
 $pdf->SetFont('Arial','','9');

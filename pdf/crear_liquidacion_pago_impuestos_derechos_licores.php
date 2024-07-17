@@ -400,7 +400,7 @@ $pdf->SetY($y+5);
 $pdf->Cell('125', '4.5', mb_convert_encoding('', 'ISO-8859-1', 'UTF-8'), 0, 0, 'C', false);
 $pdf->Cell('71', '4.5', mb_convert_encoding('', 'ISO-8859-1', 'UTF-8'), 0, 1, 'C', false);
 $pdf->Cell('125', '10', mb_convert_encoding('', 'ISO-8859-1', 'UTF-8'), 0, 0, 'C', false);
-$pdf->Cell('71', '10', mb_convert_encoding('$firma', 'ISO-8859-1', 'UTF-8'), 0, 1, 'C', false);
+$pdf->Cell('71', '10', mb_convert_encoding($firma, 'ISO-8859-1', 'UTF-8'), 0, 1, 'C', false);
 
 
 
