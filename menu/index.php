@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['nivel'])) {
-    header('location: ../login/index.html');
+    header('location: ../index.html');
 }
 ?>
 <!DOCTYPE html>
@@ -43,19 +43,19 @@ if (!isset($_SESSION['nivel'])) {
                                 <!--Opcion 1-->
                             <li><a id="selected" onclick="cerrar()"></a></li>
 
-                            <!-- style="width: 1000px;"> <img src="img/salir.png" alt="imagen clickeable" width="50" height="50"> -->
-
                                 <!--Opcion 2-->
                             <li><a href="#">Liquidaciones</a>
                                 <ul>
-                                    <li><a href="#">BUSCAR</a></li>
+                                    <li><a href="../liquidaciones/ver_liquidacion.php">BUSCAR</a></li>
                                 </ul>
                             </li>
 
                                 <!--Opcion 3-->
                             <li><a href="#">REPORTES</a>
                                 <ul>
-                                    <li><a href="#">BUSCAR</a></li>
+                                    <li><a href="../reportes/reporte_licores.html">PRODUCCION LICORES</a></li>
+                                    <li><a href="#">PVP LICORES</a></li>
+                                    <li><a href="../reportes/reporte_tabaco.html">PVP TABACO</a></li>
                                 </ul>
                             </li>
 
@@ -70,7 +70,7 @@ if (!isset($_SESSION['nivel'])) {
                                     ';
                                     }
                                     ?>
-                                    <li><a href="../contribuyentes/ver_contribuyente.php">Ver</a></li>
+                                    <li><a href="../buscar_contribuyentes/ver_contribuyente.php">Ver</a></li>
                                 </ul>
                             </li>
                             <?php
@@ -80,7 +80,6 @@ if (!isset($_SESSION['nivel'])) {
                             <li><a href="#">Gestion de usuario</a>
                                 <ul>
                                     <li><a href="../usuarios/agregar_usuario.php">Agregar</a></li>
-                                    <li><a href="../usuarios/ver_usarios.php">Ver</a></li>
                                 </ul>
                             </li>
 
@@ -108,7 +107,7 @@ if (!isset($_SESSION['nivel'])) {
 
     <main>
         <video muted autoplay loop>
-            <source src="./video/videof.mp4" type="video/mp4">
+            <source src="../video/videof.mp4" type="video/mp4">
         </video>
         <div class="capa"></div>
     </main>
@@ -120,7 +119,7 @@ url: 'cerrar_sesion.php',
 type: 'POST',
 data: {},
 success: function(data) {
-    location.href = "../login/index.html";
+    location.href = "../index.html";
 },
 error:
 function() {

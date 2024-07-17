@@ -1,0 +1,87 @@
+/* Global Styles */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #b91c1c;
+    background-color: #f9f9f9;
+  }
+  
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 20px auto;
+  }
+  
+  th, td {
+    text-align: left;
+    padding: 8px;
+    border: 1px solid #04d37d;
+  }
+  
+  th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+  }
+  
+  .centered {
+    text-align: center;
+  }
+  
+  .bold {
+    font-weight: bold;
+  }
+  
+  /* Header Styles */
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  /* Table Styles */
+  
+  table tr:nth-child(even) {
+    background-color: #f7f7f7;
+  }
+  
+  table tr:hover {
+    background-color: #e7e7e7;
+  }
+  
+  /* Footer Styles */
+  
+  footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 12px;
+    color: #666;
+  }
+  
+  /* Responsive Styles */
+  
+  @media only screen and (max-width: 768px) {
+    table {
+      font-size: 12px;
+    }
+    th, td {
+      padding: 4px;
+    }
+  }
+  
+  @media only screen and (max-width: 480px) {
+    table {
+      font-size: 10px;
+    }
+    th, td {
+      padding: 2px;
+    }
+  }
