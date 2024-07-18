@@ -268,11 +268,11 @@ $conn = new mysqli($servername, $username, $password, $dbname);
       <td>0</td>
     </tr>
     <tr>
-      <td colspan="10" style="text-align: center;" class="busc"><button id="boton" onclick="enviar()">ENVIAR</button></td>
-    </tr>
-
+      <td colspan="10" style="text-align: center;">
+      <button class="busc" id="boton" onclick="enviar()">ENVIAR</button>
+    </td>
+</tr>
   </table>
-
 </body>
 
 </html>
