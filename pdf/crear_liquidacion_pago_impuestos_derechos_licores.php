@@ -51,7 +51,24 @@ if ($_GET['tipo'] == '1') {
     $impuestoproduccion = array_fill(1, 5, ' ');
     $e = 1;
     while ($row = $result->fetch_assoc()) {
-        $claseproduccion[$e] = $row['Nombre_producto'];
+        switch ($row['Nombre_producto']) {
+            case 'ESPECIES Y BEBIDAS ALCOHÓLICAS':
+                $acronimo = "ESP. y BE. ALC.";
+                break;
+            case 'CERVEZA':
+                $acronimo = "CERVEZA";
+                break;
+            case 'SANGRÍA FERMENTADA':
+                $acronimo = "SANGRÍA FER.";
+                break;
+            case 'SANGRÍA ADICIÓN DE ALCOHOL':
+                $acronimo = "SANGRÍA AD. DE ALC.";
+                break;
+            case 'VINO':
+                $acronimo = "VINO";
+                break;
+        }
+        $claseproduccion[$e] = $acronimo;
         $litrovr[$e] = $row['Litrovr'];
         $frogl[$e] = $row['Frgl'];
         $litroaa[$e] = $row['Litroaa'];
@@ -244,11 +261,15 @@ $pdf->Cell('60','5.5',mb_convert_encoding($fecharegistro,'ISO-8859-1','UTF-8'),0
 
 
 $y = $pdf->GetY();
-$pdf->SetY($y+1);
-$pdf->MultiCell('196','5',mb_convert_encoding(''."\n ". $direccion,'ISO-8859-1','UTF-8'),0,'L',false);
-
-
-$y = $pdf->GetY();
+if (strlen($direccion) > 170) {
+    $pdf->SetY($y + 2);
+    $pdf->MultiCell('196', '4', mb_convert_encoding("                         " . $direccion, 'ISO-8859-1', 'UTF-8'), 0, 'L', false);
+    $y = $pdf->GetY() + 1;
+} else {
+    $pdf->SetY($y + 1);
+    $pdf->MultiCell('196', '5', mb_convert_encoding('' . "\n " . $direccion, 'ISO-8859-1', 'UTF-8'), 0, 'L', false);
+    $y = $pdf->GetY();
+}
 $pdf->SetY($y + 3);
 $pdf->Cell('130', '4.5', mb_convert_encoding('', 'ISO-8859-1', 'UTF-8'), 0, 0, 'C', false);
 $pdf->Cell('6', '4.5', mb_convert_encoding('', 'ISO-8859-1', 'UTF-8'), 0, 0, 'C', false);

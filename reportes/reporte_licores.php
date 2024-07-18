@@ -1,3 +1,7 @@
+<?php 
+$tipo = $_GET['tipo']
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,17 +9,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reportes</title>
     <link rel="stylesheet" href="estilosr.css">
+    <script src="../jquery-3.7.1.min.js"></script>
 </head>
 
 <div id="report-container">
 
-        <center><h3>REPORTES TABACO</h3></center>
-        
+        <center><h3>REPORTES <?php switch ($tipo) {case 'prolicor': echo "PRODUCCION LICORES"; break;case 'pvplicor': echo "P.V.P. LICORES"; break;case 'pvptabaco': echo "P.V.P. TABACO"; break;}?></h3></center>
+
         <a class="links" href="../menu/index.php"></a>
 
     <div id="year-controls">
       <button id="prev-year">«</button>
-      <span id="current-year">2022</span>
+      <span id="current-year"><?php echo date('Y');?></span>
       <button id="next-year">»</button>
     </div>
     <table id="report-table">
@@ -47,23 +52,24 @@
   </main>
 
 <script>
-
-  let currentYear = 2022;
+  let currentYear = parseInt("<?php echo date('Y'); ?>");
 let reportData = [];
+    function agregarano(ano) {
+      if (!reportData.some(item => item.year == ano)) {
 
-// Datos de ejemplo
-reportData.push({ month: 'Enero', done: 1000, earned: 5000 });
-reportData.push({ month: 'Febrero', done: 2000, earned: 8000 });
-reportData.push({ month: 'Marzo', done: 3000, earned: 12000 });
-reportData.push({ month: 'Abril', done: 4000, earned: 16000 });
-reportData.push({ month: 'Mayo', done: 5000, earned: 20000 });
-reportData.push({ month: 'Junio', done: 6000, earned: 24000 });
-reportData.push({ month: 'Julio', done: 7000, earned: 28000 });
-reportData.push({ month: 'Agosto', done: 8000, earned: 32000 });
-reportData.push({ month: 'Septiembre', done: 9000, earned: 36000 });
-reportData.push({ month: 'Octubre', done: 10000, earned: 40000 });
-reportData.push({ month: 'Noviembre', done: 11000, earned: 44000 });
-reportData.push({ month: 'Diciembre', done: 12000, earned: 48000 });
+        busqueda(ano).then(function (data) {
+          reporteano = data;
+          reportData.push({ year: ano, data: [] });
+          for (let i = 1; i < 13; i++) {
+            reportData.find(item => item.year == ano)['data'].push({ month: getMonthName(i - 1), done: parseFloat(reporteano['meses'][i]['cantidad']), earned: parseFloat(parseFloat(reporteano['meses'][i]['suma']).toFixed(2)) });
+          }
+          renderReportTable(ano);
+        });
+      } else {
+        renderReportTable(ano);
+      }
+
+    }
 
 // Función para renderizar la tabla
 function renderReportTable(year) {
@@ -74,7 +80,8 @@ function renderReportTable(year) {
   
   for (let i = 0; i < 12; i++) {
     const month = getMonthName(i);
-    const data = reportData.find(item => item.month === month);
+    const dataano = reportData.find(item => item.year == currentYear);
+    const data = dataano['data'].find(item => item.month === month);
     const row = document.createElement('tr');
     row.innerHTML = `
       <td>${month}</td>
@@ -99,16 +106,30 @@ function getMonthName(monthIndex) {
 // Eventos para adelantar o retroceder el año
 document.getElementById('prev-year').addEventListener('click', () => {
   currentYear--;
+  agregarano(currentYear);
+  document.getElementById('current-year').innerHTML = currentYear;
   renderReportTable(currentYear);
 });
 
 document.getElementById('next-year').addEventListener('click', () => {
   currentYear++;
+  agregarano(currentYear);
+  document.getElementById('current-year').innerHTML = currentYear;
   renderReportTable(currentYear);
 });
 
 // Renderizar la tabla inicialmente
-renderReportTable(currentYear);
-
+agregarano(currentYear);
+function busqueda(a) {
+  return $.ajax({ 
+    url: 'busqueda.php',
+    type: 'POST',
+    dataType: 'json',
+    data: {
+      ano: a,
+      tipo: '<?php echo $tipo?>'
+    }
+  });
+}
 </script>
 </html>

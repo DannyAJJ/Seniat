@@ -53,9 +53,9 @@ if (!isset($_SESSION['nivel'])) {
                                 <!--Opcion 3-->
                             <li><a href="#">REPORTES</a>
                                 <ul>
-                                    <li><a href="../reportes/reporte_licores.html">PRODUCCION LICORES</a></li>
-                                    <li><a href="#">PVP LICORES</a></li>
-                                    <li><a href="../reportes/reporte_tabaco.html">PVP TABACO</a></li>
+                                    <li><a href="../reportes/reporte_licores.php?tipo=prolicor">PRODUCCION LICORES</a></li>
+                                    <li><a href="../reportes/reporte_licores.php?tipo=pvplicor">PVP LICORES</a></li>
+                                    <li><a href="../reportes/reporte_licores.php?tipo=pvptabaco">PVP TABACO</a></li>
                                 </ul>
                             </li>
 
