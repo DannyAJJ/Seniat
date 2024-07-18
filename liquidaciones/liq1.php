@@ -59,9 +59,9 @@ $conn = new mysqli($servername, $username, $password, $dbname);
         </center>
       </td>
       <td width="200">MANIFIESTO</td>
-      <td><input type="text" placeholder="N°" name="manifiesto"></td>
+      <td><input type="text" placeholder="N°" name="manifiesto" id="manifiesto"></td>
       <td>FECHA MANIFIESTO</td>
-      <td><input type="date" placeholder="fecha" name="fechamanifiesto"></td>
+      <td><input type="date" placeholder="fecha" name="fechamanifiesto" id="fechamanifiesto"></td>
     </tr>
   </table>
   <?php if ($tipoliq == 1) {
@@ -105,6 +105,11 @@ $conn = new mysqli($servername, $username, $password, $dbname);
       4 => 27,
       5 => 28
     );
+    $sql = "SELECT `Id_firmante`,`Nombre_firmante` FROM `firmante_liquidacion`;";
+    $productos = $conn->query($sql);
+    while ($row = $productos->fetch_assoc()) {
+      $firmantes[$row['Id_firmante']] =  $row['Nombre_firmante'];
+    };
     $sql = "SELECT r.Id_producto, p.Nombre_producto FROM relacion_productos_licores r, clase_producto p WHERE r.Id_licencia = \"$licencia\" AND r.Id_producto = p.Id;";
     $productos = $conn->query($sql);
     while ($row = $productos->fetch_assoc()) {
@@ -228,13 +233,13 @@ $conn = new mysqli($servername, $username, $password, $dbname);
 
   <table width="50%" align="center">
     <tr>
-      <th colspan="5">DETERMINACIÓN DEL IMPUESTO</th>
+      <th colspan="6">DETERMINACIÓN DEL IMPUESTO</th>
     </tr>
     <tr>
       <th>CODIGO</th>
       <th>TIPO</th>
       <th width="49">Cod</th>
-      <th colspan="2">MONTO EN Bs.</th>
+      <th colspan="3">MONTO EN Bs.</th>
     </tr>
 
     <?php
@@ -244,7 +249,7 @@ $conn = new mysqli($servername, $username, $password, $dbname);
     <td width="80" id = "codigop' . $i . '"></td>
     <td  width="750">IMPUESTO A PAGAR</td>
     <td>91</td>
-    <td id="sumcodigo' . $i . '"></td>
+    <td colspan="3" id="sumcodigo' . $i . '"></td>
     <td width="30">9</td>
   </tr>';
     }
@@ -252,23 +257,31 @@ $conn = new mysqli($servername, $username, $password, $dbname);
     <tr>
       <td colspan="2" style="text-align: center;">TOTAL IMPUESTO</td>
       <td>67</td>
-      <td id="montopararestar"></td>
+      <td colspan="3" id="montopararestar"></td>
       <td>3</td>
     </tr>
     <tr>
       <td colspan="2" style="text-align: center;">MENOS: REINTEGRO</td>
       <td>68</td>
-      <td></td>
+      <td colspan="3"></td>
       <td>2</td>
     </tr>
     <tr>
       <td colspan="2" style="text-align: center;">IMPUESTO POR PAGAR (90=67-68)</td>
       <td>90</td>
-      <td id="montofinalfinal"></td>
+      <td colspan="3" id="montofinalfinal"></td>
       <td>0</td>
     </tr>
     <tr>
-      <td colspan="10" style="text-align: center;" class="busc"><button id="boton" onclick="enviar()">ENVIAR</button></td>
+      <td colspan="5" style="text-align: center;" class="busc"><button id="boton" onclick="enviar()">ENVIAR</button></td>
+      <td colspan="2"style="display : flex; flex-direction: row-reverse "><select name="firmante" id="firmante">
+      <option value="1">Seleccione</option>';
+      <?php 
+      foreach ($firmantes as $id => $clase) {
+        echo '<option value="' . $id . '">' . $clase . '</option>';
+      };
+      ?>
+      </select></td>
     </tr>
 
   </table>
@@ -488,7 +501,9 @@ $conn = new mysqli($servername, $username, $password, $dbname);
     let jey = {
         "cabecera":{
           "licencia": "<?php echo $licencia ?>",
-          "liquidacion":"<?php echo $tipoliq ?>"
+          "liquidacion":"<?php echo $tipoliq ?>",
+          "manifiesto":document.getElementById('manifiesto').value,
+          "fechamanifiesto":document.getElementById('fechamanifiesto').value
         },
         "detalles": []
       } ;
@@ -499,7 +514,8 @@ $conn = new mysqli($servername, $username, $password, $dbname);
     "litrovr": document.getElementById('lvr' + detalles).value,
     "fr": document.getElementById('fr' + detalles).value,
     "laa": document.getElementById('laa' + detalles).value,
-    "aa": document.getElementById('aa' + detalles).value
+    "aa": document.getElementById('aa' + detalles).value,
+    "total_detalle": document.getElementById('impuesto' + detalles).innerText
   });
     };
     
