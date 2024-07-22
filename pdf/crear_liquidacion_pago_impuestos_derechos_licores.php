@@ -80,7 +80,8 @@ if ($_GET['tipo'] == '1') {
     $sql = "SELECT SUM(Total_detalle) as 'total' FROM detalle_produccion_licores WHERE Id_liquidacion = '" . $nlq . "';";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
-    $totalpagarproduccion = $row['total'];
+    $numerotpi = (float) $row['total']; // Convertir la cadena a un número
+    $totalpagarproduccion = round($numerotpi, 2);
     $claseventapublico = array_fill(1, 14, ' ');
     $cantidadenvases = array_fill(1, 14, ' ');
     $capenvlistros = array_fill(1, 14, ' ');
@@ -132,9 +133,11 @@ if ($_GET['tipo'] == '1') {
     $sql = "SELECT SUM(Total_detalle) as 'total' FROM detalle_pvp_licores WHERE Id_liquidacion = '" . $nlq . "';";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
-    $totalporpagarvent = 'e';
+    $numerotpi = (float) $row['total']; // Convertir la cadena a un número
+    
+    $totalporpagarvent = round($numerotpi, 2);
     $codigo = '';
-    $montobs = $row['total'];
+    $montobs = round($numerotpi, 2);
     $total = $montobs;
     $totalimpuesto = $montobs;
     $menosreintegro = '';
