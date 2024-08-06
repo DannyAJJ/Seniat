@@ -18,10 +18,13 @@ $dbname = "expendiobd";
 // Crear conexión
 $conn = new mysqli($servername, $username, $password, $dbname);
 
-$mes = $_POST['mes'];
+//$mes = $_POST['mes'];
 $ano = $_POST['ano'];
 $tipo = $_POST['tipo'];
-
+$anoreporte = [
+    "ano" => $ano,
+    "meses" => []
+];
 
 switch ($tipo) {
     case 'prolicor':
@@ -36,20 +39,36 @@ switch ($tipo) {
         $tablas = 'detalle_tabaco d, liquidacion_tabaco l';
         break;
 }
-$sql = "SELECT SUM(d.Total_detalle) as 'suma', COUNT(d.Total_detalle) as 'cant' FROM $tablas WHERE l.Fecha_liquidacion like '%$mes-$ano' AND l.N_liquidacion = d.Id_liquidacion;;";
-$sentencia = $conn->query($sql);
-$resultados = $sentencia->fetch_assoc();
-if ($resultados['suma']) {
-    $lista = [
-        'cantidad' => $resultados['cant'],
-        'suma' => $resultados['suma'],
-    ];
-}else {
-    $lista = [
-        'cantidad' => $resultados['cant'],
-        'suma' => 0,
-    ];
-}
+for ($mes = 1; $mes < 13 ; $mes ++) { 
+    $sql = "SELECT SUM(d.Total_detalle) as 'suma', COUNT(d.Total_detalle) as 'cant' FROM $tablas WHERE l.Fecha_liquidacion like '%$mes-$ano' AND l.N_liquidacion = d.Id_liquidacion;";
+    $sentencia = $conn->query($sql);
+    $resultados = $sentencia->fetch_assoc();
 
-echo json_encode($lista);
+    if ($resultados['suma']) {
+
+        $anoreporte['meses'][$mes] = [
+            'cantidad' => $resultados['cant'],
+            'suma' => $resultados['suma'],
+        ];
+    } else {
+        $anoreporte['meses'][$mes] = [
+            'cantidad' => $resultados['cant'],
+            'suma' => 0,
+        ];
+    }
+}
+/*
+if ($resultados['suma']) {
+    $anoreporte['meses'][$mes] = [
+    'cantidad' => $resultados['cant'],
+    'suma' => $resultados['suma'],
+];
+}else {
+    $anoreporte['meses'][$mes] = [
+    'cantidad' => $resultados['cant'],
+    'suma' => 0,
+];
+}*/
+
+echo json_encode($anoreporte);
 ?>

@@ -145,7 +145,19 @@ if ($result->num_rows > 0) {
   function verlicl(i) {
     var eltd = document.getElementById(`autorizacionlicor${i}`);
     var vari = eltd.textContent;
-    location.href = '../pdf/crear_autorizacion_licores_pdf.php?Variable='+vari
+    comprobar(vari).then(function (data) {
+      if (data == 1) {
+        location.href = '../pdf/crear_autorizacion_licores_pdf.php?Variable='+vari;
+      }else{
+        location.href = 'auto_llenado.php?licencia='+vari;
+      }
+    });
+    /*
+    if (comprobar(vari)) {
+    location.href = '../pdf/crear_autorizacion_licores_pdf.php?Variable='+vari;
+    }else {
+    location.href = 'auto_llenado.php?licencia='+vari;
+    } ;*/
   }
   function eliminarlicor(i,n) {
     var eltd = document.getElementById(`autorizacionlicor${i}`);
@@ -223,6 +235,14 @@ error: function() {
         anadir(false)
        }
       }
-    </script>
+
+function comprobar(lic) {
+   return $.ajax({
+      url: 'comprobar_impresion.php',
+      type: 'POST',
+      data: { licencia: lic }
+      })
+      ;
+}
 
 </script>

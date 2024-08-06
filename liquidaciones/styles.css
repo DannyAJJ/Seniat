@@ -85,3 +85,16 @@
       padding: 2px;
     }
   }
+
+  .busc {
+    background: linear-gradient(130deg, rgb(86, 180, 68), rgb(223, 214, 214));
+    color: #030303; /* Blanco */
+    padding: 10px 20px; /* Espacio entre el texto y el borde */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Curva en los bordes */
+    cursor: pointer; /* Cursor en forma de mano */
+    font-weight: bold; /* Negrita */
+  }
+  .busc:hover {
+    background: linear-gradient(130deg, rgb(223, 214, 214), rgb(86, 180, 68));
+  }

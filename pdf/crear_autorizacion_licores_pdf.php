@@ -20,7 +20,7 @@ $Razon_social=$row['Razon_social'];
 $N_rif=$row['Numero_rif_solicitante'];
 $Direccion=$row['Direccion'];
 $Autorizacion_ejerce=$row['Autorizacion_ejerce'];
-$sqlcl = "SELECT `Clasificacion_indole` FROM `clase_producto` WHERE `Siglas` = '".substr($licencia,0,2)."';";
+$sqlcl = "SELECT DISTINCT cl.Clasificacion_indole FROM clase_producto cl, relacion_productos_licores rl WHERE rl.Id_producto = cl.Id AND rl.Id_licencia = \"$licencia\";";
 $resultcl = $conn->query($sqlcl);
 $rowcl = $resultcl->fetch_assoc();
 $Clasificacion_indole=$rowcl['Clasificacion_indole'];
